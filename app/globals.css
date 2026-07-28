@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  --background: 240 10% 4%;
+  --foreground: 0 0% 96%;
+  --card: 240 8% 7%;
+  --card-foreground: 0 0% 96%;
+  --popover: 240 8% 7%;
+  --popover-foreground: 0 0% 96%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 240 10% 4%;
+  --secondary: 240 6% 12%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 66%;
+  --accent: 240 5% 16%;
+  --accent-foreground: 0 0% 96%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5% 18%;
+  --input: 240 5% 18%;
+  --ring: 224 76% 68%;
+  --radius: 0.5rem;
+
+  --product-hiared: 267 86% 66%;
+  --product-gobazaar: 214 92% 62%;
+  --product-yojiq: 84 81% 58%;
+  --brand-airedhq: 0 0% 96%;
+  --brand-hiared: var(--product-hiared);
+  --brand-gobazaar: var(--product-gobazaar);
+  --brand-yojiq: var(--product-yojiq);
+  --font-geist-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-mono: "Geist Mono", "SFMono-Regular", Consolas, monospace;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-product-hiared: hsl(var(--product-hiared));
+  --color-product-gobazaar: hsl(var(--product-gobazaar));
+  --color-product-yojiq: hsl(var(--product-yojiq));
+  --color-brand-airedhq: hsl(var(--brand-airedhq));
+  --color-brand-hiared: hsl(var(--brand-hiared));
+  --color-brand-gobazaar: hsl(var(--brand-gobazaar));
+  --color-brand-yojiq: hsl(var(--brand-yojiq));
+  --duration-premium: 320ms;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.light {
+  color-scheme: light;
+
+  --background: 0 0% 99%;
+  --foreground: 240 10% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 4%;
+  --primary: 240 10% 4%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 10%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 6% 10%;
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --ring: 224 76% 48%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background:
+    radial-gradient(
+      circle at top left,
+      hsl(var(--product-hiared) / 0.14),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at top right,
+      hsl(var(--product-gobazaar) / 0.1),
+      transparent 30rem
+    ),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: hsl(var(--product-gobazaar) / 0.28);
+  color: hsl(var(--foreground));
+}
+
+.animated-gradient-field {
+  animation: gradient-drift 18s ease-in-out infinite alternate;
+}
+
+.particle-drift {
+  animation: particle-drift 6s ease-in-out infinite;
+}
+
+@keyframes gradient-drift {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: saturate(1);
+  }
+
+  to {
+    transform: scale(1.06) translate3d(1.5rem, -1rem, 0);
+    filter: saturate(1.15);
+  }
+}
+
+@keyframes particle-drift {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: translateY(-0.75rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
