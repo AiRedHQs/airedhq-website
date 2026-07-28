@@ -90,13 +90,13 @@ export function ContactForm() {
             aria-describedby={errors.phone ? "phone-error" : undefined}
           />
         </Field>
-        <Field label="Business inquiry" error={errors.inquiryType?.message}>
+        <Field label="Inquiry Type" error={errors.inquiryType?.message}>
           <select
-            id="business-inquiry"
+            id="inquiry-type"
             {...register("inquiryType")}
             className={inputClass}
             aria-invalid={Boolean(errors.inquiryType)}
-            aria-describedby={errors.inquiryType ? "business-inquiry-error" : undefined}
+            aria-describedby={errors.inquiryType ? "inquiry-type-error" : undefined}
           >
             {inquiryTypes.map((type) => (
               <option key={type}>{type}</option>
@@ -147,7 +147,7 @@ export function ContactForm() {
           <Send aria-hidden="true" />
         </Button>
         <Button asChild size="lg" variant="outline">
-          <a href="/contact#discovery-call">
+          <a href="#contact">
             Book Discovery Call
             <CalendarDays aria-hidden="true" />
           </a>

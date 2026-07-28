@@ -118,7 +118,7 @@ export function DesktopNavigation() {
         ))}
 
       <Button asChild size="sm" className="ml-2">
-        <Link href="/contact">Start a Project</Link>
+        <Link href="/#contact">Start a Project</Link>
       </Button>
     </nav>
   );
