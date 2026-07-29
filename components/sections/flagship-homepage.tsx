@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -100,6 +101,7 @@ type ClientCompany = {
   description: string;
   reach: string;
   offerings: readonly string[];
+  accent: string;
 };
 
 const clientCompanyOrder = [
@@ -125,6 +127,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "An IIT Bombay-linked educational robotics venture that combined physical kits, visual programming tools and structured classroom learning.",
     reach: "Historically reported: 1M+ children across 2,000+ schools",
     offerings: ["Robotics learning systems", "Visual programming tools", "Teacher training"],
+    accent: "#4ead55",
   },
   {
     name: "Next Education",
@@ -136,6 +139,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "Next Education provides curriculum, digital classrooms, learning products, school-management platforms and institutional support.",
     reach: "Company-reported: 12M+ students and 18,000+ schools",
     offerings: ["Digital curriculum", "School ERP and LMS", "Classroom and lab solutions"],
+    accent: "#438b3e",
   },
   {
     name: "Veative",
@@ -147,6 +151,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "Veative combines VR and WebXR educational content with scoring, student progress and teacher-facing learning analytics.",
     reach: "Public industry reports: presence in 25+ countries",
     offerings: ["K-12 VR modules", "WebXR learning", "Assessment analytics"],
+    accent: "#829451",
   },
   {
     name: "Umety",
@@ -158,6 +163,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "Umety brings together immersive lessons, education-first hardware, classroom orchestration, assessments and reporting.",
     reach: "Content library: 1,000+ lessons and 1,500+ interactive 3D models",
     offerings: ["Immersive lessons", "Education-first VR hardware", "Classroom management"],
+    accent: "#1f54ff",
   },
   {
     name: "LaunchMyCareer",
@@ -169,6 +175,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "LaunchMyCareer combines assessments, counselling, immersive career exploration and future-skills development for young people.",
     reach: "Announced availability through 6,000+ CSC Academies",
     offerings: ["Career assessments", "Expert counselling", "Immersive career exploration"],
+    accent: "#6954d8",
   },
   {
     name: "EmsigPro",
@@ -180,6 +187,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "EmsigPro supports programme selection, applications, visa preparation, language learning and student integration.",
     reach: "India-to-Germany education focus; no verified public volume",
     offerings: ["Admissions counselling", "Visa guidance", "German-language preparation"],
+    accent: "#b52630",
   },
   {
     name: "STEMpedia",
@@ -191,6 +199,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "STEMpedia combines PictoBlox software, programmable hardware, school innovation labs, curriculum and teacher training.",
     reach: "Company-reported: 300,000+ monthly active PictoBlox users",
     offerings: ["PictoBlox coding platform", "AI and robotics kits", "School innovation labs"],
+    accent: "#f0a400",
   },
   {
     name: "Nextechoasis",
@@ -202,6 +211,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "Nextechoasis develops immersive applications and 3D content for education, training, real estate, agriculture and healthcare.",
     reach: "Multi-industry India-based services; no public deployment total",
     offerings: ["VR classrooms", "Training simulations", "Custom AR and VR applications"],
+    accent: "#20252c",
   },
   {
     name: "Sensible-VR",
@@ -213,6 +223,7 @@ const clientCompanyData: readonly ClientCompany[] = [
       "Sensible-VR focuses on durable education hardware, localized content, offline operation and teacher-friendly deployment.",
     reach: "Japan-based, founded in 2024; international school focus",
     offerings: ["Offline VR deployment", "Localized learning content", "Privacy-first classroom systems"],
+    accent: "#df2029",
   },
 ] as const;
 
@@ -275,7 +286,7 @@ function CompanyCollaborations() {
           className="client-collaboration-grid mt-20 grid gap-4 sm:grid-cols-2 md:mt-28 lg:grid-cols-3"
           aria-label="Companies AiRedHQ has worked with"
         >
-          {clientCompanies.map((company) => (
+          {clientCompanies.map((company, companyIndex) => (
             <article
               key={`${company.name}-panel`}
               data-company-panel={company.name}
@@ -287,6 +298,14 @@ function CompanyCollaborations() {
                   : "bg-[#f1f2ef] text-[#101318]",
               )}
             >
+              <div
+                className="client-panel-pattern"
+                data-variant={companyIndex % 3}
+                style={{ "--client-pattern-accent": company.accent } as CSSProperties}
+                aria-hidden="true"
+              >
+                <span />
+              </div>
               <button
                 type="button"
                 data-company-close
@@ -300,7 +319,7 @@ function CompanyCollaborations() {
               >
                 <X size={19} aria-hidden="true" />
               </button>
-              <div>
+              <div className="relative z-10">
                 <Image
                   src={`/clients/${company.logoFile}`}
                   alt={company.name}
@@ -343,7 +362,7 @@ function CompanyCollaborations() {
                   ))}
                 </div>
               </div>
-              <div className="mt-12">
+              <div className="relative z-10 mt-12">
                 <p
                   className={cn(
                     "text-xs font-semibold uppercase tracking-[0.2em]",

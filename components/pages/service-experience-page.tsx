@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { SpatialTrainingScene } from "@/components/visuals/spatial-training-scene";
 import {
   Accessibility,
   Activity,
@@ -640,22 +641,7 @@ export function DesignSystemVisual({ accent }: { accent: string }) {
 }
 
 export function SpatialTrainingVisual({ accent }: { accent: string }) {
-  return (
-    <VisualShell>
-      <div className="relative min-h-[28rem] overflow-hidden p-5">
-        <div className="absolute inset-x-0 bottom-0 h-3/5 bg-[linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:32px_32px] [transform:perspective(420px)_rotateX(58deg)_scale(1.4)]" aria-hidden="true" />
-        <div className="relative flex justify-between"><div><p className="text-[10px] text-white/30">Training simulation</p><h3 className="mt-1 font-semibold">Equipment inspection</h3></div><span className="rounded-full px-3 py-1 text-[10px]" style={{ color: accent, backgroundColor: `${accent}16` }}>Step 03 / 06</span></div>
-        <div className="absolute left-[34%] top-[34%] h-40 w-52 border border-white/15 bg-white/[0.025] [transform:skewY(-6deg)]">
-          <div className="absolute left-6 top-7 size-16 rounded-full border" style={{ borderColor: accent }} />
-          <div className="absolute bottom-7 right-7 h-16 w-24 border border-white/10" />
-        </div>
-        <motion.div className="absolute left-[52%] top-[43%] size-5 rounded-full border-2" style={{ borderColor: accent }} animate={{ scale: [1, 1.5, 1], opacity: [1, .4, 1] }} transition={{ duration: 2.5, repeat: Infinity }} />
-        <div className="absolute bottom-6 left-5 right-5 grid grid-cols-3 gap-3">
-          {[["Task", "Inspect valve"], ["Safety", "Area clear"], ["Tracking", "Hands detected"]].map(([label, value]) => <div key={label} className="rounded-md bg-black/55 p-3 backdrop-blur"><p className="text-[9px] text-white/30">{label}</p><p className="mt-2 text-[11px] text-white/65">{value}</p></div>)}
-        </div>
-      </div>
-    </VisualShell>
-  );
+  return <SpatialTrainingScene accent={accent} />;
 }
 
 export function CloudPipelineVisual({ accent }: { accent: string }) {

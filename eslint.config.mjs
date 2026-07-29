@@ -22,6 +22,8 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "public/vendor/**",
+    "public/scripts/spatial-training-scene.js",
     "next-env.d.ts",
   ]),
 ]);
