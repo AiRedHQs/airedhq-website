@@ -107,11 +107,13 @@
 
 html {
   min-height: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100%;
+  overflow-x: clip;
   background:
     radial-gradient(
       circle at top left,
@@ -189,6 +191,18 @@ body {
 
 .product-preview-visual:hover img {
   transform: scale(1.012);
+}
+
+@media (max-width: 767px) {
+  .hero-product-float,
+  .product-preview-visual {
+    animation-duration: 9s;
+  }
+
+  .hero-product-visual:hover .hero-product-parallax,
+  .product-preview-visual:hover img {
+    transform: none;
+  }
 }
 
 .industry-carousel-stage {

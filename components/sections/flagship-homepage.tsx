@@ -266,9 +266,9 @@ export function FlagshipHomepage() {
 
 function CompanyCollaborations() {
   return (
-    <section className="relative overflow-hidden bg-[#050608] py-28 md:py-40">
+    <section className="relative overflow-hidden bg-[#050608] py-20 md:py-32 lg:py-40">
       <Container className="max-w-[96rem]">
-        <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+        <div className="grid gap-10 md:gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:gap-16">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.34em] text-white/42">
               Selected Collaborations
@@ -283,7 +283,7 @@ function CompanyCollaborations() {
 
         <div
           id="client-collaboration-grid"
-          className="client-collaboration-grid mt-20 grid gap-4 sm:grid-cols-2 md:mt-28 lg:grid-cols-3"
+          className="client-collaboration-grid mt-14 grid grid-cols-2 gap-3 md:mt-20 md:gap-4 lg:mt-28 lg:grid-cols-3"
           aria-label="Companies AiRedHQ has worked with"
         >
           {clientCompanies.map((company, companyIndex) => (
@@ -292,7 +292,7 @@ function CompanyCollaborations() {
               data-company-panel={company.name}
               hidden
               className={cn(
-                "client-company-panel relative min-h-[30rem] flex-col justify-between overflow-hidden rounded-lg p-8 md:p-12",
+                "client-company-panel relative col-span-2 min-h-[26rem] flex-col justify-between overflow-hidden rounded-lg p-6 sm:p-8 md:min-h-[30rem] md:p-12 lg:col-span-1",
                 company.surface === "dark"
                   ? "bg-[#090b0f] text-white ring-1 ring-white/12"
                   : "bg-[#f1f2ef] text-[#101318]",
@@ -389,7 +389,7 @@ function CompanyCollaborations() {
               key={company.name}
               data-company-select={company.name}
               className={cn(
-                "client-company-logo group relative flex min-h-40 items-center justify-center overflow-hidden rounded-lg p-6 outline-none transition-transform duration-500 hover:-translate-y-1",
+                "client-company-logo group relative flex min-h-28 items-center justify-center overflow-hidden rounded-lg p-4 outline-none transition-transform duration-500 hover:-translate-y-1 sm:min-h-36 sm:p-6 lg:min-h-40",
                 company.surface === "dark"
                   ? "bg-[#090b0f] text-white ring-1 ring-white/12"
                   : "bg-[#f1f2ef] text-black",
@@ -519,8 +519,8 @@ function CollaborationNetwork() {
 
 function ProductsIntroduction() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
-      <Container className="grid max-w-[96rem] items-end gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+    <section className="relative overflow-hidden py-16 md:py-24 lg:py-32">
+      <Container className="grid max-w-[96rem] items-end gap-10 md:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.34em] text-white/42">
             Our Products
@@ -538,23 +538,23 @@ function ProductsIntroduction() {
 
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#050608] pt-20 text-white md:pt-24 lg:pt-10">
+    <section className="relative isolate overflow-hidden bg-[#050608] pt-12 text-white sm:pt-16 md:pt-20 lg:pt-10">
       <HeroAtmosphere />
-      <Container className="relative z-10 grid max-w-[96rem] items-center gap-14 pb-20 lg:grid-cols-[0.76fr_1.24fr] lg:gap-6 lg:py-16 xl:py-20">
+      <Container className="relative z-10 grid max-w-[96rem] items-center gap-8 pb-14 sm:gap-10 sm:pb-16 md:gap-12 md:pb-20 lg:grid-cols-[0.76fr_1.24fr] lg:gap-6 lg:py-16 xl:py-20">
         <div className="max-w-2xl">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.34em] text-white/48">
             Product innovation company
           </p>
-          <h1 className="max-w-[11ch] text-6xl font-semibold leading-[0.9] tracking-normal text-balance md:text-7xl lg:text-[5.8rem] xl:text-[6.8rem]">
+          <h1 className="max-w-[11ch] text-[3.35rem] font-semibold leading-[0.91] tracking-normal text-balance sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[6.8rem]">
             We build{" "}
             <span className="text-[#2f91d4]">products</span> that solve real
             problems.
           </h1>
-          <p className="mt-7 max-w-xl text-base leading-7 text-white/56 md:text-lg">
+          <p className="mt-5 max-w-xl text-base leading-7 text-white/56 sm:mt-7 md:text-lg">
             Three product lines. One engineering standard. Practical software designed,
             built and improved in the real world.
           </p>
-          <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <div className="mt-7 flex flex-col items-start gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
             <Button
               asChild
               size="lg"
@@ -583,10 +583,10 @@ function Hero() {
 function ProductBand({ product }: { product: (typeof products)[number] }) {
   return (
     <section
-      className="relative isolate overflow-hidden py-24 md:py-32"
+      className="relative isolate overflow-hidden py-20 md:py-24 lg:py-32"
       style={{ background: productSectionBackground[product.id] }}
     >
-      <Container className="relative z-10 grid items-center gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+      <Container className="relative z-10 grid items-center gap-10 md:gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
         <div className="max-w-xl">
           <Image
             src={product.logo}
@@ -603,7 +603,7 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
           >
             {product.eyebrow}
           </p>
-          <h2 className="whitespace-pre-line text-5xl font-semibold leading-[0.94] tracking-normal text-balance md:text-6xl lg:text-7xl">
+          <h2 className="whitespace-pre-line text-[2.65rem] font-semibold leading-[0.94] tracking-normal text-balance sm:text-5xl md:text-6xl lg:text-7xl">
             <HighlightedHeadline
               text={product.headline}
               highlight={product.headlineAccent}
@@ -642,7 +642,7 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
         </div>
 
         <div
-          className="product-preview-visual relative will-change-transform"
+          className="product-preview-visual relative mx-auto w-full max-w-3xl will-change-transform lg:max-w-none"
           data-product={product.id}
         >
           <Image
@@ -651,7 +651,7 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
             width={product.id === "gobazaar" ? 1693 : 1536}
             height={product.id === "gobazaar" ? 929 : 1024}
             sizes="(max-width: 1023px) 100vw, 62vw"
-            className="h-auto w-full object-contain"
+            className="mx-auto h-auto max-h-[25rem] w-full object-contain md:max-h-[34rem] lg:max-h-none"
           />
           {product.id === "yojiq" && (
             <Image
@@ -757,7 +757,7 @@ function ProductIndexGraphic() {
 function HeroProductVisual() {
   return (
     <div
-      className="hero-product-visual relative origin-center perspective-[1400px] lg:-mr-8 lg:scale-[1.08] xl:-mr-14"
+      className="hero-product-visual relative mx-auto w-full max-w-2xl origin-center perspective-[1400px] lg:-mr-8 lg:max-w-none lg:scale-[1.08] xl:-mr-14"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width - 0.5;
