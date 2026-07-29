@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "airedhq-website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-07-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    {
+      "pattern": "airedhq.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.airedhq.com",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "airedhq-leads",
+      "database_id": "e6d67cb1-b2f6-436d-93ed-7d2dc5fc2b23",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "RESUMES",
+      "bucket_name": "airedhq-career-resumes"
+    }
+  ]
+}

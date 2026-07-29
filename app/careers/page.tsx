@@ -1,13 +1,12 @@
-import { StandardPage } from "@/components/pages/standard-page";
-import { standardPages } from "@/data/standard-pages";
+import { CareersExperiencePage } from "@/components/pages/careers-experience-page";
 import { createMetadata } from "@/src/lib/seo";
 
 export const metadata = createMetadata({
   title: "Careers",
-  description: standardPages.careers.description,
+  description: "Explore product, design, engineering and applied AI careers at AiRedHQ.",
   path: "/careers",
 });
 
 export default function CareersPage() {
-  return <StandardPage page={standardPages.careers} />;
+  return <CareersExperiencePage />;
 }

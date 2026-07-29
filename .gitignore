@@ -16,9 +16,16 @@
 # next.js
 /.next/
 /out/
+/.open-next/
+/.wrangler/
 
 # production
 /build
+/.data/
+
+# local Cloudflare validation logs
+/.cloudflare-build.*.log
+/.cloudflare-build.exit
 
 # misc
 .DS_Store

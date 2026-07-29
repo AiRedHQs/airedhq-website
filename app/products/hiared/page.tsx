@@ -1,4 +1,4 @@
-import { ProductLandingPage } from "@/components/pages/product-page";
+import HiARedProductExperience from "@/components/pages/products/hiared-product-experience";
 import { productPages } from "@/data/site-pages";
 import { createMetadata } from "@/src/lib/seo";
 
@@ -11,5 +11,5 @@ export const metadata = createMetadata({
 });
 
 export default function HiARedPage() {
-  return <ProductLandingPage page={page} />;
+  return <HiARedProductExperience />;
 }

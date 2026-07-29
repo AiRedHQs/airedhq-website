@@ -34,11 +34,28 @@ export function ContactForm() {
     },
   });
 
-  const onSubmit = async () => {
-    toast.success("Inquiry prepared", {
-      description: "Thanks. AiRedHQ can connect this form to a backend next.",
-    });
-    reset();
+  const onSubmit = async (values: ContactFormValues) => {
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error ?? "Your inquiry could not be submitted.");
+      }
+
+      toast.success("Inquiry received", {
+        description: "Your project details have been saved.",
+      });
+      reset();
+    } catch (error) {
+      toast.error("Inquiry not submitted", {
+        description: error instanceof Error ? error.message : "Please try again.",
+      });
+    }
   };
 
   return (
@@ -147,8 +164,8 @@ export function ContactForm() {
           <Send aria-hidden="true" />
         </Button>
         <Button asChild size="lg" variant="outline">
-          <a href="#contact">
-            Book Discovery Call
+          <a href="#project-brief">
+            Review Project Brief
             <CalendarDays aria-hidden="true" />
           </a>
         </Button>

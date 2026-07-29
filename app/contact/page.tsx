@@ -1,24 +1,13 @@
-import { ContactSection } from "@/components/sections/contact-section";
-import { PageHero } from "@/components/shared/page-hero";
+import { ContactExperiencePage } from "@/components/pages/contact-experience-page";
 import { createMetadata } from "@/src/lib/seo";
-import { standardPages } from "@/data/standard-pages";
 
 export const metadata = createMetadata({
-  title: "Contact",
-  description: standardPages.contact.description,
+  title: "Contact AiRedHQ",
+  description:
+    "Tell AiRedHQ about the product, platform, operating problem or technology partnership you want to move forward.",
   path: "/contact",
 });
 
 export default function ContactPage() {
-  return (
-    <>
-      <PageHero
-        label="Contact"
-        title={standardPages.contact.title}
-        description={standardPages.contact.description}
-        breadcrumbs={[{ label: "Contact" }]}
-      />
-      <ContactSection />
-    </>
-  );
+  return <ContactExperiencePage />;
 }

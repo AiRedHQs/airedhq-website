@@ -1,4 +1,4 @@
-import { ProductLandingPage } from "@/components/pages/product-page";
+import GoBazaarProductExperience from "@/components/pages/products/gobazaar-product-experience";
 import { productPages } from "@/data/site-pages";
 import { createMetadata } from "@/src/lib/seo";
 
@@ -11,5 +11,5 @@ export const metadata = createMetadata({
 });
 
 export default function GoBazaarPage() {
-  return <ProductLandingPage page={page} />;
+  return <GoBazaarProductExperience />;
 }

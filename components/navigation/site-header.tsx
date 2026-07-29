@@ -19,7 +19,7 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 bg-background/24 backdrop-blur-xl"
+      className="sticky top-0 z-40 border-b border-border/70 bg-background shadow-sm lg:border-b-0 lg:bg-background/24 lg:shadow-none lg:backdrop-blur-xl"
       animate={{ y: hidden ? -80 : 0 }}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
     >

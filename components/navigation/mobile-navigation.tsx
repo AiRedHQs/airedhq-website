@@ -44,6 +44,7 @@ export function MobileNavigation() {
         aria-label="Open navigation menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen(true)}
+        className="border border-border bg-card text-foreground shadow-sm hover:bg-accent"
       >
         <Menu aria-hidden="true" />
       </Button>
@@ -58,7 +59,7 @@ export function MobileNavigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-background/98 backdrop-blur-xl"
+            className="fixed inset-0 z-50 bg-background"
           >
             <motion.div
               initial={{ y: -16 }}
@@ -90,6 +91,13 @@ export function MobileNavigation() {
                     Products
                   </p>
                   <div className="grid gap-2">
+                    <Link
+                      href="/products"
+                      onClick={() => setIsOpen(false)}
+                      className="block rounded-md px-1 py-3 text-xl font-medium text-foreground outline-none transition-colors duration-premium hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      View all products
+                    </Link>
                     {productNavItems.map((product) => (
                       <Link
                         key={product.id}

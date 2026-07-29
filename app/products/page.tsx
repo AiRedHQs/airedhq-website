@@ -1,13 +1,13 @@
-import { StandardPage } from "@/components/pages/standard-page";
-import { standardPages } from "@/data/standard-pages";
+import { ProductsExperiencePage } from "@/components/pages/products-experience-page";
 import { createMetadata } from "@/src/lib/seo";
 
 export const metadata = createMetadata({
   title: "Products",
-  description: standardPages.products.description,
+  description:
+    "Explore AiRedHQ products: hiARed for transparent recruitment, GoBazaar for hyperlocal discovery and YojIQ for privacy-first financial planning.",
   path: "/products",
 });
 
 export default function ProductsPage() {
-  return <StandardPage page={standardPages.products} />;
+  return <ProductsExperiencePage />;
 }

@@ -1,4 +1,4 @@
-import { StandardPage } from "@/components/pages/standard-page";
+import { IndustriesExperiencePage } from "@/components/pages/industries-experience-page";
 import { standardPages } from "@/data/standard-pages";
 import { createMetadata } from "@/src/lib/seo";
 
@@ -9,5 +9,5 @@ export const metadata = createMetadata({
 });
 
 export default function IndustriesPage() {
-  return <StandardPage page={standardPages.industries} />;
+  return <IndustriesExperiencePage />;
 }
