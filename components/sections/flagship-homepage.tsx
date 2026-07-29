@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Check, X } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
@@ -91,6 +91,153 @@ const productCta = {
     "border-product-yojiq/55 bg-product-yojiq/10 text-product-yojiq hover:bg-product-yojiq/18 hover:text-white",
 } satisfies Record<ProductId, string>;
 
+type ClientCompany = {
+  name: string;
+  logoFile: string;
+  surface: "light" | "dark";
+  category: string;
+  headline: string;
+  description: string;
+  reach: string;
+  offerings: readonly string[];
+};
+
+const clientCompanyOrder = [
+  "Sensible-VR",
+  "Nextechoasis",
+  "STEMpedia",
+  "Umety",
+  "LaunchMyCareer",
+  "Veative",
+  "EmsigPro",
+  "Next Education",
+  "ThinkLABS",
+] as const;
+
+const clientCompanyData: readonly ClientCompany[] = [
+  {
+    name: "ThinkLABS",
+    logoFile: "thinklabs-logo.png",
+    surface: "light",
+    category: "Educational Robotics / STEM EdTech",
+    headline: "Hands-on robotics and programming for schools and colleges.",
+    description:
+      "An IIT Bombay-linked educational robotics venture that combined physical kits, visual programming tools and structured classroom learning.",
+    reach: "Historically reported: 1M+ children across 2,000+ schools",
+    offerings: ["Robotics learning systems", "Visual programming tools", "Teacher training"],
+  },
+  {
+    name: "Next Education",
+    logoFile: "next-education-logo.png",
+    surface: "light",
+    category: "K-12 B2B EdTech / School SaaS",
+    headline: "An integrated technology and academic partner for K-12 schools.",
+    description:
+      "Next Education provides curriculum, digital classrooms, learning products, school-management platforms and institutional support.",
+    reach: "Company-reported: 12M+ students and 18,000+ schools",
+    offerings: ["Digital curriculum", "School ERP and LMS", "Classroom and lab solutions"],
+  },
+  {
+    name: "Veative",
+    logoFile: "veative-logo.png",
+    surface: "light",
+    category: "Immersive Learning / VR EdTech",
+    headline: "Curriculum-aligned immersive learning with assessment built in.",
+    description:
+      "Veative combines VR and WebXR educational content with scoring, student progress and teacher-facing learning analytics.",
+    reach: "Public industry reports: presence in 25+ countries",
+    offerings: ["K-12 VR modules", "WebXR learning", "Assessment analytics"],
+  },
+  {
+    name: "Umety",
+    logoFile: "umety-logo.png",
+    surface: "light",
+    category: "K-12 XR Platform / Education VR",
+    headline: "A complete immersive-classroom platform across devices.",
+    description:
+      "Umety brings together immersive lessons, education-first hardware, classroom orchestration, assessments and reporting.",
+    reach: "Content library: 1,000+ lessons and 1,500+ interactive 3D models",
+    offerings: ["Immersive lessons", "Education-first VR hardware", "Classroom management"],
+  },
+  {
+    name: "LaunchMyCareer",
+    logoFile: "launchmycareer-logo.png",
+    surface: "light",
+    category: "Career Guidance / Student Employability",
+    headline: "Career discovery that moves from self-awareness to readiness.",
+    description:
+      "LaunchMyCareer combines assessments, counselling, immersive career exploration and future-skills development for young people.",
+    reach: "Announced availability through 6,000+ CSC Academies",
+    offerings: ["Career assessments", "Expert counselling", "Immersive career exploration"],
+  },
+  {
+    name: "EmsigPro",
+    logoFile: "emsigpro-logo.png",
+    surface: "light",
+    category: "International Higher-Education Services",
+    headline: "Guidance for Indian students pursuing higher education in Germany.",
+    description:
+      "EmsigPro supports programme selection, applications, visa preparation, language learning and student integration.",
+    reach: "India-to-Germany education focus; no verified public volume",
+    offerings: ["Admissions counselling", "Visa guidance", "German-language preparation"],
+  },
+  {
+    name: "STEMpedia",
+    logoFile: "stempedia-logo.png",
+    surface: "light",
+    category: "Coding, AI and Educational Robotics",
+    headline: "A connected ecosystem for coding, AI, robotics and making.",
+    description:
+      "STEMpedia combines PictoBlox software, programmable hardware, school innovation labs, curriculum and teacher training.",
+    reach: "Company-reported: 300,000+ monthly active PictoBlox users",
+    offerings: ["PictoBlox coding platform", "AI and robotics kits", "School innovation labs"],
+  },
+  {
+    name: "Nextechoasis",
+    logoFile: "nextechoasis-logo.png",
+    surface: "light",
+    category: "XR Development / Immersive Training",
+    headline: "Custom AR and VR experiences across learning and industry.",
+    description:
+      "Nextechoasis develops immersive applications and 3D content for education, training, real estate, agriculture and healthcare.",
+    reach: "Multi-industry India-based services; no public deployment total",
+    offerings: ["VR classrooms", "Training simulations", "Custom AR and VR applications"],
+  },
+  {
+    name: "Sensible-VR",
+    logoFile: "sensible-vr-logo.png",
+    surface: "light",
+    category: "Offline-First Classroom VR",
+    headline: "Practical, privacy-conscious VR designed around real classrooms.",
+    description:
+      "Sensible-VR focuses on durable education hardware, localized content, offline operation and teacher-friendly deployment.",
+    reach: "Japan-based, founded in 2024; international school focus",
+    offerings: ["Offline VR deployment", "Localized learning content", "Privacy-first classroom systems"],
+  },
+] as const;
+
+const clientCompanies = clientCompanyOrder.map((name) => {
+  const company = clientCompanyData.find((item) => item.name === name);
+
+  if (!company) {
+    throw new Error(`Missing client company data for ${name}`);
+  }
+
+  return company;
+});
+
+const collaborationNodes = [
+  { name: "Sensible-VR", x: 29, y: 42 },
+  { name: "Nextechoasis", x: 8, y: 57 },
+  { name: "STEMpedia", x: 18, y: 82 },
+  { name: "Umety", x: 92, y: 48 },
+  { name: "LaunchMyCareer", x: 78, y: 80 },
+  { name: "Veative", x: 84, y: 18 },
+  { name: "EmsigPro", x: 50, y: 91 },
+  { name: "Next Education", x: 50, y: 8 },
+  { name: "ThinkLABS", x: 14, y: 18 },
+] as const;
+
 export function FlagshipHomepage() {
   return (
     <>
@@ -100,8 +247,254 @@ export function FlagshipHomepage() {
         {products.map((product) => (
           <ProductBand key={product.id} product={product} />
         ))}
+        <CompanyCollaborations />
       </main>
     </>
+  );
+}
+
+function CompanyCollaborations() {
+  return (
+    <section className="relative overflow-hidden bg-[#050608] py-28 md:py-40">
+      <Container className="max-w-[96rem]">
+        <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.34em] text-white/42">
+              Selected Collaborations
+            </p>
+            <h2 className="mt-6 max-w-[10ch] text-5xl font-semibold leading-[0.95] text-balance text-white md:text-7xl lg:text-[5.5rem]">
+              Built alongside{" "}
+              <span className="text-[#2f91d4]">ambitious</span> teams.
+            </h2>
+          </div>
+          <CollaborationNetwork />
+        </div>
+
+        <div
+          id="client-collaboration-grid"
+          className="client-collaboration-grid mt-20 grid gap-4 sm:grid-cols-2 md:mt-28 lg:grid-cols-3"
+          aria-label="Companies AiRedHQ has worked with"
+        >
+          {clientCompanies.map((company) => (
+            <article
+              key={`${company.name}-panel`}
+              data-company-panel={company.name}
+              hidden
+              className={cn(
+                "client-company-panel relative min-h-[30rem] flex-col justify-between overflow-hidden rounded-lg p-8 md:p-12",
+                company.surface === "dark"
+                  ? "bg-[#090b0f] text-white ring-1 ring-white/12"
+                  : "bg-[#f1f2ef] text-[#101318]",
+              )}
+            >
+              <button
+                type="button"
+                data-company-close
+                className={cn(
+                  "absolute right-5 top-5 flex size-11 items-center justify-center rounded-full outline-none transition focus-visible:ring-2",
+                  company.surface === "dark"
+                    ? "bg-white/8 text-white/65 hover:bg-white hover:text-black focus-visible:ring-white"
+                    : "bg-black/7 text-black/60 hover:bg-black hover:text-white focus-visible:ring-black",
+                )}
+                aria-label={`Close ${company.name} details`}
+              >
+                <X size={19} aria-hidden="true" />
+              </button>
+              <div>
+                <Image
+                  src={`/clients/${company.logoFile}`}
+                  alt={company.name}
+                  width={520}
+                  height={180}
+                  className="h-20 w-auto max-w-[65%] object-contain object-left"
+                />
+                <p
+                  className={cn(
+                    "mt-14 text-xs font-semibold uppercase tracking-[0.26em]",
+                    company.surface === "dark" ? "text-white/42" : "text-black/42",
+                  )}
+                >
+                  {company.category}
+                </p>
+                <h3 className="mt-5 max-w-[19ch] text-4xl font-semibold leading-[1.02] md:text-5xl">
+                  {company.headline}
+                </h3>
+                <p
+                  className={cn(
+                    "mt-7 max-w-2xl text-base leading-7 md:text-lg",
+                    company.surface === "dark" ? "text-white/58" : "text-black/58",
+                  )}
+                >
+                  {company.description}
+                </p>
+                <div className="mt-9 flex flex-wrap gap-2">
+                  {company.offerings.map((offering) => (
+                    <span
+                      key={offering}
+                      className={cn(
+                        "rounded-full px-4 py-2 text-sm font-medium",
+                        company.surface === "dark"
+                          ? "bg-white/8 text-white/72"
+                          : "bg-black/6 text-black/68",
+                      )}
+                    >
+                      {offering}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-12">
+                <p
+                  className={cn(
+                    "text-xs font-semibold uppercase tracking-[0.2em]",
+                    company.surface === "dark" ? "text-white/38" : "text-black/38",
+                  )}
+                >
+                  Publicly reported reach or focus
+                </p>
+                <p
+                  className={cn(
+                    "mt-3 text-sm font-medium leading-6",
+                    company.surface === "dark" ? "text-white/68" : "text-black/64",
+                  )}
+                >
+                  {company.reach}
+                </p>
+              </div>
+            </article>
+          ))}
+
+          {clientCompanies.map((company, index) => (
+            <motion.button
+              type="button"
+              key={company.name}
+              data-company-select={company.name}
+              className={cn(
+                "client-company-logo group relative flex min-h-40 items-center justify-center overflow-hidden rounded-lg p-6 outline-none transition-transform duration-500 hover:-translate-y-1",
+                company.surface === "dark"
+                  ? "bg-[#090b0f] text-white ring-1 ring-white/12"
+                  : "bg-[#f1f2ef] text-black",
+              )}
+              style={{ transitionDelay: `${index * 20}ms` }}
+              aria-label={`View collaboration with ${company.name}`}
+              aria-pressed="false"
+            >
+              <Image
+                src={`/clients/${company.logoFile}`}
+                alt=""
+                width={420}
+                height={160}
+                className="h-16 w-full max-w-[13rem] object-contain transition-transform duration-500 group-hover:scale-105"
+              />
+            </motion.button>
+          ))}
+        </div>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var root=document.getElementById('client-collaboration-grid');if(!root||root.dataset.ready)return;var panels=Array.from(root.querySelectorAll('[data-company-panel]'));var buttons=Array.from(root.querySelectorAll('[data-company-select]'));function clearPosition(button){button.style.gridColumn='';button.style.gridRow='';}function close(){root.classList.remove('is-expanded');panels.forEach(function(panel){panel.hidden=true;panel.classList.remove('is-active');});buttons.forEach(function(button){button.classList.remove('is-selected');button.setAttribute('aria-pressed','false');clearPosition(button);});}function open(name){var panel=panels.find(function(item){return item.dataset.companyPanel===name;});if(!panel)return;var desktop=matchMedia('(min-width: 1024px)').matches;var railRow=1;root.classList.add('is-expanded');panels.forEach(function(item){var active=item===panel;item.hidden=!active;item.classList.toggle('is-active',active);});buttons.forEach(function(button){var active=button.dataset.companySelect===name;button.classList.toggle('is-selected',active);button.setAttribute('aria-pressed',String(active));if(desktop&&!active){button.style.gridColumn='2';button.style.gridRow=String(railRow++);}else{clearPosition(button);}});}buttons.forEach(function(button){button.addEventListener('click',function(){open(button.dataset.companySelect);});});root.querySelectorAll('[data-company-close]').forEach(function(button){button.addEventListener('click',close);});root.dataset.ready='true';})();`,
+          }}
+        />
+      </Container>
+    </section>
+  );
+}
+
+function CollaborationNetwork() {
+  return (
+    <motion.div
+      className="group/network relative mx-auto aspect-[1.55/1] w-full max-w-3xl"
+      initial="rest"
+      animate="rest"
+      whileHover="active"
+      aria-label="AiRedHQ collaboration network"
+    >
+      <svg
+        className="absolute inset-0 h-full w-full overflow-visible"
+        viewBox="0 0 100 100"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle
+          cx="50"
+          cy="50"
+          r="29"
+          stroke="rgba(255,255,255,.05)"
+          strokeDasharray="1 4"
+        />
+        {collaborationNodes.map((node, index) => (
+          <motion.line
+            key={node.name}
+            x1="50"
+            y1="50"
+            x2={node.x}
+            y2={node.y}
+            stroke="rgba(47,145,212,.46)"
+            strokeWidth="0.3"
+            strokeDasharray="2 2.8"
+            vectorEffect="non-scaling-stroke"
+            variants={{
+              rest: { opacity: 0.62, pathLength: 0.82 },
+              active: {
+                opacity: 0.95,
+                pathLength: 1,
+                transition: {
+                  duration: 0.55,
+                  delay: index * 0.035,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              },
+            }}
+          />
+        ))}
+      </svg>
+
+      <motion.div
+        className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a0d12] shadow-[0_0_0_1px_rgba(47,145,212,.42),0_0_40px_rgba(47,145,212,.1)] md:size-28"
+        variants={{
+          rest: { scale: 1 },
+          active: { scale: 1.06 },
+        }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image
+          src="/airedhq/Logo 2X1 Transparent.png"
+          alt="AiRedHQ"
+          width={84}
+          height={42}
+          className="h-auto w-[4.5rem] object-contain md:w-[5.25rem]"
+        />
+      </motion.div>
+
+      {collaborationNodes.map((node) => {
+        const company = clientCompanies.find((item) => item.name === node.name);
+        if (!company) return null;
+
+        return (
+          <motion.span
+            key={node.name}
+            className={cn(
+              "absolute z-20 flex h-12 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md p-2 shadow-lg shadow-black/25 md:h-14 md:w-28",
+              company.surface === "dark"
+                ? "bg-[#090b0f] ring-1 ring-white/14"
+                : "bg-[#f1f2ef]",
+            )}
+            style={{ left: `${node.x}%`, top: `${node.y}%` }}
+            whileHover={{ scale: 1.1 }}
+            whileFocus={{ scale: 1.1 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            tabIndex={0}
+          >
+            <Image
+              src={`/clients/${company.logoFile}`}
+              alt={company.name}
+              width={180}
+              height={70}
+              className="h-full w-full object-contain"
+            />
+          </motion.span>
+        );
+      })}
+    </motion.div>
   );
 }
 
@@ -229,17 +622,9 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
           </Button>
         </div>
 
-        <motion.div
-          className="relative will-change-transform"
-          initial={{
-            x: product.id === "gobazaar" ? -28 : 28,
-            y: 18,
-            scale: 0.985,
-          }}
-          whileInView={{ x: 0, y: 0, scale: 1 }}
-          whileHover={{ y: -8, scale: 1.012 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        <div
+          className="product-preview-visual relative will-change-transform"
+          data-product={product.id}
         >
           <Image
             src={product.preview}
@@ -259,7 +644,7 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
               className="absolute right-[11%] top-[13%] h-auto w-[31%] object-contain"
             />
           )}
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
@@ -304,7 +689,11 @@ function ProductIndexGraphic() {
       color: "hsl(var(--product-yojiq))",
       offset: "lg:ml-24",
     },
-  ];
+].sort(
+  (first, second) =>
+    clientCompanyOrder.indexOf(first.name as (typeof clientCompanyOrder)[number]) -
+    clientCompanyOrder.indexOf(second.name as (typeof clientCompanyOrder)[number]),
+);
 
   return (
     <div className="relative pb-2" aria-label="AiRedHQ products">
@@ -347,45 +736,34 @@ function ProductIndexGraphic() {
 }
 
 function HeroProductVisual() {
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [2.5, -2.5]), {
-    stiffness: 80,
-    damping: 24,
-  });
-  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-3.5, 3.5]), {
-    stiffness: 80,
-    damping: 24,
-  });
-
   return (
     <div
-      className="relative origin-center perspective-[1400px] lg:-mr-8 lg:scale-[1.08] xl:-mr-14"
+      className="hero-product-visual relative origin-center perspective-[1400px] lg:-mr-8 lg:scale-[1.08] xl:-mr-14"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
-        pointerY.set((event.clientY - rect.top) / rect.height - 0.5);
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        event.currentTarget.style.setProperty("--hero-rotate-x", `${-y * 6}deg`);
+        event.currentTarget.style.setProperty("--hero-rotate-y", `${x * 8}deg`);
       }}
-      onPointerLeave={() => {
-        pointerX.set(0);
-        pointerY.set(0);
+      onPointerLeave={(event) => {
+        event.currentTarget.style.setProperty("--hero-rotate-x", "0deg");
+        event.currentTarget.style.setProperty("--hero-rotate-y", "0deg");
       }}
     >
-      <motion.div
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        animate={{ y: [0, -7, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <Image
-          src="/airedhq/homepage-hero-transparent.webp"
-          alt="AiRedHQ product suite featuring hiARed, GoBazaar and YojIQ"
-          width={1536}
-          height={1024}
-          priority
-          sizes="(max-width: 1023px) 100vw, 64vw"
-          className="h-auto w-full object-contain"
-        />
-      </motion.div>
+      <div className="hero-product-float will-change-transform">
+        <div className="hero-product-parallax">
+          <Image
+            src="/airedhq/homepage-hero-transparent.webp"
+            alt="AiRedHQ product suite featuring hiARed, GoBazaar and YojIQ"
+            width={1536}
+            height={1024}
+            priority
+            sizes="(max-width: 1023px) 100vw, 64vw"
+            className="h-auto w-full object-contain"
+          />
+        </div>
+      </div>
     </div>
   );
 }

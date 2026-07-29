@@ -5,7 +5,7 @@ import { createMetadata } from "@/src/lib/seo";
 const page = servicePages.web;
 
 export const metadata = createMetadata({
-  title: "Web Development",
+  title: "Web Application Development",
   description: page.description,
   path: "/solutions/web-development",
 });

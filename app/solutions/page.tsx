@@ -1,13 +1,13 @@
-import { StandardPage } from "@/components/pages/standard-page";
-import { standardPages } from "@/data/standard-pages";
+import { SolutionsOverviewPage } from "@/components/pages/solutions-overview-page";
 import { createMetadata } from "@/src/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Solutions",
-  description: standardPages.solutions.description,
+  title: "Product Development Solutions",
+  description:
+    "Product-backed AI, web, mobile, UI/UX, AR/VR and cloud engineering solutions from AiRedHQ.",
   path: "/solutions",
 });
 
 export default function SolutionsPage() {
-  return <StandardPage page={standardPages.solutions} />;
+  return <SolutionsOverviewPage />;
 }
