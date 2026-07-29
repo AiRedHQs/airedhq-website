@@ -24,8 +24,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    other: [{ rel: "icon", url: "/icon.png" }],
     shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     type: "website",

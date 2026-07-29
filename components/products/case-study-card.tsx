@@ -12,9 +12,20 @@ const accentClass: Record<CaseStudyPreview["productId"], string> = {
   yojiq: "text-product-yojiq",
 };
 
-export function CaseStudyCard({ study }: { study: CaseStudyPreview }) {
+export function CaseStudyCard({
+  study,
+  className,
+}: {
+  study: CaseStudyPreview;
+  className?: string;
+}) {
   return (
-    <GlassCard className="group relative h-full overflow-hidden p-6 transition-colors duration-premium hover:border-primary/30">
+    <GlassCard
+      className={cn(
+        "group relative h-full overflow-hidden p-6 transition-colors duration-premium hover:border-primary/30",
+        className,
+      )}
+    >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-premium group-hover:opacity-100"
         aria-hidden="true"

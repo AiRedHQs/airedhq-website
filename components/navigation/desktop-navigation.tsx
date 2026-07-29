@@ -7,7 +7,6 @@ import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { desktopNavItems, productNavItems } from "@/constants/navigation";
-import { ProductLogoPlaceholder } from "@/components/navigation/product-logo-placeholder";
 import { cn } from "@/src/lib/utils";
 
 export function DesktopNavigation() {
@@ -70,7 +69,7 @@ export function DesktopNavigation() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.98 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute left-0 top-full z-50 mt-3 w-[34rem] rounded-lg border border-border bg-card/95 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl"
+              className="absolute left-0 top-full z-50 mt-3 w-56 rounded-lg border border-border bg-card/95 p-2 shadow-2xl shadow-black/30 backdrop-blur-xl"
               onMouseEnter={openProducts}
               onMouseLeave={closeProducts}
             >
@@ -79,24 +78,10 @@ export function DesktopNavigation() {
                   <Link
                     key={product.id}
                     href={product.href}
-                    className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-md p-3 outline-none transition-colors duration-premium hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
+                    className="block rounded-md px-3 py-2.5 text-sm font-semibold text-foreground outline-none transition-colors duration-premium hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
                     onClick={() => setIsProductsOpen(false)}
                   >
-                    <ProductLogoPlaceholder
-                      productId={product.id}
-                      label={product.label}
-                    />
-                    <span className="space-y-1">
-                      <span className="block text-sm font-semibold text-foreground">
-                        {product.label}
-                      </span>
-                      <span className="block text-sm leading-5 text-muted-foreground">
-                        {product.description}
-                      </span>
-                    </span>
-                    <span className="text-sm font-medium text-muted-foreground transition-colors duration-premium group-hover:text-foreground">
-                      Learn More
-                    </span>
+                    {product.label}
                   </Link>
                 ))}
               </div>
@@ -118,7 +103,7 @@ export function DesktopNavigation() {
         ))}
 
       <Button asChild size="sm" className="ml-2">
-        <Link href="/#contact">Start a Project</Link>
+        <Link href="/contact">Start a Project</Link>
       </Button>
     </nav>
   );

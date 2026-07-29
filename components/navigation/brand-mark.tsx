@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { siteConfig } from "@/constants/brand";
 import { cn } from "@/src/lib/utils";
@@ -17,15 +18,14 @@ export function BrandMark({ className }: BrandMarkProps) {
         className,
       )}
     >
-      <span
-        className="flex size-9 items-center justify-center rounded-md border border-border bg-secondary text-sm font-semibold text-foreground transition-colors duration-premium group-hover:border-primary/40"
-        aria-hidden="true"
-      >
-        AH
-      </span>
-      <span className="text-sm font-semibold tracking-normal text-foreground">
-        {siteConfig.name}
-      </span>
+      <Image
+        src="/airedhq/Logo 2X1 Transparent.png"
+        alt={siteConfig.name}
+        width={260}
+        height={130}
+        priority
+        className="h-10 w-auto object-contain md:h-12"
+      />
     </Link>
   );
 }

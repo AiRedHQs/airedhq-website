@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 import { BrandMark } from "@/components/navigation/brand-mark";
-import { ProductLogoPlaceholder } from "@/components/navigation/product-logo-placeholder";
 import { Button } from "@/components/ui/button";
 import { desktopNavItems, productNavItems } from "@/constants/navigation";
 
@@ -96,23 +95,9 @@ export function MobileNavigation() {
                         key={product.id}
                         href={product.href}
                         onClick={() => setIsOpen(false)}
-                        className="grid grid-cols-[auto_1fr] gap-4 rounded-lg border border-border bg-card/70 p-4 outline-none transition-colors duration-premium hover:bg-secondary focus-visible:ring-2 focus-visible:ring-ring"
+                        className="block rounded-md px-1 py-3 text-xl font-medium text-foreground outline-none transition-colors duration-premium hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
                       >
-                        <ProductLogoPlaceholder
-                          productId={product.id}
-                          label={product.label}
-                        />
-                        <span className="space-y-1">
-                          <span className="block text-base font-semibold text-foreground">
-                            {product.label}
-                          </span>
-                          <span className="block text-sm leading-6 text-muted-foreground">
-                            {product.description}
-                          </span>
-                          <span className="block pt-1 text-sm font-medium text-foreground">
-                            Learn More
-                          </span>
-                        </span>
+                        {product.label}
                       </Link>
                     ))}
                   </div>

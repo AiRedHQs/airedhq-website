@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@source "../app/**/*.{ts,tsx,mdx}";
+@source "../components/**/*.{ts,tsx,mdx}";
+@source "../constants/**/*.{ts,tsx,mdx}";
+@source "../data/**/*.{ts,tsx,mdx}";
+@source "../src/**/*.{ts,tsx,mdx}";
+
 :root {
   color-scheme: dark;
 
@@ -65,6 +71,12 @@
   --duration-premium: 320ms;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
 }
 
 .light {
@@ -128,6 +140,16 @@ body {
 
 .particle-drift {
   animation: particle-drift 6s ease-in-out infinite;
+}
+
+.surface-noise {
+  background-image:
+    radial-gradient(hsl(var(--foreground) / 0.12) 0.5px, transparent 0.5px),
+    radial-gradient(hsl(var(--foreground) / 0.08) 0.5px, transparent 0.5px);
+  background-position:
+    0 0,
+    12px 12px;
+  background-size: 24px 24px;
 }
 
 @keyframes gradient-drift {

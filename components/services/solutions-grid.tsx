@@ -27,10 +27,15 @@ export function SolutionsGrid({ solutions }: SolutionsGridProps) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.18 }}
-      className="grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+      className="grid gap-5 md:grid-cols-2 xl:grid-cols-[1.12fr_0.88fr]"
     >
-      {solutions.map((solution) => (
-        <motion.article key={solution.title} variants={fadeUp} whileHover={hoverLift}>
+      {solutions.map((solution, index) => (
+        <motion.article
+          key={solution.title}
+          variants={fadeUp}
+          whileHover={hoverLift}
+          className={index === 0 ? "md:row-span-2" : ""}
+        >
           <ServiceCard
             title={solution.title}
             description={solution.description}
@@ -39,7 +44,10 @@ export function SolutionsGrid({ solutions }: SolutionsGridProps) {
               label: "Learn More",
               href: solution.href,
             }}
-            className="min-h-[18rem] rounded-lg border-border/80 bg-card/66 p-6 shadow-2xl shadow-black/20 hover:border-primary/30 focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-ring"
+            className={[
+              "rounded-lg border-border/80 bg-card/66 p-6 shadow-2xl shadow-black/20 hover:border-primary/30 focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-ring",
+              index === 0 ? "min-h-[24rem] md:min-h-full" : "min-h-[14rem]",
+            ].join(" ")}
           />
         </motion.article>
       ))}

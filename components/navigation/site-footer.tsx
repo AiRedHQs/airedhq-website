@@ -9,15 +9,32 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background">
-      <Container className="py-12 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+    <footer className="relative overflow-hidden border-t border-border bg-background">
+      <div
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -left-24 top-10 -z-10 size-72 rounded-full bg-product-hiared/10 blur-3xl"
+        aria-hidden="true"
+      />
+      <p
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 hidden -translate-x-1/2 text-[12rem] font-semibold leading-none text-foreground/[0.03] lg:block"
+        aria-hidden="true"
+      >
+        AiRedHQ
+      </p>
+      <Container className="py-14 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.6fr]">
           <div className="space-y-5">
             <BrandMark />
-            <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+            <h2 className="max-w-md text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
+              Products first. Services with proof.
+            </h2>
+            <p className="max-w-md text-pretty text-base leading-7 text-muted-foreground">
               {siteConfig.description}
             </p>
-            <div className="rounded-lg border border-border bg-card/60 p-4">
+            <div className="rounded-lg border border-border bg-card/60 p-5 backdrop-blur-xl">
               <h2 className="text-sm font-semibold text-foreground">Newsletter</h2>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 Product updates and engineering notes are coming soon.
@@ -62,7 +79,7 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">
+        <div className="mt-12 border-t border-border pt-6 text-sm text-muted-foreground">
           <p>
             &copy; {year} {siteConfig.name}. All rights reserved.
           </p>

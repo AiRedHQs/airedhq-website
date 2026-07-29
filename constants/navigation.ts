@@ -11,12 +11,12 @@ export type ProductNavItem = NavItem & {
 };
 
 export const desktopNavItems: NavItem[] = [
-  { label: "Products", href: "/#featured-products" },
-  { label: "Solutions", href: "/#solutions" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Case Studies", href: "/#case-studies" },
-  { label: "About", href: "/#why-airedhq" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Products", href: "/products" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Industries", href: "/industries" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const productNavItems: ProductNavItem[] = [
@@ -49,27 +49,27 @@ export const footerGroups = [
     title: "Solutions",
     links: [
       { label: "AI", href: "/solutions/ai" },
-      { label: "Web", href: "/solutions/web-applications" },
-      { label: "Mobile", href: "/solutions/mobile-apps" },
+      { label: "Web", href: "/solutions/web-development" },
+      { label: "Mobile", href: "/solutions/mobile-development" },
       { label: "UI/UX", href: "/solutions/ui-ux" },
       { label: "AR/VR", href: "/solutions/ar-vr" },
-      { label: "Cloud", href: "/solutions/cloud" },
+      { label: "Cloud", href: "/solutions/cloud-devops" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Innovation Lab", href: "/#innovation-lab" },
+      { label: "Innovation Lab", href: "/innovation-lab" },
       { label: "Careers", href: "/careers" },
-      { label: "Contact", href: "/#contact" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Case Studies", href: "/#case-studies" },
+      { label: "Case Studies", href: "/case-studies" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms", href: "/terms" },
     ],

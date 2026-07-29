@@ -18,7 +18,7 @@ export function HeroVisual() {
 
   return (
     <motion.div
-      className="relative mx-auto aspect-[0.92] w-full max-w-[31rem] overflow-hidden rounded-lg border border-border bg-card/50 p-4 shadow-2xl shadow-black/35 backdrop-blur-xl sm:aspect-[1.08] lg:max-w-none"
+      className="relative mx-auto aspect-[0.86] w-full max-w-[34rem] overflow-visible rounded-lg lg:max-w-none"
       onPointerMove={(event) => {
         const bounds = event.currentTarget.getBoundingClientRect();
         pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
@@ -32,7 +32,7 @@ export function HeroVisual() {
       aria-label="Abstract preview of AiRedHQ product ecosystem"
     >
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 rounded-lg border border-border/70 bg-card/38 shadow-2xl shadow-black/35 backdrop-blur-xl"
         animate={{
           backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
         }}
@@ -45,19 +45,19 @@ export function HeroVisual() {
       />
 
       <motion.div
-        className="absolute left-1/2 top-1/2 size-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-product-gobazaar/20 blur-3xl"
+        className="absolute left-1/2 top-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-product-gobazaar/24 blur-3xl"
         animate={{ scale: [1, 1.12, 1], opacity: [0.45, 0.68, 0.45] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
       />
       <motion.div
-        className="absolute right-2 top-8 size-44 rounded-full bg-product-hiared/20 blur-3xl"
+        className="absolute -right-8 top-6 size-52 rounded-full bg-product-hiared/24 blur-3xl"
         animate={{ y: [0, 14, 0], opacity: [0.36, 0.58, 0.36] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
       />
       <motion.div
-        className="absolute bottom-4 left-4 size-40 rounded-full bg-product-yojiq/16 blur-3xl"
+        className="absolute -bottom-8 left-4 size-48 rounded-full bg-product-yojiq/18 blur-3xl"
         animate={{ x: [0, 16, 0], opacity: [0.28, 0.5, 0.28] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         aria-hidden="true"
@@ -83,7 +83,7 @@ export function HeroVisual() {
       ))}
 
       <motion.div
-        className="relative z-10 flex h-full flex-col justify-center gap-4"
+        className="relative z-10 flex h-full flex-col justify-center gap-5 p-3 sm:p-5"
         style={{ x: translateX, y: translateY }}
       >
         {productNavItems.map((product, index) => (
@@ -98,9 +98,10 @@ export function HeroVisual() {
             }}
             whileHover={{ y: -4 }}
             className={[
-              "w-[86%]",
-              index === 1 ? "ml-auto" : "",
-              index === 2 ? "ml-8" : "",
+              "w-[88%]",
+              index === 0 ? "-translate-x-4" : "",
+              index === 1 ? "ml-auto translate-x-4" : "",
+              index === 2 ? "ml-8 -translate-x-2" : "",
             ].join(" ")}
           >
             <motion.div

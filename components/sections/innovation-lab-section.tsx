@@ -1,6 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/container";
-import { MotionRevealGroup, MotionRevealItem } from "@/components/shared/motion-reveal";
 import { TrustCard } from "@/components/shared/trust-card";
 import { innovationConcepts } from "@/data/trust";
 
@@ -9,42 +8,52 @@ export function InnovationLabSection() {
     <section
       id="innovation-lab"
       aria-labelledby="innovation-lab-heading"
-      className="relative overflow-hidden border-t border-border/60 py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden border-t border-border/60 py-16 sm:py-20 lg:py-24"
     >
       <div
         className="absolute left-1/2 top-0 -z-10 h-80 w-[48rem] -translate-x-1/2 rounded-full bg-product-hiared/10 blur-3xl"
         aria-hidden="true"
       />
-      <Container className="space-y-12">
-        <div className="max-w-3xl space-y-5">
-          <Badge variant="outline" className="bg-background/70 backdrop-blur-xl">
-            Innovation Lab
-          </Badge>
-          <div className="space-y-4">
-            <h2
-              id="innovation-lab-heading"
-              className="text-balance text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl"
-            >
-              Always Building What&apos;s Next
-            </h2>
-            <p className="text-pretty text-base leading-8 text-muted-foreground sm:text-lg">
-              AiRedHQ continuously experiments with AI, immersive technologies and new
-              product ideas that shape tomorrow&apos;s digital experiences.
-            </p>
+      <p
+        className="pointer-events-none absolute left-1/2 top-24 -z-10 hidden -translate-x-1/2 text-[10rem] font-semibold leading-none text-foreground/[0.035] lg:block"
+        aria-hidden="true"
+      >
+        LAB
+      </p>
+      <Container className="space-y-10">
+        <div className="mx-auto max-w-5xl space-y-6 text-center">
+          <div className="flex justify-center">
+            <Badge variant="outline" className="bg-background/70 backdrop-blur-xl">
+              Innovation Lab
+            </Badge>
           </div>
+          <h2
+            id="innovation-lab-heading"
+            className="text-balance text-5xl font-semibold leading-[0.98] text-foreground sm:text-6xl lg:text-7xl"
+          >
+            Always Building What&apos;s Next
+          </h2>
+          <p className="mx-auto max-w-2xl text-pretty text-base leading-8 text-muted-foreground sm:text-xl">
+            AiRedHQ continuously experiments with AI, immersive technologies and new
+            product ideas that shape tomorrow&apos;s digital experiences.
+          </p>
         </div>
 
-        <MotionRevealGroup className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {innovationConcepts.map((concept) => (
-            <MotionRevealItem key={concept.title}>
-              <TrustCard
-                title={concept.title}
-                description={concept.description}
-                icon={concept.icon}
-              />
-            </MotionRevealItem>
+        <div className="surface-noise grid gap-4 rounded-lg border border-border/60 bg-background/35 p-3 backdrop-blur-xl md:grid-cols-3 md:p-4">
+          {innovationConcepts.map((concept, index) => (
+            <TrustCard
+              key={concept.title}
+              title={concept.title}
+              description={concept.description}
+              icon={concept.icon}
+              className={[
+                "bg-background/35",
+                index === 0 || index === 5 ? "md:col-span-2" : "",
+                index === 2 ? "md:row-span-2" : "",
+              ].join(" ")}
+            />
           ))}
-        </MotionRevealGroup>
+        </div>
       </Container>
     </section>
   );
