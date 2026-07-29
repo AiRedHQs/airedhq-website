@@ -23,6 +23,7 @@ const products = [
     logoSize: "h-12 md:h-14",
     eyebrow: "Transparent AI recruitment",
     headline: "Smarter hiring.\nFaster decisions.",
+    headlineAccent: "Smarter",
     sentence:
       "hiARed brings transparency scores, resume screening, candidate ranking and end-to-end hiring stages into one recruitment workspace.",
     usps: [
@@ -43,6 +44,7 @@ const products = [
     logoSize: "h-14 md:h-16",
     eyebrow: "Hyperlocal discovery",
     headline: "Discover local.\nGrow local.",
+    headlineAccent: "Discover",
     sentence:
       "GoBazaar helps people discover bazaars, food, shopping, fairs and nearby offers while merchants manage local visibility.",
     usps: ["Market Discovery", "Nearby Offers", "Food & Fair Pins", "Merchant Dashboard"],
@@ -58,6 +60,7 @@ const products = [
     logoSize: "h-9 md:h-11",
     eyebrow: "Personal finance clarity",
     headline: "Plan smarter.\nSpend better.",
+    headlineAccent: "smarter",
     sentence:
       "YojIQ gives people a calmer way to manage budgets, emergency funds, insurance, savings goals and investments.",
     usps: ["Budget Health", "Emergency Fund", "Expense Charts", "Investment Summary"],
@@ -93,6 +96,7 @@ export function FlagshipHomepage() {
     <>
       <Hero />
       <main className="bg-[#050608]">
+        <ProductsIntroduction />
         {products.map((product) => (
           <ProductBand key={product.id} product={product} />
         ))}
@@ -101,17 +105,38 @@ export function FlagshipHomepage() {
   );
 }
 
+function ProductsIntroduction() {
+  return (
+    <section className="relative overflow-hidden py-24 md:py-32">
+      <Container className="grid max-w-[96rem] items-end gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.34em] text-white/42">
+            Our Products
+          </p>
+          <h2 className="mt-6 max-w-[12ch] text-5xl font-semibold leading-[0.95] text-balance text-white md:text-7xl lg:text-[5.5rem]">
+            Built by us.{" "}
+            <span className="text-[#2f91d4]">Proven</span> in the real world.
+          </h2>
+        </div>
+        <ProductIndexGraphic />
+      </Container>
+    </section>
+  );
+}
+
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#050608] pt-24 text-white md:pt-28">
+    <section className="relative isolate overflow-hidden bg-[#050608] pt-20 text-white md:pt-24 lg:pt-10">
       <HeroAtmosphere />
-      <Container className="relative z-10 grid min-h-[calc(100svh-4rem)] items-center gap-14 pb-20 lg:grid-cols-[0.72fr_1.28fr] lg:gap-8">
+      <Container className="relative z-10 grid max-w-[96rem] items-center gap-14 pb-20 lg:grid-cols-[0.76fr_1.24fr] lg:gap-6 lg:py-16 xl:py-20">
         <div className="max-w-2xl">
           <p className="mb-5 text-xs font-medium uppercase tracking-[0.34em] text-white/48">
             Product innovation company
           </p>
           <h1 className="max-w-[11ch] text-6xl font-semibold leading-[0.9] tracking-normal text-balance md:text-7xl lg:text-[5.8rem] xl:text-[6.8rem]">
-            We build products that solve real problems.
+            We build{" "}
+            <span className="text-[#2f91d4]">products</span> that solve real
+            problems.
           </h1>
           <p className="mt-7 max-w-xl text-base leading-7 text-white/56 md:text-lg">
             Three product lines. One engineering standard. Practical software designed,
@@ -167,7 +192,11 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
             {product.eyebrow}
           </p>
           <h2 className="whitespace-pre-line text-5xl font-semibold leading-[0.94] tracking-normal text-balance md:text-6xl lg:text-7xl">
-            {product.headline}
+            <HighlightedHeadline
+              text={product.headline}
+              highlight={product.headlineAccent}
+              className={accent[product.id]}
+            />
           </h2>
           <p className="mt-7 text-base leading-7 text-white/56 md:text-lg">
             {product.sentence}
@@ -200,7 +229,18 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
           </Button>
         </div>
 
-        <div className="relative">
+        <motion.div
+          className="relative will-change-transform"
+          initial={{
+            x: product.id === "gobazaar" ? -28 : 28,
+            y: 18,
+            scale: 0.985,
+          }}
+          whileInView={{ x: 0, y: 0, scale: 1 }}
+          whileHover={{ y: -8, scale: 1.012 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        >
           <Image
             src={product.preview}
             alt={product.previewAlt}
@@ -219,9 +259,90 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
               className="absolute right-[11%] top-[13%] h-auto w-[31%] object-contain"
             />
           )}
-        </div>
+        </motion.div>
       </Container>
     </section>
+  );
+}
+
+function HighlightedHeadline({
+  text,
+  highlight,
+  className,
+}: {
+  text: string;
+  highlight: string;
+  className: string;
+}) {
+  const highlightIndex = text.indexOf(highlight);
+
+  if (highlightIndex === -1) {
+    return text;
+  }
+
+  return (
+    <>
+      {text.slice(0, highlightIndex)}
+      <span className={className}>{highlight}</span>
+      {text.slice(highlightIndex + highlight.length)}
+    </>
+  );
+}
+
+function ProductIndexGraphic() {
+  const indexItems = [
+    { number: "01", name: "hiARed", color: "#6102f5", offset: "lg:ml-0" },
+    {
+      number: "02",
+      name: "GoBazaar",
+      color: "hsl(var(--product-gobazaar))",
+      offset: "lg:ml-12",
+    },
+    {
+      number: "03",
+      name: "YojIQ",
+      color: "hsl(var(--product-yojiq))",
+      offset: "lg:ml-24",
+    },
+  ];
+
+  return (
+    <div className="relative pb-2" aria-label="AiRedHQ products">
+      <p className="mb-8 max-w-sm text-sm leading-6 text-white/42">
+        Three independent products. One shared standard for useful, enduring
+        software.
+      </p>
+      <div className="space-y-7">
+        {indexItems.map((item, index) => (
+          <motion.div
+            key={item.name}
+            className={cn("flex max-w-xl items-center gap-4", item.offset)}
+            initial={{ x: 28 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{
+              duration: 0.65,
+              delay: index * 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <span className="w-6 text-xs font-medium text-white/34">
+              {item.number}
+            </span>
+            <span
+              className="h-px flex-1"
+              style={{
+                background: `linear-gradient(90deg, ${item.color}, transparent)`,
+              }}
+              aria-hidden="true"
+            />
+            <span className="w-24 text-sm font-semibold text-white">
+              {item.name}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -239,7 +360,7 @@ function HeroProductVisual() {
 
   return (
     <div
-      className="relative perspective-[1400px] lg:-mr-20 xl:-mr-28"
+      className="relative origin-center perspective-[1400px] lg:-mr-8 lg:scale-[1.08] xl:-mr-14"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         pointerX.set((event.clientX - rect.left) / rect.width - 0.5);
