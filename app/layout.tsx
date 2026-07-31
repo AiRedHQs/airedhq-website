@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ApplicationShell } from "@/components/layout/application-shell";
@@ -55,6 +56,22 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full">
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ENHQQ0R1F3"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-ENHQQ0R1F3');
+          `}
+        </Script>
+
         <AppProviders>
           <ApplicationShell>{children}</ApplicationShell>
         </AppProviders>
