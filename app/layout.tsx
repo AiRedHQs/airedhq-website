@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
@@ -6,6 +7,8 @@ import { ApplicationShell } from "@/components/layout/application-shell";
 import { AppProviders } from "@/components/providers/app-providers";
 import { siteConfig } from "@/constants/brand";
 import "./globals.css";
+
+const ADSENSE_PUBLISHER_ID = "ca-pub-2453493824530034";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -60,6 +63,15 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} dark h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          id="google-adsense-verification"
+          async
+          strategy="beforeInteractive"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUBLISHER_ID}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full">
         <AppProviders>
           <ApplicationShell>{children}</ApplicationShell>
