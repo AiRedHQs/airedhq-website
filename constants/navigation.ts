@@ -69,6 +69,7 @@ export const footerGroups = [
     title: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
+      { label: "Calculators", href: "/calculators" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms", href: "/terms" },

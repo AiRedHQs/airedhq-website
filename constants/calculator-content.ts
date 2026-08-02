@@ -1,0 +1,133 @@
+export type CalculatorEducation = {
+  overview: string;
+  definition: string;
+  formula: string;
+  formulaNotes: string[];
+  steps: string[];
+  benefits: string[];
+  limitations: string[];
+  example: string;
+};
+
+export const calculatorEducation: Record<string, CalculatorEducation> = {
+  "sip-calculator": {
+    overview: "A Systematic Investment Plan is a way to invest a fixed amount in a mutual fund at regular intervals. It is an investment method, not a separate asset class or a guarantee of returns. This calculator estimates how monthly contributions and an optional annual step-up could accumulate over time.",
+    definition: "A SIP calculator combines your starting monthly contribution, annual step-up, investment period and assumed annual return to illustrate total contributions, estimated growth and future value. It is useful for scenario planning before you evaluate an actual scheme.",
+    formula: "M = P × (((1 + i)^n - 1) / i) × (1 + i)",
+    formulaNotes: ["M is the estimated maturity value.", "P is the periodic contribution.", "n is the number of contributions.", "i = (1 + annual return)^(1/12) - 1 is the effective monthly return.", "For step-up SIPs, each year's monthly contribution is increased and every payment is compounded separately."],
+    steps: ["Enter the monthly amount you can contribute consistently.", "Set the annual percentage by which that contribution may increase; use 0% for a regular SIP.", "Choose a tenure and test more than one return assumption.", "Compare total contributions with estimated growth rather than looking only at the final value."],
+    benefits: ["Compares regular and step-up SIP scenarios.", "Shows how much you contribute versus estimated growth.", "Updates instantly while inputs change.", "Makes the return and timing assumptions visible."],
+    limitations: ["Mutual fund returns are market-linked and not guaranteed.", "Expense ratios, exit loads, taxes and transaction timing are not modelled.", "A constant annual return simplifies real market volatility.", "The calculator does not recommend a fund or assess suitability."],
+    example: "At ₹1,000 per month for 12 months with a 12% effective annual return and no step-up, the effective monthly rate is about 0.95%. Contributions made at the beginning of each month produce an illustrative value of approximately ₹12,766.",
+  },
+  "lumpsum-calculator": {
+    overview: "A lump-sum investment places one amount into an investment at the beginning rather than spreading contributions across intervals. This calculator illustrates how that amount could compound under an assumed annual return.",
+    definition: "The lump-sum calculator estimates future value, original principal and potential growth for one investment over a selected period.",
+    formula: "Future value = Principal × (1 + annual return)^years",
+    formulaNotes: ["Principal is the amount invested today.", "The rate is an annual scenario assumption.", "Years is the compounding period."],
+    steps: ["Enter the one-time investment amount.", "Choose the investment period.", "Test conservative, central and optimistic return assumptions.", "Review potential growth alongside risk and liquidity needs."],
+    benefits: ["Shows the effect of time and compounding.", "Separates principal from estimated growth.", "Makes scenario comparison quick."],
+    limitations: ["Actual returns vary and may be negative.", "Fees, tax and inflation are excluded.", "A smooth rate does not represent market fluctuations."],
+    example: "₹5 lakh compounded at an assumed 10% annually for 10 years produces an illustrative future value of about ₹12.97 lakh before fees and tax.",
+  },
+  "home-loan-emi-calculator": {
+    overview: "A home-loan EMI is the scheduled monthly payment used to repay principal and interest over the agreed tenure. The calculator helps compare affordability and total interest before you review a lender's formal offer.",
+    definition: "The home-loan EMI calculator converts loan amount, annual rate and tenure into an estimated monthly instalment and total interest cost.",
+    formula: "EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)",
+    formulaNotes: ["P is the loan principal.", "r is the monthly loan rate, generally annual nominal rate divided by 12.", "n is the number of monthly instalments."],
+    steps: ["Enter the amount you expect to borrow after the down payment.", "Use the lender's stated annual rate.", "Compare several tenures.", "Add processing fees, insurance and property costs outside the EMI result."],
+    benefits: ["Estimates monthly cash-flow impact.", "Reveals total interest over the tenure.", "Makes tenure comparisons easier."],
+    limitations: ["Floating rates can change EMI or tenure.", "Fees, taxes, insurance and prepayment charges are excluded.", "The result is not a loan approval or quotation."],
+    example: "A ₹50 lakh loan at 8.5% for 20 years produces an estimated EMI near ₹43,391. The lender's rounding and rate convention may differ slightly.",
+  },
+  "car-loan-emi-calculator": {
+    overview: "A car-loan EMI calculator estimates the recurring payment for the financed portion of a vehicle purchase. It also shows how a longer tenure can lower EMI while increasing total interest.",
+    definition: "The tool applies the standard reducing-balance EMI formula to the vehicle-loan principal, monthly rate and number of payments.",
+    formula: "EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)",
+    formulaNotes: ["Use the financed amount after down payment as P.", "r is the monthly loan rate.", "n is the number of monthly instalments."],
+    steps: ["Enter the vehicle amount being financed.", "Add the quoted rate and tenure.", "Compare a larger down payment or shorter term.", "Review on-road costs and lender fees separately."],
+    benefits: ["Tests vehicle affordability.", "Shows total interest clearly.", "Supports down-payment and tenure comparisons."],
+    limitations: ["Insurance, registration and processing fees are excluded.", "Rates depend on borrower and vehicle eligibility.", "Foreclosure terms are not modelled."],
+    example: "A ₹10 lakh vehicle loan at 8.5% for 5 years produces an illustrative EMI of roughly ₹20,517 before lender charges.",
+  },
+  "personal-loan-emi-calculator": {
+    overview: "Personal loans are usually unsecured and can carry higher rates than secured borrowing. This calculator estimates the monthly payment and total interest so offers can be compared on more than headline EMI.",
+    definition: "The calculator uses a reducing-balance EMI formula for a fixed principal, rate and tenure.",
+    formula: "EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)",
+    formulaNotes: ["P is the disbursed loan principal.", "r is the monthly interest rate.", "n is the total number of payments."],
+    steps: ["Enter the amount required rather than the maximum offered.", "Use the lender's quoted rate.", "Compare tenure and total interest.", "Check fees, late charges and prepayment rules in the agreement."],
+    benefits: ["Makes repayment pressure visible.", "Compares rates and tenures.", "Separates principal from interest."],
+    limitations: ["Approval and pricing depend on lender assessment.", "Fees and insurance are excluded.", "A calculated EMI is not an offer."],
+    example: "A ₹5 lakh personal loan at 12% for 5 years has an illustrative EMI of about ₹11,122 before fees.",
+  },
+  "fixed-deposit-calculator": {
+    overview: "A fixed deposit places a principal with a bank or institution for a defined term and stated rate. The calculator estimates maturity under a quarterly compounding convention.",
+    definition: "The FD calculator applies principal, annual rate, tenure and quarterly compounding to estimate interest and maturity value.",
+    formula: "Maturity = P × (1 + r/4)^(4t)",
+    formulaNotes: ["P is the deposit principal.", "r is the annual decimal rate.", "t is tenure in years.", "The 4 represents quarterly compounding."],
+    steps: ["Enter the deposit amount.", "Use the institution's current rate for the applicable tenure and customer category.", "Select the term.", "Compare post-tax return and premature-withdrawal conditions."],
+    benefits: ["Estimates maturity and interest.", "Supports rate and tenure comparison.", "Uses a disclosed compounding convention."],
+    limitations: ["Actual bank conventions may differ.", "TDS and income tax are excluded.", "Premature closure penalties are not included."],
+    example: "₹5 lakh at 7% for 5 years with quarterly compounding produces an illustrative maturity value near ₹7.07 lakh before tax.",
+  },
+  "recurring-deposit-calculator": {
+    overview: "A recurring deposit accepts regular deposits for a fixed term and pays interest according to the institution's rules. It can suit users who prefer a bank deposit schedule rather than a market-linked investment.",
+    definition: "The RD calculator estimates total deposits, interest and maturity from a monthly deposit, rate and tenure.",
+    formula: "Estimated maturity = P × (((1 + i)^n - 1) / i) × (1 + i)",
+    formulaNotes: ["P is the monthly deposit.", "i is the illustrated monthly rate.", "n is the number of deposits.", "Bank-specific quarterly calculations may produce a different result."],
+    steps: ["Enter the monthly deposit.", "Use the applicable published RD rate.", "Choose the deposit term.", "Check missed-instalment and premature-closure rules."],
+    benefits: ["Shows total deposits and estimated interest.", "Helps match deposits to a goal date.", "Updates as amount, rate or tenure changes."],
+    limitations: ["Institution calculation methods vary.", "Tax and penalties are excluded.", "The estimate is not an account quotation."],
+    example: "A ₹10,000 monthly deposit for 5 years at an assumed 7% produces an illustrative maturity value; confirm the exact schedule with the chosen institution.",
+  },
+  "ppf-calculator": {
+    overview: "The Public Provident Fund is a government-backed long-term savings scheme governed by current account rules and periodically notified rates. This tool illustrates annual contributions under one constant rate assumption.",
+    definition: "The PPF calculator estimates cumulative contributions, interest and maturity for annual deposits over the selected term.",
+    formula: "M = P × (((1 + r)^n - 1) / r) × (1 + r)",
+    formulaNotes: ["P is the annual contribution.", "r is the assumed annual rate.", "n is the number of annual contributions.", "The illustration assumes contributions at the beginning of each year."],
+    steps: ["Enter an annual contribution within current scheme limits.", "Use the currently notified rate only as a starting assumption.", "Choose the permitted term or extension scenario.", "Verify current deposit timing and withdrawal rules officially."],
+    benefits: ["Illustrates long-term compounding.", "Separates contributions and interest.", "Supports contribution scenarios."],
+    limitations: ["The notified rate can change.", "Actual interest depends on contribution timing and rules.", "This is not official account advice."],
+    example: "₹1.5 lakh contributed at the beginning of every year for 15 years at a constant 7.1% produces an illustration, not a guaranteed maturity amount.",
+  },
+  "compound-interest-calculator": {
+    overview: "Compound interest means growth is calculated on both the original principal and previously accumulated interest. It can describe deposits, investments or debt, but the real compounding convention must be verified.",
+    definition: "This calculator illustrates annual compounding from principal, rate and time.",
+    formula: "Future value = P × (1 + r)^t",
+    formulaNotes: ["P is principal.", "r is the annual decimal rate.", "t is time in years."],
+    steps: ["Enter the starting principal.", "Set an annual rate assumption.", "Choose the duration.", "Compare the result with simple interest or a different rate scenario."],
+    benefits: ["Demonstrates the time value of money.", "Separates principal and growth.", "Makes assumptions explicit."],
+    limitations: ["The model assumes a steady annual rate.", "Fees, tax and irregular cash flows are excluded.", "Debt products may use different conventions."],
+    example: "₹1 lakh compounded annually at 10% for 10 years produces an illustrative value of about ₹2.59 lakh.",
+  },
+  "inflation-calculator": {
+    overview: "Inflation reduces purchasing power because the same goods or services may cost more in the future. A planning calculator can translate today's goal cost into an illustrative future amount.",
+    definition: "The inflation calculator compounds a current cost using an annual inflation assumption and number of years.",
+    formula: "Future cost = Current cost × (1 + inflation)^years",
+    formulaNotes: ["Current cost is today's estimate.", "Inflation is a scenario, not a forecast.", "Different spending categories can experience different inflation."],
+    steps: ["Enter today's cost of the goal or expense.", "Choose a category-appropriate inflation assumption.", "Set the target date.", "Test a range rather than relying on one number."],
+    benefits: ["Makes future goals more realistic.", "Supports education and retirement planning.", "Shows the cost of delay."],
+    limitations: ["Future inflation is unknown.", "One rate may not fit every category.", "Taxes and goal changes are excluded."],
+    example: "A ₹10 lakh goal growing at 6% inflation for 10 years would cost about ₹17.91 lakh in this illustration.",
+  },
+  "retirement-calculator": {
+    overview: "Retirement planning connects future living costs with the number of years those costs may need funding. This simplified calculator first inflates current expenses and then estimates a corpus without assuming post-retirement investment returns.",
+    definition: "The retirement calculator estimates monthly expenses at retirement and multiplies them by the selected retirement duration.",
+    formula: "Corpus = Current monthly expenses × (1 + inflation)^years to retirement × 12 × retirement years",
+    formulaNotes: ["This deliberately simple model does not assume post-retirement returns.", "Pension income, existing assets, tax and changing expenses are excluded.", "Longevity is selected by the user."],
+    steps: ["Enter essential and desired monthly retirement expenses in today's money.", "Choose years to retirement and an inflation scenario.", "Select the number of retirement years to model.", "Compare the estimate with existing assets and expected pension income separately."],
+    benefits: ["Converts today's expenses into future terms.", "Makes longevity assumptions visible.", "Provides a conservative starting point."],
+    limitations: ["It is not a full financial plan.", "Returns, tax, pension and healthcare shocks are excluded.", "Life expectancy and inflation are uncertain."],
+    example: "Current expenses of ₹60,000 per month inflated at 6% for 25 years become roughly ₹2.58 lakh per month before estimating the selected retirement duration.",
+  },
+  "emergency-fund-calculator": {
+    overview: "An emergency fund is a liquid reserve for unexpected essential costs or temporary income disruption. The appropriate target depends on household risk rather than one universal rule.",
+    definition: "The calculator multiplies essential monthly expenses by a user-selected cover period and subtracts the current emergency reserve.",
+    formula: "Funding gap = (Essential monthly expenses × months of cover) - current reserve",
+    formulaNotes: ["Use essential outgo, including required debt payments and insurance.", "Choose months based on income stability, dependants and likely recovery time.", "A negative gap means the entered reserve exceeds the target."],
+    steps: ["Calculate essential monthly expenses.", "Choose an appropriate cover period.", "Enter the reserve already available.", "Use the funding gap to create a contribution plan."],
+    benefits: ["Creates a transparent savings target.", "Accounts for the reserve already built.", "Allows different risk scenarios."],
+    limitations: ["No fund can cover every emergency.", "Inflation and interest are excluded.", "Liquidity and account safety require separate evaluation."],
+    example: "₹50,000 of essential monthly expenses with six months of cover creates a ₹3 lakh target. With ₹1 lakh already reserved, the funding gap is ₹2 lakh.",
+  },
+};

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/constants/brand";
 import { getBlogArticleSummaries } from "@/src/lib/blog";
+import { calculators } from "@/constants/calculators";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
@@ -23,6 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/case-studies",
     "/careers",
     "/blog",
+    "/calculators",
     "/contact",
     "/privacy-policy",
     "/terms",
@@ -49,5 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...pages, ...categories, ...articles];
+  const calculatorPages: MetadataRoute.Sitemap = calculators.map((calculator) => ({
+    url: `${siteConfig.url}/calculators/${calculator.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...pages, ...categories, ...articles, ...calculatorPages];
 }

@@ -9,15 +9,15 @@ export const blogManifest = [
     "categoryLabel": "Careers and Recruitment",
     "accent": "#8a4cff",
     "frontmatter": {
-      "title": "ai-jobs-india-2026",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "AI Jobs in India 2026: Top Roles, Skills, Salaries and Career Opportunities",
+      "description": "Explore the best AI jobs in India in 2026, including AI engineer, machine learning, data science, GenAI, MLOps and prompt engineering roles, required skills, salary expectations, top cities and a practical career roadmap.",
+      "readingTime": "16 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ai-jobs-india-2026-hero.webp",
-      "alt": "ai-jobs-india-2026",
-      "caption": "ai-jobs-india-2026 — an original editorial visual by AiRedHQ."
+      "alt": "AI Jobs in India 2026: Top Roles, Skills, Salaries and Career Opportunities",
+      "caption": "AI Jobs in India 2026: Top Roles, Skills, Salaries and Career Opportunities — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -28,15 +28,15 @@ export const blogManifest = [
     "categoryLabel": "Careers and Recruitment",
     "accent": "#8a4cff",
     "frontmatter": {
-      "title": "ats-friendly-resume",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How to Create an ATS-Friendly Resume That Gets Shortlisted",
+      "description": "Learn how to create an ATS-friendly resume with the right format, sections, keywords, file type and achievement bullets. Includes a template, examples, checklist and India-specific guidance for freshers and experienced candidates.",
+      "readingTime": "18 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ats-friendly-resume-hero.webp",
-      "alt": "ats-friendly-resume",
-      "caption": "ats-friendly-resume — an original editorial visual by AiRedHQ."
+      "alt": "How to Create an ATS-Friendly Resume That Gets Shortlisted",
+      "caption": "How to Create an ATS-Friendly Resume That Gets Shortlisted — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -47,15 +47,15 @@ export const blogManifest = [
     "categoryLabel": "Careers and Recruitment",
     "accent": "#8a4cff",
     "frontmatter": {
-      "title": "job-search-strategies",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
+      "title": "Best Job Search Strategies for Freshers and Experienced Professionals",
+      "description": "Use these practical job search strategies for freshers and experienced professionals in India. Learn how to target roles, optimise profiles, find referrals, apply effectively, track applications, prepare for interviews and avoid job scams.",
       "readingTime": "20 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/job-search-strategies-hero.webp",
-      "alt": "job-search-strategies",
-      "caption": "job-search-strategies — an original editorial visual by AiRedHQ."
+      "alt": "Best Job Search Strategies for Freshers and Experienced Professionals",
+      "caption": "Best Job Search Strategies for Freshers and Experienced Professionals — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -66,15 +66,15 @@ export const blogManifest = [
     "categoryLabel": "Careers and Recruitment",
     "accent": "#8a4cff",
     "frontmatter": {
-      "title": "ai-in-recruitment",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How AI Is Transforming Recruitment, Candidate Screening and Hiring",
+      "description": "Learn how AI is changing recruitment in 2026, from job descriptions and candidate sourcing to resume screening, matching, interviews and hiring analytics. Includes benefits, risks, bias controls, privacy guidance and an implementation framework for employers and job portals.",
+      "readingTime": "22 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ai-in-recruitment-hero.webp",
-      "alt": "ai-in-recruitment",
-      "caption": "ai-in-recruitment — an original editorial visual by AiRedHQ."
+      "alt": "How AI Is Transforming Recruitment, Candidate Screening and Hiring",
+      "caption": "How AI Is Transforming Recruitment, Candidate Screening and Hiring — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -104,15 +104,15 @@ export const blogManifest = [
     "categoryLabel": "Local Discovery",
     "accent": "#2f91e8",
     "frontmatter": {
-      "title": "find-trusted-local-businesses",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How to Find Trusted Shops, Services and Local Businesses Near You",
+      "description": "Learn how to find and evaluate trusted shops, local services and nearby businesses. Check identity, location, reviews, prices, licences, warranties, payment details and warning signs before you buy or book.",
+      "readingTime": "21 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/find-trusted-local-businesses-hero.webp",
-      "alt": "find-trusted-local-businesses",
-      "caption": "find-trusted-local-businesses — an original editorial visual by AiRedHQ."
+      "alt": "How to Find Trusted Shops, Services and Local Businesses Near You",
+      "caption": "How to Find Trusted Shops, Services and Local Businesses Near You — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -123,15 +123,15 @@ export const blogManifest = [
     "categoryLabel": "Local Discovery",
     "accent": "#2f91e8",
     "frontmatter": {
-      "title": "best-markets-near-me",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
+      "title": "Best Markets Near Me for Clothes, Electronics, Food and Home Products",
+      "description": "Find the best nearby markets for clothes, electronics, food, furniture, home décor and daily essentials. Learn how to compare opening hours, prices, transport, product quality, warranties, reviews and verified business information.",
       "readingTime": "20 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/best-markets-near-me-hero.webp",
-      "alt": "best-markets-near-me",
-      "caption": "best-markets-near-me — an original editorial visual by AiRedHQ."
+      "alt": "Best Markets Near Me for Clothes, Electronics, Food and Home Products",
+      "caption": "Best Markets Near Me for Clothes, Electronics, Food and Home Products — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -142,15 +142,15 @@ export const blogManifest = [
     "categoryLabel": "Local Discovery",
     "accent": "#2f91e8",
     "frontmatter": {
-      "title": "ai-powered-local-discovery",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How AI-Powered Local Discovery Helps You Find the Best Nearby Businesses",
+      "description": "Learn how AI-powered local discovery understands conversational searches, finds nearby businesses, compares opening hours, travel time, reviews and trust signals, and explains personalised recommendations without hiding sponsorship or uncertainty.",
+      "readingTime": "22 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ai-powered-local-discovery-hero.webp",
-      "alt": "ai-powered-local-discovery",
-      "caption": "ai-powered-local-discovery — an original editorial visual by AiRedHQ."
+      "alt": "How AI-Powered Local Discovery Helps You Find the Best Nearby Businesses",
+      "caption": "How AI-Powered Local Discovery Helps You Find the Best Nearby Businesses — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -161,15 +161,15 @@ export const blogManifest = [
     "categoryLabel": "Financial Planning",
     "accent": "#8bdc34",
     "frontmatter": {
-      "title": "create-a-personal-financial-plan",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How to Create a Personal Financial Plan: A Step-by-Step Guide",
+      "description": "Create a personal financial plan with this practical India-focused guide. Organise goals, cash flow, emergency savings, debt, insurance, investments, retirement, taxes, nominations and annual reviews using transparent calculators and checklists.",
+      "readingTime": "23 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/create-a-personal-financial-plan-hero.webp",
-      "alt": "create-a-personal-financial-plan",
-      "caption": "create-a-personal-financial-plan — an original editorial visual by AiRedHQ."
+      "alt": "How to Create a Personal Financial Plan: A Step-by-Step Guide",
+      "caption": "How to Create a Personal Financial Plan: A Step-by-Step Guide — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -180,15 +180,15 @@ export const blogManifest = [
     "categoryLabel": "Financial Planning",
     "accent": "#8bdc34",
     "frontmatter": {
-      "title": "sip-calculator-guide",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "SIP Calculator Guide: How Much Should You Invest to Reach Your Financial Goals?",
+      "description": "Use this transparent SIP calculator guide to estimate how much you may need to invest monthly for a financial goal. Understand SIP formulas, step-up contributions, inflation, return scenarios, fees, taxes, timing and risk.",
+      "readingTime": "22 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/sip-calculator-guide-hero.webp",
-      "alt": "sip-calculator-guide",
-      "caption": "sip-calculator-guide — an original editorial visual by AiRedHQ."
+      "alt": "SIP Calculator Guide: How Much Should You Invest to Reach Your Financial Goals?",
+      "caption": "SIP Calculator Guide: How Much Should You Invest to Reach Your Financial Goals? — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -199,15 +199,15 @@ export const blogManifest = [
     "categoryLabel": "Financial Planning",
     "accent": "#8bdc34",
     "frontmatter": {
-      "title": "retirement-planning-india",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "Retirement Planning in India: How Much Money Will You Need?",
+      "description": "Estimate how much money you may need for retirement in India. Build an inflation-adjusted retirement plan covering expenses, healthcare, pensions, NPS, EPF, taxes, investments, withdrawals, longevity and annual reviews.",
+      "readingTime": "26 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/retirement-planning-india-hero.webp",
-      "alt": "retirement-planning-india",
-      "caption": "retirement-planning-india — an original editorial visual by AiRedHQ."
+      "alt": "Retirement Planning in India: How Much Money Will You Need?",
+      "caption": "Retirement Planning in India: How Much Money Will You Need? — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -218,15 +218,15 @@ export const blogManifest = [
     "categoryLabel": "Financial Planning",
     "accent": "#8bdc34",
     "frontmatter": {
-      "title": "emergency-fund-calculator",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "Emergency Fund Calculator: How Much Should You Save Every Month?",
+      "description": "Calculate an emergency-fund target and monthly savings amount using essential expenses, income stability, dependants, debt, insurance gaps and current liquid savings. Includes India-specific deposit protection and secure-access guidance.",
+      "readingTime": "24 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/emergency-fund-calculator-hero.webp",
-      "alt": "emergency-fund-calculator",
-      "caption": "emergency-fund-calculator — an original editorial visual by AiRedHQ."
+      "alt": "Emergency Fund Calculator: How Much Should You Save Every Month?",
+      "caption": "Emergency Fund Calculator: How Much Should You Save Every Month? — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -237,15 +237,15 @@ export const blogManifest = [
     "categoryLabel": "Immersive Learning",
     "accent": "#e83e9b",
     "frontmatter": {
-      "title": "ar-vr-labs-in-schools",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "AR and VR Labs in Schools: Complete Setup and Implementation Guide",
+      "description": "Plan and implement a safe, curriculum-aligned AR and VR lab in a school. Covers room design, devices, network, content, teacher training, child safety, accessibility, privacy, maintenance, assessment and phased rollout.",
+      "readingTime": "27 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ar-vr-labs-in-schools-hero.webp",
-      "alt": "ar-vr-labs-in-schools",
-      "caption": "ar-vr-labs-in-schools — an original editorial visual by AiRedHQ."
+      "alt": "AR and VR Labs in Schools: Complete Setup and Implementation Guide",
+      "caption": "AR and VR Labs in Schools: Complete Setup and Implementation Guide — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -256,15 +256,15 @@ export const blogManifest = [
     "categoryLabel": "Immersive Learning",
     "accent": "#e83e9b",
     "frontmatter": {
-      "title": "ar-vr-lab-cost-india",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "AR/VR Lab Setup Cost for Schools in India: Equipment, Software and Budget",
+      "description": "Estimate the cost of setting up an AR/VR lab in an Indian school. Compare pilot, managed and full-classroom budgets covering headsets, tablets, room work, network, content, training, support, maintenance, replacement, taxes and five-year total cost.",
+      "readingTime": "27 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ar-vr-lab-cost-india-hero.webp",
-      "alt": "ar-vr-lab-cost-india",
-      "caption": "ar-vr-lab-cost-india — an original editorial visual by AiRedHQ."
+      "alt": "AR/VR Lab Setup Cost for Schools in India: Equipment, Software and Budget",
+      "caption": "AR/VR Lab Setup Cost for Schools in India: Equipment, Software and Budget — an original editorial visual by AiRedHQ."
     }
   },
   {
@@ -275,15 +275,15 @@ export const blogManifest = [
     "categoryLabel": "Immersive Learning",
     "accent": "#e83e9b",
     "frontmatter": {
-      "title": "ar-vr-learning-outcomes",
-      "description": "Practical guidance from the AiRedHQ editorial team.",
-      "readingTime": "20 minutes",
+      "title": "How AR and VR Labs Improve Student Learning, Engagement and Skill Development",
+      "description": "Learn when school AR and VR labs can improve conceptual understanding, engagement, procedural practice, collaboration and skill development—and how to measure outcomes without confusing novelty or enjoyment with learning.",
+      "readingTime": "25 minutes",
       "updatedAt": "2026-07-30"
     },
     "heroVisual": {
       "src": "/blog/images/ar-vr-learning-outcomes-hero.webp",
-      "alt": "ar-vr-learning-outcomes",
-      "caption": "ar-vr-learning-outcomes — an original editorial visual by AiRedHQ."
+      "alt": "How AR and VR Labs Improve Student Learning, Engagement and Skill Development",
+      "caption": "How AR and VR Labs Improve Student Learning, Engagement and Skill Development — an original editorial visual by AiRedHQ."
     }
   }
 ] as const satisfies readonly BlogArticleSummary[];

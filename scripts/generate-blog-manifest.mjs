@@ -28,8 +28,14 @@ const categoryInfo = {
   "immersive-learning": ["Immersive Learning", "#e83e9b"],
 };
 
+function normalizeDate(value) {
+  const date = value instanceof Date ? value : new Date(String(value ?? ""));
+  return Number.isNaN(date.getTime()) ? "2026-07-30" : date.toISOString().slice(0, 10);
+}
+
 const manifest = await Promise.all(registry.map(async ([sourceFile, category, slug]) => {
-  const { data } = matter(await readFile(path.join(root, "public", "Blogs", sourceFile), "utf8"));
+  const source = await readFile(path.join(root, "public", "Blogs", sourceFile), "utf8");
+  const { data } = matter(source.replace(/^\s*<!--[\s\S]*?-->\s*/, ""));
   const generic = sourceFile.startsWith("05-");
   const [categoryLabel, accent] = categoryInfo[category];
   const title = generic ? "How to Find the Best Local Markets in Any City" : String(data.title ?? slug);
@@ -41,7 +47,7 @@ const manifest = await Promise.all(registry.map(async ([sourceFile, category, sl
     frontmatter: {
       title, description,
       readingTime: generic ? "18 minutes" : String(data.readingTime ?? "20 minutes"),
-      updatedAt: String(data.updatedAt ?? data.publishedAt ?? "2026-07-30").slice(0, 10),
+      updatedAt: normalizeDate(data.updatedAt ?? data.publishedAt),
     },
     heroVisual: {
       src: `/blog/images/${slug}-hero.webp`,

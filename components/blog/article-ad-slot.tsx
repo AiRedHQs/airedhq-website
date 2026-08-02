@@ -36,23 +36,30 @@ export function ArticleAdSlot({ slot }: { slot: ArticleAdSlotType }) {
   }, [slot.provider, slot.providerSlotId]);
 
   if (!slot.enabled) return null;
-  if (slot.provider !== "adsense" || !slot.providerSlotId || isUnfilled) return null;
+
+  const canRequestAd = slot.provider === "adsense" && Boolean(slot.providerSlotId);
 
   return (
     <aside
       aria-label="Advertisement"
       data-ad-placement={slot.placement}
-      className="my-14 w-full max-w-full text-center"
+      className="my-14 min-h-[132px] w-full max-w-full text-center sm:min-h-[156px]"
     >
       <div className="mb-2 text-[11px] uppercase tracking-[.04em] text-white/40">Advertisement</div>
-      <ins
-        ref={adRef}
-        className="adsbygoogle block w-full max-w-full"
-        data-ad-client={ADSENSE_PUBLISHER_ID}
-        data-ad-slot={slot.providerSlotId}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
+      <div className="flex min-h-[108px] w-full items-center justify-center overflow-hidden bg-white/[0.018] sm:min-h-[132px]">
+        {canRequestAd && !isUnfilled ? (
+          <ins
+            ref={adRef}
+            className="adsbygoogle block min-h-[108px] w-full max-w-full sm:min-h-[132px]"
+            data-ad-client={ADSENSE_PUBLISHER_ID}
+            data-ad-slot={slot.providerSlotId}
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        ) : (
+          <span className="sr-only">Advertisement space reserved</span>
+        )}
+      </div>
     </aside>
   );
 }
