@@ -75,3 +75,10 @@ export type BlogArticle = {
   inlineVisuals: [ArticleVisual, ArticleVisual, ArticleVisual, ArticleVisual];
   relatedArticles: RelatedArticle[];
 };
+
+export type BlogArticleSummary = Pick<
+  BlogArticle,
+  "sourceFile" | "slug" | "route" | "category" | "categoryLabel" | "accent" | "heroVisual"
+> & {
+  frontmatter: Pick<BlogFrontmatter, "title" | "description" | "readingTime" | "updatedAt">;
+};

@@ -3,13 +3,13 @@ import { ArrowRight } from "lucide-react";
 import { ArticleEditorialImage } from "@/components/blog/article-editorial-image";
 import { Container } from "@/components/layout/container";
 import { blogCategories } from "@/constants/blog";
-import { getAllBlogArticles } from "@/src/lib/blog";
+import { getBlogArticleSummaries } from "@/src/lib/blog";
 import type { BlogCategory } from "@/src/types/blog";
 
 const categoryOrder: BlogCategory[] = ["careers", "local-discovery", "financial-planning", "immersive-learning"];
 
 export function BlogExperiencePage() {
-  const articles = getAllBlogArticles();
+  const articles = getBlogArticleSummaries();
   const featured = articles[0];
 
   return (

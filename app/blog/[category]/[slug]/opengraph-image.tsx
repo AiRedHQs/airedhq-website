@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getAllBlogArticles, getBlogArticle } from "@/src/lib/blog";
+import { getBlogArticle, getBlogArticleSummaries } from "@/src/lib/blog";
 
 export const alt = "AiRedHQ editorial note";
 export const size = { width: 1200, height: 630 };
@@ -7,12 +7,12 @@ export const contentType = "image/png";
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return getAllBlogArticles().map((article) => ({ category: article.category, slug: article.slug }));
+  return getBlogArticleSummaries().map((article) => ({ category: article.category, slug: article.slug }));
 }
 
 export default async function OpenGraphImage({ params }: { params: Promise<{ category: string; slug: string }> }) {
   const { category, slug } = await params;
-  const article = getBlogArticle(category, slug);
+  const article = await getBlogArticle(category, slug);
   if (!article) return new ImageResponse(<div>AiRedHQ Notes</div>, size);
 
   return new ImageResponse(
@@ -29,4 +29,3 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ cat
     size,
   );
 }
-

@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogArticlePage } from "@/components/pages/blog-article-page";
 import { siteConfig } from "@/constants/brand";
-import { getAllBlogArticles, getBlogArticle } from "@/src/lib/blog";
+import { getBlogArticle, getBlogArticleSummaries } from "@/src/lib/blog";
 
 type ArticlePageProps = { params: Promise<{ category: string; slug: string }> };
 
 export function generateStaticParams() {
-  return getAllBlogArticles().map((article) => ({ category: article.category, slug: article.slug }));
+  return getBlogArticleSummaries().map((article) => ({ category: article.category, slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
   const { category, slug } = await params;
-  const article = getBlogArticle(category, slug);
+  const article = await getBlogArticle(category, slug);
   if (!article) return {};
   const url = new URL(article.route, siteConfig.url);
 
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { category, slug } = await params;
-  const article = getBlogArticle(category, slug);
+  const article = await getBlogArticle(category, slug);
   if (!article) notFound();
   const articleUrl = `${siteConfig.url}${article.route}`;
   const articleImages = [article.heroVisual, ...article.inlineVisuals].map(

@@ -1,7 +1,6 @@
-import "server-only";
-
 import fs from "node:fs";
 import path from "node:path";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import matter from "gray-matter";
 import {
   blogArticleRegistry,
@@ -11,6 +10,7 @@ import {
   blogDisclaimers,
   defaultArticleAds,
 } from "@/constants/blog";
+import { blogManifest } from "@/src/generated/blog-manifest";
 import type {
   BlogArticle,
   BlogCategory,
@@ -22,6 +22,23 @@ import type {
 } from "@/src/types/blog";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "public", "Blogs");
+
+async function readBlogSource(sourceFile: string) {
+  try {
+    const { env } = await getCloudflareContext({ async: true });
+    const assets = (env as CloudflareEnv).ASSETS;
+    if (assets) {
+      const response = await assets.fetch(
+        new Request(`https://assets.local/Blogs/${encodeURIComponent(sourceFile)}`),
+      );
+      if (response.ok) return response.text();
+    }
+  } catch {
+    // Next.js build and local development read directly from the workspace.
+  }
+
+  return fs.readFileSync(path.join(BLOG_DIRECTORY, sourceFile), "utf8");
+}
 
 const mojibakeReplacements: Array<[string, string]> = [
   ["â€™", "’"],
@@ -291,12 +308,12 @@ function dateValue(value: unknown, fallback: string) {
   return fallback;
 }
 
-function parseArticle(
+async function parseArticle(
   sourceFile: string,
   category: BlogCategory,
   slug: string,
-): Omit<BlogArticle, "relatedArticles"> {
-  const source = fs.readFileSync(path.join(BLOG_DIRECTORY, sourceFile), "utf8");
+): Promise<Omit<BlogArticle, "relatedArticles">> {
+  const source = await readBlogSource(sourceFile);
   const parsed = matter(stripPrivateInstructions(source));
   const categoryConfig = blogCategories[category];
   let content = repairEncoding(parsed.content);
@@ -374,40 +391,66 @@ function parseArticle(
   };
 }
 
-let articleCache: BlogArticle[] | undefined;
+const articleCache = new Map<string, Promise<BlogArticle>>();
 
-export function getAllBlogArticles(): BlogArticle[] {
-  if (articleCache) return articleCache;
-
-  const baseArticles = blogArticleRegistry.map(([sourceFile, category, slug]) =>
-    parseArticle(sourceFile, category, slug),
-  );
-
-  articleCache = baseArticles.map((article) => {
-    const relatedArticles: RelatedArticle[] = baseArticles
-      .filter((candidate) => candidate.category === article.category && candidate.slug !== article.slug)
-      .slice(0, 3)
-      .map((candidate) => ({
-        title: candidate.frontmatter.title,
-        description: candidate.frontmatter.description,
-        href: candidate.route,
-        category: candidate.category,
-      }));
-
-    return { ...article, relatedArticles };
-  });
-
-  return articleCache;
+async function getPreprocessedArticle(category: string, slug: string) {
+  try {
+    const { env } = await getCloudflareContext({ async: true });
+    const assets = (env as CloudflareEnv).ASSETS;
+    if (!assets) return undefined;
+    const response = await assets.fetch(
+      new Request(`https://assets.local/blog-data/${category}/${slug}.json`),
+    );
+    return response.ok ? ((await response.json()) as BlogArticle) : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
-export function getBlogArticle(category: string, slug: string) {
-  return getAllBlogArticles().find(
-    (article) => article.category === category && article.slug === slug,
+export function getBlogArticleSummaries() {
+  return blogManifest;
+}
+
+export async function getAllBlogArticles(): Promise<BlogArticle[]> {
+  const articles = await Promise.all(
+    blogArticleRegistry.map(([, category, slug]) => getBlogArticle(category, slug)),
   );
+  return articles.filter((article): article is BlogArticle => Boolean(article));
+}
+
+export async function getBlogArticle(category: string, slug: string) {
+  const registryEntry = blogArticleRegistry.find(
+    ([, entryCategory, entrySlug]) => entryCategory === category && entrySlug === slug,
+  );
+  if (!registryEntry) return undefined;
+
+  const cacheKey = `${category}/${slug}`;
+  if (!articleCache.has(cacheKey)) {
+    const [sourceFile, articleCategory, articleSlug] = registryEntry;
+    articleCache.set(
+      cacheKey,
+      getPreprocessedArticle(category, slug).then(async (preprocessed) => {
+        if (preprocessed) return preprocessed;
+        const article = await parseArticle(sourceFile, articleCategory, articleSlug);
+        const relatedArticles: RelatedArticle[] = blogManifest
+          .filter((candidate) => candidate.category === article.category && candidate.slug !== article.slug)
+          .slice(0, 3)
+          .map((candidate) => ({
+            title: candidate.frontmatter.title,
+            description: candidate.frontmatter.description,
+            href: candidate.route,
+            category: candidate.category,
+          }));
+        return { ...article, relatedArticles };
+      }),
+    );
+  }
+
+  return articleCache.get(cacheKey);
 }
 
 export function getArticlesByCategory(category: BlogCategory) {
-  return getAllBlogArticles().filter((article) => article.category === category);
+  return blogManifest.filter((article) => article.category === category);
 }
 
 export function getBlogCategory(category: string) {
