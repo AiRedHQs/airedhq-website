@@ -5,7 +5,7 @@ import Image from "next/image";
 export function HeroProductVisual() {
   return (
     <div
-      className="hero-product-visual relative mx-auto w-full max-w-2xl origin-center perspective-[1400px] lg:-mr-8 lg:max-w-none lg:scale-[1.08] xl:-mr-14"
+      className="hero-product-visual relative mx-auto -mb-2 w-[108%] max-w-2xl origin-center perspective-[1400px] sm:mb-0 sm:w-full lg:-mr-8 lg:max-w-none lg:scale-[1.1] xl:-mr-14"
       onPointerMove={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         const x = (event.clientX - rect.left) / rect.width - 0.5;

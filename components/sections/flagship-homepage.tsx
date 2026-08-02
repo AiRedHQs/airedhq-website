@@ -19,7 +19,7 @@ const products = [
     preview: "/hiared/hiared-product-preview-transparent.webp",
     previewAlt:
       "hiARed recruitment dashboard showing transparency scoring, resume screening and hiring pipeline",
-    logoSize: "h-12 md:h-14",
+    logoSize: "h-10 md:h-12",
     eyebrow: "Transparent AI recruitment",
     headline: "Smarter hiring.\nFaster decisions.",
     headlineAccent: "Smarter",
@@ -40,7 +40,7 @@ const products = [
     preview: "/gobazaar/gobazaar-product-preview-transparent.webp",
     previewAlt:
       "GoBazaar local discovery interface showing Jaipur markets, offers and nearby businesses",
-    logoSize: "h-14 md:h-16",
+    logoSize: "h-10 md:h-12",
     eyebrow: "Hyperlocal discovery",
     headline: "Discover local.\nGrow local.",
     headlineAccent: "Discover",
@@ -56,7 +56,7 @@ const products = [
     preview: "/yojiq/yojiq-product-preview-transparent-clean.webp",
     previewAlt:
       "YojIQ personal finance application showing budgets, emergency funds and expense analytics",
-    logoSize: "h-9 md:h-11",
+    logoSize: "h-10 md:h-12",
     eyebrow: "Personal finance clarity",
     headline: "Plan smarter.\nSpend better.",
     headlineAccent: "smarter",
@@ -75,8 +75,7 @@ const accent = {
 const productSectionBackground = {
   hiared:
     "radial-gradient(circle at 78% 48%, rgba(97,2,245,0.13), transparent 38%), #07070a",
-  gobazaar:
-    "radial-gradient(circle at 78% 48%, #123872 0%, #091b39 30%, #050910 68%)",
+  gobazaar: "radial-gradient(circle at 78% 48%, #123872 0%, #091b39 30%, #050910 68%)",
   yojiq:
     "radial-gradient(circle at 78% 48%, rgba(132,204,22,0.14), transparent 38%), #070907",
 } satisfies Record<ProductId, string>;
@@ -124,7 +123,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "An IIT Bombay-linked educational robotics venture that combined physical kits, visual programming tools and structured classroom learning.",
     reach: "Historically reported: 1M+ children across 2,000+ schools",
-    offerings: ["Robotics learning systems", "Visual programming tools", "Teacher training"],
+    offerings: [
+      "Robotics learning systems",
+      "Visual programming tools",
+      "Teacher training",
+    ],
     accent: "#4ead55",
   },
   {
@@ -136,7 +139,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "Next Education provides curriculum, digital classrooms, learning products, school-management platforms and institutional support.",
     reach: "Company-reported: 12M+ students and 18,000+ schools",
-    offerings: ["Digital curriculum", "School ERP and LMS", "Classroom and lab solutions"],
+    offerings: [
+      "Digital curriculum",
+      "School ERP and LMS",
+      "Classroom and lab solutions",
+    ],
     accent: "#438b3e",
   },
   {
@@ -160,7 +167,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "Umety brings together immersive lessons, education-first hardware, classroom orchestration, assessments and reporting.",
     reach: "Content library: 1,000+ lessons and 1,500+ interactive 3D models",
-    offerings: ["Immersive lessons", "Education-first VR hardware", "Classroom management"],
+    offerings: [
+      "Immersive lessons",
+      "Education-first VR hardware",
+      "Classroom management",
+    ],
     accent: "#1f54ff",
   },
   {
@@ -172,7 +183,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "LaunchMyCareer combines assessments, counselling, immersive career exploration and future-skills development for young people.",
     reach: "Announced availability through 6,000+ CSC Academies",
-    offerings: ["Career assessments", "Expert counselling", "Immersive career exploration"],
+    offerings: [
+      "Career assessments",
+      "Expert counselling",
+      "Immersive career exploration",
+    ],
     accent: "#6954d8",
   },
   {
@@ -196,7 +211,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "STEMpedia combines PictoBlox software, programmable hardware, school innovation labs, curriculum and teacher training.",
     reach: "Company-reported: 300,000+ monthly active PictoBlox users",
-    offerings: ["PictoBlox coding platform", "AI and robotics kits", "School innovation labs"],
+    offerings: [
+      "PictoBlox coding platform",
+      "AI and robotics kits",
+      "School innovation labs",
+    ],
     accent: "#f0a400",
   },
   {
@@ -220,7 +239,11 @@ const clientCompanyData: readonly ClientCompany[] = [
     description:
       "Sensible-VR focuses on durable education hardware, localized content, offline operation and teacher-friendly deployment.",
     reach: "Japan-based, founded in 2024; international school focus",
-    offerings: ["Offline VR deployment", "Localized learning content", "Privacy-first classroom systems"],
+    offerings: [
+      "Offline VR deployment",
+      "Localized learning content",
+      "Privacy-first classroom systems",
+    ],
     accent: "#df2029",
   },
 ] as const;
@@ -272,8 +295,7 @@ function CompanyCollaborations() {
               Selected Collaborations
             </p>
             <h2 className="mt-6 max-w-[10ch] text-5xl font-semibold leading-[0.95] text-balance text-white md:text-7xl lg:text-[5.5rem]">
-              Built alongside{" "}
-              <span className="text-[#2f91d4]">ambitious</span> teams.
+              Built alongside <span className="text-[#2f91d4]">ambitious</span> teams.
             </h2>
           </div>
           <CollaborationNetwork />
@@ -452,9 +474,7 @@ function CollaborationNetwork() {
         ))}
       </svg>
 
-      <div
-        className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a0d12] shadow-[0_0_0_1px_rgba(47,145,212,.42),0_0_40px_rgba(47,145,212,.1)] transition-transform duration-500 group-hover/network:scale-105 md:size-28"
-      >
+      <div className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a0d12] shadow-[0_0_0_1px_rgba(47,145,212,.42),0_0_40px_rgba(47,145,212,.1)] transition-transform duration-500 group-hover/network:scale-105 md:size-28">
         <Image
           src="/airedhq/Logo 2X1 Transparent.png"
           alt="AiRedHQ"
@@ -496,15 +516,15 @@ function CollaborationNetwork() {
 
 function ProductsIntroduction() {
   return (
-    <section className="relative overflow-hidden py-16 md:py-24 lg:py-32">
-      <Container className="grid max-w-[96rem] items-end gap-10 md:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+    <section className="relative overflow-hidden py-20 md:py-28 lg:py-36">
+      <Container className="grid max-w-[96rem] items-end gap-12 md:gap-16 lg:grid-cols-[1.12fr_0.88fr] lg:gap-24">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.34em] text-white/42">
-            Our Products
+            Product portfolio
           </p>
-          <h2 className="mt-6 max-w-[12ch] text-5xl font-semibold leading-[0.95] text-balance text-white md:text-7xl lg:text-[5.5rem]">
-            Built by us.{" "}
-            <span className="text-[#2f91d4]">Proven</span> in the real world.
+          <h2 className="display-editorial text-safe mt-6 max-w-[13ch] font-semibold text-balance text-white">
+            Different problems. One standard of{" "}
+            <span className="text-[#2f91d4]">execution.</span>
           </h2>
         </div>
         <ProductIndexGraphic />
@@ -515,21 +535,20 @@ function ProductsIntroduction() {
 
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#050608] pt-12 text-white sm:pt-16 md:pt-20 lg:pt-10">
+    <section className="relative isolate overflow-hidden bg-[#050608] pt-10 text-white sm:pt-14 md:pt-18 lg:pt-10">
       <HeroAtmosphere />
-      <Container className="relative z-10 grid max-w-[96rem] items-center gap-8 pb-14 sm:gap-10 sm:pb-16 md:gap-12 md:pb-20 lg:grid-cols-[0.76fr_1.24fr] lg:gap-6 lg:py-16 xl:py-20">
+      <Container className="relative z-10 grid max-w-[96rem] items-center gap-5 pb-8 sm:gap-8 sm:pb-12 md:gap-10 md:pb-16 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-[0.72fr_1.28fr] lg:gap-4 lg:py-12 xl:py-16">
         <div className="max-w-2xl">
-          <p className="mb-5 text-xs font-medium uppercase tracking-[0.34em] text-white/48">
+          <p className="mb-5 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-white/48 sm:text-xs sm:tracking-[0.34em]">
             Product innovation company
           </p>
-          <h1 className="max-w-[11ch] text-[3.35rem] font-semibold leading-[0.91] tracking-normal text-balance sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[6.8rem]">
-            We build{" "}
-            <span className="text-[#2f91d4]">products</span> that solve real
+          <h1 className="display-signature text-safe max-w-[11ch] font-semibold tracking-normal text-balance">
+            We build <span className="text-[#2f91d4]">products</span> that solve real
             problems.
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-white/56 sm:mt-7 md:text-lg">
-            Three product lines. One engineering standard. Practical software designed,
-            built and improved in the real world.
+          <p className="mt-5 max-w-xl text-[0.98rem] leading-7 text-white/58 sm:mt-7 md:text-lg">
+            Three products, built and operated by one team. We design, ship and improve
+            the software we put our name on.
           </p>
           <div className="mt-7 flex flex-col items-start gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
             <Button
@@ -558,13 +577,28 @@ function Hero() {
 }
 
 function ProductBand({ product }: { product: (typeof products)[number] }) {
+  const isGoBazaar = product.id === "gobazaar";
+  const isYojIQ = product.id === "yojiq";
+
   return (
     <section
-      className="relative isolate overflow-hidden py-20 md:py-24 lg:py-32"
+      className={cn(
+        "relative isolate overflow-hidden py-18 md:py-24 lg:py-32",
+        isYojIQ && "lg:py-40",
+      )}
       style={{ background: productSectionBackground[product.id] }}
     >
-      <Container className="relative z-10 grid items-center gap-10 md:gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-        <div className="max-w-xl">
+      <Container
+        className={cn(
+          "relative z-10 grid items-center gap-9 md:gap-12 lg:gap-16",
+          isGoBazaar
+            ? "lg:grid-cols-[1.22fr_0.78fr]"
+            : isYojIQ
+              ? "lg:grid-cols-[0.88fr_1.12fr] lg:items-end"
+              : "lg:grid-cols-[0.72fr_1.28fr]",
+        )}
+      >
+        <div className={cn("max-w-xl", isGoBazaar && "lg:order-2 lg:justify-self-end")}>
           <Image
             src={product.logo}
             alt={product.name}
@@ -587,18 +621,16 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
               className={accent[product.id]}
             />
           </h2>
-          <p className="mt-7 text-base leading-7 text-white/56 md:text-lg">
+          <p className="mt-6 text-base leading-7 text-white/58 md:mt-7 md:text-lg">
             {product.sentence}
           </p>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 md:mt-10">
             {product.usps.map((usp) => (
               <li
                 key={usp}
-                className="flex items-center gap-3 text-sm font-medium text-white/82"
+                className="flex items-center gap-3 border-l border-white/14 pl-3 text-sm font-medium text-white/82"
               >
-                <span className="flex size-6 items-center justify-center rounded-full border border-white/12 bg-white/[0.04]">
-                  <Check className={cn("size-3.5", accent[product.id])} />
-                </span>
+                <Check className={cn("size-4 shrink-0", accent[product.id])} />
                 {usp}
               </li>
             ))}
@@ -620,7 +652,11 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
         </div>
 
         <div
-          className="product-preview-visual relative mx-auto w-full max-w-3xl will-change-transform lg:max-w-none"
+          className={cn(
+            "product-preview-visual relative mx-auto w-full max-w-3xl will-change-transform lg:max-w-none",
+            isGoBazaar && "lg:order-1",
+            isYojIQ && "lg:-mb-16",
+          )}
           data-product={product.id}
         >
           <Image
@@ -630,8 +666,9 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
             height={product.id === "gobazaar" ? 929 : 1024}
             sizes="(max-width: 1023px) 100vw, 62vw"
             className={cn(
-              "mx-auto h-auto max-h-[25rem] w-full object-contain md:max-h-[34rem] lg:max-h-none",
-              product.id === "gobazaar" && "w-[114%] max-w-none",
+              "mx-auto h-auto max-h-[23rem] w-full object-contain md:max-h-[34rem] lg:max-h-none",
+              isGoBazaar && "lg:w-[112%] lg:max-w-none",
+              isYojIQ && "max-h-[21rem] md:max-h-[30rem] lg:max-h-none",
             )}
           />
           {product.id === "yojiq" && (
@@ -687,17 +724,17 @@ function ProductIndexGraphic() {
       color: "hsl(var(--product-yojiq))",
       offset: "lg:ml-24",
     },
-].sort(
-  (first, second) =>
-    clientCompanyOrder.indexOf(first.name as (typeof clientCompanyOrder)[number]) -
-    clientCompanyOrder.indexOf(second.name as (typeof clientCompanyOrder)[number]),
-);
+  ].sort(
+    (first, second) =>
+      clientCompanyOrder.indexOf(first.name as (typeof clientCompanyOrder)[number]) -
+      clientCompanyOrder.indexOf(second.name as (typeof clientCompanyOrder)[number]),
+  );
 
   return (
     <div className="relative pb-2" aria-label="AiRedHQ products">
-      <p className="mb-8 max-w-sm text-sm leading-6 text-white/42">
-        Three independent products. One shared standard for useful, enduring
-        software.
+      <p className="mb-8 max-w-sm text-sm leading-6 text-white/48">
+        Recruitment, local discovery and personal finance. Each product is shaped by the
+        operating reality of its category.
       </p>
       <div className="space-y-7">
         {indexItems.map((item, index) => (
@@ -706,7 +743,11 @@ function ProductIndexGraphic() {
             className={cn("flex max-w-xl items-center gap-4", item.offset)}
             style={{ transitionDelay: `${index * 100}ms` }}
           >
-            <span className="size-2 shrink-0 rounded-full" style={{ backgroundColor: item.color }} aria-hidden="true" />
+            <span
+              className="size-2 shrink-0 rounded-full"
+              style={{ backgroundColor: item.color }}
+              aria-hidden="true"
+            />
             <span
               className="h-px flex-1"
               style={{
@@ -714,9 +755,7 @@ function ProductIndexGraphic() {
               }}
               aria-hidden="true"
             />
-            <span className="w-24 text-sm font-semibold text-white">
-              {item.name}
-            </span>
+            <span className="w-24 text-sm font-semibold text-white">{item.name}</span>
           </div>
         ))}
       </div>
