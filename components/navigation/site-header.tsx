@@ -19,11 +19,11 @@ export function SiteHeader() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 border-b border-border/70 bg-background shadow-sm lg:border-b-0 lg:bg-background/24 lg:shadow-none lg:backdrop-blur-xl"
-      animate={{ y: hidden ? -80 : 0 }}
+      className="sticky top-0 z-40 border-b border-white/10 bg-[#07090d]/96 shadow-[0_10px_30px_rgba(0,0,0,.2)] backdrop-blur-xl lg:border-b-0 lg:bg-background/24 lg:shadow-none"
+      animate={{ y: hidden ? -72 : 0 }}
       transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
+      <Container className="flex h-14 items-center justify-between gap-4 sm:h-16">
         <BrandMark />
         <DesktopNavigation />
         <MobileNavigation />
