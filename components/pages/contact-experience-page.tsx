@@ -124,9 +124,9 @@ export function ContactExperiencePage() {
             {usefulContext.map((item, index) => (
               <div
                 key={item}
-                className="grid grid-cols-[3rem_1fr] gap-5 border-b border-white/10 py-7"
+                className="flex items-center gap-4 border-b border-white/10 py-7"
               >
-                <span className="font-mono text-[10px] text-[#5a9fe8]">0{index + 1}</span>
+                <span className="size-2 rounded-full bg-[#5a9fe8]" aria-hidden="true" />
                 <p className="text-lg font-medium text-white/72">{item}</p>
               </div>
             ))}

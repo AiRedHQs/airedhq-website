@@ -55,7 +55,7 @@ export default function GoBazaarProductExperience() {
             <div className="mt-9 flex max-w-xl items-center gap-3 rounded-md bg-white p-2 pl-4 text-[#07111c]">
               <Search className="size-5 text-black/35" />
               <span className="flex-1 text-sm text-black/45">Search a market, place or experience</span>
-              <Link href="/contact" className="rounded bg-[#2388ff] px-4 py-3 text-sm font-semibold text-white">
+              <Link href="/contact" className="rounded bg-[#2388ff] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#55a5ff] hover:text-[#06101c]">
                 Join waitlist
               </Link>
             </div>
@@ -146,7 +146,7 @@ export default function GoBazaarProductExperience() {
               ["Local context", "Understand what a place is known for and why it may be worth visiting."],
             ].map(([title, description], index) => (
               <article key={title} className="min-h-72 bg-[#06101c] p-7">
-                <span className="font-mono text-[10px] text-[#3898ff]">0{index + 1}</span>
+                <span className="block h-px w-12 bg-[#3898ff]" aria-hidden="true" />
                 <h3 className="mt-16 text-2xl font-semibold">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-white/42">{description}</p>
               </article>
@@ -187,7 +187,7 @@ export default function GoBazaarProductExperience() {
             <h2 className="mx-auto mt-6 max-w-[12ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
               Be first to explore what&apos;s nearby.
             </h2>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#2388ff] px-5 py-3 text-sm font-semibold">
+            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#2388ff] px-5 py-3 text-sm font-semibold transition-colors hover:bg-[#55a5ff] hover:text-[#06101c]">
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
           </div>

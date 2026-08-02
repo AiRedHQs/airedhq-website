@@ -131,9 +131,8 @@ export function CaseStudiesExperiencePage() {
                 ["Product response", "What AiRedHQ has designed and engineered to address that problem."],
                 ["Current evidence", "What exists today, with product maturity stated explicitly."],
                 ["What it demonstrates", "The transferable product and engineering capability behind the work."],
-              ].map(([title, description], index) => (
-                <article key={title} className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[3rem_12rem_1fr]">
-                  <span className="font-mono text-[10px] text-white/25">0{index + 1}</span>
+              ].map(([title, description]) => (
+                <article key={title} className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[12rem_1fr]">
                   <h3 className="font-semibold">{title}</h3>
                   <p className="text-sm leading-6 text-white/42">{description}</p>
                 </article>
@@ -154,7 +153,6 @@ export function CaseStudiesExperiencePage() {
               <div className="grid items-start gap-16 lg:grid-cols-[.76fr_1.24fr]">
                 <div className="lg:sticky lg:top-28 lg:h-fit">
                   <div className="flex items-center gap-4">
-                    <span className="font-mono text-xs" style={{ color: study.accent }}>{study.number}</span>
                     <span className="text-[10px] font-semibold uppercase tracking-[.2em] text-white/35">{study.label}</span>
                   </div>
                   <Icon className="mt-14 size-9" style={{ color: study.accent }} />

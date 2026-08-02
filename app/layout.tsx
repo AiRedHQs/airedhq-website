@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {GoogleAnalytics} from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ApplicationShell } from "@/components/layout/application-shell";
@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   applicationName: siteConfig.name,
+  other: {
+    "google-adsense-account": "ca-pub-2453493824530034",
+  },
   alternates: {
     canonical: siteConfig.url,
   },
@@ -25,9 +28,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    other: [{ rel: "icon", url: "/icon.png" }],
+    other: [{ rel: "icon", url: "/icon" }],
     shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
+    apple: "/apple-icon",
   },
   openGraph: {
     type: "website",
@@ -49,6 +52,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
   return (
     <html
       lang="en"
@@ -56,10 +61,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full">
-<GoogleAnalytics gtagld="G-ENHQQ0R1F3"/>
         <AppProviders>
           <ApplicationShell>{children}</ApplicationShell>
         </AppProviders>
+        {googleAnalyticsId ? <GoogleAnalytics gaId={googleAnalyticsId} /> : null}
       </body>
     </html>
   );

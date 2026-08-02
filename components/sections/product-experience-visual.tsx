@@ -111,7 +111,7 @@ export function ProductExperienceVisual({ product }: { product: FeaturedProduct 
                 >
                   <span className={`size-2 rounded-full ${visual.bgClass}`} />
                   <span className="text-sm text-foreground">{row}</span>
-                  <span className="text-xs text-muted-foreground">0{index + 1}</span>
+                  <span className={`size-2 rounded-full ${visual.bgClass}`} aria-hidden="true" />
                 </div>
               ))}
             </div>

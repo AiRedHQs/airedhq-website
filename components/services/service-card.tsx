@@ -67,7 +67,12 @@ export function ServiceCard({
           variant="outline"
           className="relative mt-auto w-fit transition-transform duration-premium group-hover:translate-x-0.5"
         >
-          <a href={action.href}>{action.label}</a>
+          <a href={action.href}>
+            {action.label}
+            {action.label.toLowerCase() === "learn more" ? (
+              <span className="sr-only"> about {title}</span>
+            ) : null}
+          </a>
         </Button>
       ) : null}
     </GlassCard>

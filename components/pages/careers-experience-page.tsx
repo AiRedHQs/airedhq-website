@@ -72,7 +72,7 @@ export function CareersExperiencePage() {
               ["Finish with care", "Accessibility, performance, details and maintainability are part of the product, not cleanup."],
             ].map(([title, description], index) => (
               <article key={title} className={index === 1 ? "lg:mt-24" : ""}>
-                <span className="font-mono text-xs text-[#8cdf28]">0{index + 1}</span>
+                <span className="block h-px w-12 bg-[#8cdf28]" aria-hidden="true" />
                 <h2 className="mt-7 text-4xl font-semibold leading-tight">{title}</h2>
                 <p className="mt-5 text-sm leading-7 text-white/42">{description}</p>
               </article>

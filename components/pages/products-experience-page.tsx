@@ -44,7 +44,7 @@ export function ProductsExperiencePage() {
     <main className="overflow-hidden bg-[#050608] text-white">
       <section className="relative min-h-[calc(100svh-4rem)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_65%,rgba(97,2,245,.11),transparent_28rem),radial-gradient(circle_at_75%_35%,rgba(35,136,255,.1),transparent_30rem),radial-gradient(circle_at_74%_80%,rgba(140,223,40,.07),transparent_25rem)]" />
-        <Container className="relative grid min-h-[calc(100svh-4rem)] max-w-[96rem] items-center gap-16 py-20 lg:grid-cols-[.78fr_1.22fr]">
+        <Container className="relative grid min-h-[calc(100svh-4rem)] max-w-[96rem] items-center gap-12 py-16 sm:py-20 lg:grid-cols-[.82fr_1.18fr] lg:gap-10">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[.24em] text-[#5a9fe8]">
               Products · Built and operated by AiRedHQ
@@ -57,15 +57,18 @@ export function ProductsExperiencePage() {
               They are not portfolio decoration; they are the proof behind our work.
             </p>
           </div>
-          <div className="relative min-h-[35rem]" aria-label="AiRedHQ product portfolio">
-            <div className="absolute right-0 top-[2%] w-[69%]">
-              <Image src={products[0].image} alt="" width={1536} height={1024} className="h-auto w-full object-contain opacity-78" priority />
+          <div
+            className="relative mx-auto aspect-[1.18/1] w-full max-w-[48rem] sm:aspect-[1.35/1] lg:aspect-[1.22/1]"
+            aria-label="AiRedHQ product portfolio"
+          >
+            <div className="absolute right-[1%] top-[3%] w-[71%]">
+              <Image src={products[0].image} alt="" width={1536} height={1024} sizes="(max-width: 1023px) 72vw, 48vw" className="h-auto w-full object-contain opacity-80" priority />
             </div>
-            <div className="absolute bottom-0 left-0 w-[60%]">
-              <Image src={products[1].image} alt="" width={1693} height={929} className="h-auto w-full object-contain opacity-88" priority />
+            <div className="absolute bottom-[1%] left-0 w-[64%]">
+              <Image src={products[1].image} alt="" width={1692} height={929} sizes="(max-width: 1023px) 65vw, 44vw" className="h-auto w-full object-contain opacity-90" priority />
             </div>
-            <div className="absolute bottom-0 right-[2%] w-[24%]">
-              <Image src={products[2].image} alt="" width={1536} height={1024} className="h-auto w-full object-contain" priority />
+            <div className="absolute bottom-[1%] right-[-3%] w-[36%]">
+              <Image src={products[2].image} alt="" width={1536} height={1024} sizes="(max-width: 1023px) 32vw, 22vw" className="h-auto w-full object-contain" priority />
             </div>
           </div>
         </Container>

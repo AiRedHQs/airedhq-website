@@ -67,6 +67,7 @@ export function CaseStudyCard({
           className="mt-auto inline-flex w-fit items-center gap-2 rounded-md text-sm font-medium text-foreground outline-none transition-colors duration-premium hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Learn More
+          <span className="sr-only"> about the {study.name} case study</span>
           <ArrowRight
             className="size-4 transition-transform duration-premium group-hover:translate-x-0.5"
             aria-hidden="true"

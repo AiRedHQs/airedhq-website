@@ -81,6 +81,6 @@ export const footerGroups = [
 
 export const socialLinks: NavItem[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/airedhq" },
-  { label: "GitHub", href: "https://github.com/airedhq" },
+  { label: "GitHub", href: "https://github.com/AiRedHQs" },
   { label: "YouTube", href: "https://www.youtube.com/@airedhq" },
 ];

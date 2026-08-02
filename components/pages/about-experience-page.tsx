@@ -208,9 +208,7 @@ export function AboutExperiencePage() {
                 className="group grid min-h-[28rem] items-center gap-10 overflow-hidden py-10 lg:grid-cols-[.72fr_1.28fr]"
               >
                 <div className={index % 2 ? "lg:order-2" : ""}>
-                  <p className="font-mono text-xs" style={{ color: product.accent }}>
-                    0{index + 1}
-                  </p>
+                  <span className="block h-px w-14" style={{ backgroundColor: product.accent }} aria-hidden="true" />
                   <h3 className="mt-5 text-4xl font-semibold sm:text-6xl">{product.name}</h3>
                   <p className="mt-5 max-w-md text-lg leading-8 text-white/52">{product.statement}</p>
                   <Link

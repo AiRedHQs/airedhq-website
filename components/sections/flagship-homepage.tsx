@@ -1,12 +1,10 @@
-"use client";
-
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
+import { HeroProductVisual } from "@/components/sections/hero-product-visual";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/src/lib/utils";
 
@@ -384,7 +382,7 @@ function CompanyCollaborations() {
           ))}
 
           {clientCompanies.map((company, index) => (
-            <motion.button
+            <button
               type="button"
               key={company.name}
               data-company-select={company.name}
@@ -405,7 +403,7 @@ function CompanyCollaborations() {
                 height={160}
                 className="h-16 w-full max-w-[13rem] object-contain transition-transform duration-500 group-hover:scale-105"
               />
-            </motion.button>
+            </button>
           ))}
         </div>
         <script
@@ -420,11 +418,8 @@ function CompanyCollaborations() {
 
 function CollaborationNetwork() {
   return (
-    <motion.div
+    <div
       className="group/network relative mx-auto aspect-[1.55/1] w-full max-w-3xl"
-      initial="rest"
-      animate="rest"
-      whileHover="active"
       aria-label="AiRedHQ collaboration network"
     >
       <svg
@@ -441,7 +436,7 @@ function CollaborationNetwork() {
           strokeDasharray="1 4"
         />
         {collaborationNodes.map((node, index) => (
-          <motion.line
+          <line
             key={node.name}
             x1="50"
             y1="50"
@@ -451,29 +446,14 @@ function CollaborationNetwork() {
             strokeWidth="0.3"
             strokeDasharray="2 2.8"
             vectorEffect="non-scaling-stroke"
-            variants={{
-              rest: { opacity: 0.62, pathLength: 0.82 },
-              active: {
-                opacity: 0.95,
-                pathLength: 1,
-                transition: {
-                  duration: 0.55,
-                  delay: index * 0.035,
-                  ease: [0.22, 1, 0.36, 1],
-                },
-              },
-            }}
+            className="opacity-60 transition-opacity duration-500 group-hover/network:opacity-100"
+            style={{ transitionDelay: `${index * 35}ms` }}
           />
         ))}
       </svg>
 
-      <motion.div
-        className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a0d12] shadow-[0_0_0_1px_rgba(47,145,212,.42),0_0_40px_rgba(47,145,212,.1)] md:size-28"
-        variants={{
-          rest: { scale: 1 },
-          active: { scale: 1.06 },
-        }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      <div
+        className="absolute left-1/2 top-1/2 z-10 flex size-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a0d12] shadow-[0_0_0_1px_rgba(47,145,212,.42),0_0_40px_rgba(47,145,212,.1)] transition-transform duration-500 group-hover/network:scale-105 md:size-28"
       >
         <Image
           src="/airedhq/Logo 2X1 Transparent.png"
@@ -482,25 +462,22 @@ function CollaborationNetwork() {
           height={42}
           className="h-auto w-[4.5rem] object-contain md:w-[5.25rem]"
         />
-      </motion.div>
+      </div>
 
       {collaborationNodes.map((node) => {
         const company = clientCompanies.find((item) => item.name === node.name);
         if (!company) return null;
 
         return (
-          <motion.span
+          <span
             key={node.name}
+            style={{ left: `${node.x}%`, top: `${node.y}%` }}
             className={cn(
-              "absolute z-20 flex h-12 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md p-2 shadow-lg shadow-black/25 md:h-14 md:w-28",
+              "absolute z-20 flex h-12 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md p-2 shadow-lg shadow-black/25 transition-transform duration-300 hover:scale-110 focus:scale-110 md:h-14 md:w-28",
               company.surface === "dark"
                 ? "bg-[#090b0f] ring-1 ring-white/14"
                 : "bg-[#f1f2ef]",
             )}
-            style={{ left: `${node.x}%`, top: `${node.y}%` }}
-            whileHover={{ scale: 1.1 }}
-            whileFocus={{ scale: 1.1 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
             tabIndex={0}
           >
             <Image
@@ -510,10 +487,10 @@ function CollaborationNetwork() {
               height={70}
               className="h-full w-full object-contain"
             />
-          </motion.span>
+          </span>
         );
       })}
-    </motion.div>
+    </div>
   );
 }
 
@@ -636,6 +613,7 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
           >
             <Link href={product.href}>
               Learn More
+              <span className="sr-only"> about {product.name}</span>
               <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </Button>
@@ -651,7 +629,10 @@ function ProductBand({ product }: { product: (typeof products)[number] }) {
             width={product.id === "gobazaar" ? 1693 : 1536}
             height={product.id === "gobazaar" ? 929 : 1024}
             sizes="(max-width: 1023px) 100vw, 62vw"
-            className="mx-auto h-auto max-h-[25rem] w-full object-contain md:max-h-[34rem] lg:max-h-none"
+            className={cn(
+              "mx-auto h-auto max-h-[25rem] w-full object-contain md:max-h-[34rem] lg:max-h-none",
+              product.id === "gobazaar" && "w-[114%] max-w-none",
+            )}
           />
           {product.id === "yojiq" && (
             <Image
@@ -695,15 +676,13 @@ function HighlightedHeadline({
 
 function ProductIndexGraphic() {
   const indexItems = [
-    { number: "01", name: "hiARed", color: "#6102f5", offset: "lg:ml-0" },
+    { name: "hiARed", color: "#6102f5", offset: "lg:ml-0" },
     {
-      number: "02",
       name: "GoBazaar",
       color: "hsl(var(--product-gobazaar))",
       offset: "lg:ml-12",
     },
     {
-      number: "03",
       name: "YojIQ",
       color: "hsl(var(--product-yojiq))",
       offset: "lg:ml-24",
@@ -722,21 +701,12 @@ function ProductIndexGraphic() {
       </p>
       <div className="space-y-7">
         {indexItems.map((item, index) => (
-          <motion.div
+          <div
             key={item.name}
             className={cn("flex max-w-xl items-center gap-4", item.offset)}
-            initial={{ x: 28 }}
-            whileInView={{ x: 0 }}
-            viewport={{ once: true, amount: 0.7 }}
-            transition={{
-              duration: 0.65,
-              delay: index * 0.1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+            style={{ transitionDelay: `${index * 100}ms` }}
           >
-            <span className="w-6 text-xs font-medium text-white/34">
-              {item.number}
-            </span>
+            <span className="size-2 shrink-0 rounded-full" style={{ backgroundColor: item.color }} aria-hidden="true" />
             <span
               className="h-px flex-1"
               style={{
@@ -747,41 +717,8 @@ function ProductIndexGraphic() {
             <span className="w-24 text-sm font-semibold text-white">
               {item.name}
             </span>
-          </motion.div>
+          </div>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function HeroProductVisual() {
-  return (
-    <div
-      className="hero-product-visual relative mx-auto w-full max-w-2xl origin-center perspective-[1400px] lg:-mr-8 lg:max-w-none lg:scale-[1.08] xl:-mr-14"
-      onPointerMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        event.currentTarget.style.setProperty("--hero-rotate-x", `${-y * 6}deg`);
-        event.currentTarget.style.setProperty("--hero-rotate-y", `${x * 8}deg`);
-      }}
-      onPointerLeave={(event) => {
-        event.currentTarget.style.setProperty("--hero-rotate-x", "0deg");
-        event.currentTarget.style.setProperty("--hero-rotate-y", "0deg");
-      }}
-    >
-      <div className="hero-product-float will-change-transform">
-        <div className="hero-product-parallax">
-          <Image
-            src="/airedhq/homepage-hero-transparent.webp"
-            alt="AiRedHQ product suite featuring hiARed, GoBazaar and YojIQ"
-            width={1536}
-            height={1024}
-            priority
-            sizes="(max-width: 1023px) 100vw, 64vw"
-            className="h-auto w-full object-contain"
-          />
-        </div>
       </div>
     </div>
   );

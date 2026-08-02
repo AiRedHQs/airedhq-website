@@ -44,7 +44,7 @@ export default function YojIQProductExperience() {
               A calmer way to plan budgets, build an emergency fund and understand the
               financial habits shaping your future.
             </p>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006]">
+            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-colors hover:bg-[#a8ea52] hover:text-black">
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
             <div className="relative mx-auto mt-10 h-[30rem] w-full max-w-3xl">
@@ -144,8 +144,7 @@ export default function YojIQProductExperience() {
                   index % 2 ? "-left-[3.05rem]" : "-left-[3.05rem] md:-right-[3.05rem] md:left-auto"
                 }`} />
                 <Icon className="size-7 text-[#8cdf28]" />
-                <p className="mt-10 font-mono text-[10px] text-[#8cdf28]">0{index + 1}</p>
-                <h3 className="mt-4 text-3xl font-semibold">{title}</h3>
+                <h3 className="mt-10 text-3xl font-semibold">{title}</h3>
                 <p className="mt-4 max-w-md text-sm leading-6 text-white/42">{description}</p>
               </article>
             ))}
@@ -184,7 +183,7 @@ export default function YojIQProductExperience() {
             <h2 className="mx-auto mt-6 max-w-[13ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
               Plan with clarity. Move with confidence.
             </h2>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006]">
+            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-colors hover:bg-[#a8ea52] hover:text-black">
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
           </div>

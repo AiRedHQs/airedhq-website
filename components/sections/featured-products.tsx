@@ -67,12 +67,6 @@ export function FeaturedProducts() {
               key={product.id}
               className="relative overflow-hidden rounded-lg border border-border/70 bg-card/36 p-5 shadow-2xl shadow-black/25 backdrop-blur-xl transition-colors duration-premium hover:border-primary/30 sm:p-7 lg:p-8"
             >
-              <p
-                className="pointer-events-none absolute right-6 top-4 text-7xl font-semibold leading-none text-foreground/[0.035] sm:text-8xl"
-                aria-hidden="true"
-              >
-                0{index + 1}
-              </p>
               <div
                 className={[
                   "absolute inset-0 -z-10 opacity-70",

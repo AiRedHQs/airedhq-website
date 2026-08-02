@@ -125,9 +125,7 @@ export function InnovationLabExperiencePage() {
                 ["Decide", "Advance, reshape, reuse or stop the idea."],
               ].map(([title, description], index) => (
                 <article key={title} className="relative pb-14 pl-14">
-                  <span className="absolute left-0 grid size-8 place-items-center rounded-full border border-[#8a4cff] bg-[#09070d] font-mono text-[10px] text-[#8a4cff]">
-                    0{index + 1}
-                  </span>
+                  <span className="absolute left-2 top-1 size-3 rounded-full bg-[#8a4cff] shadow-[0_0_0_6px_rgba(138,76,255,.1)]" aria-hidden="true" />
                   <h3 className="text-xl font-semibold">{title}</h3>
                   <p className="mt-3 max-w-xl text-sm leading-7 text-white/42">{description}</p>
                 </article>

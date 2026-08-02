@@ -101,15 +101,14 @@ export function IndustriesExperiencePage() {
               </h2>
             </div>
             <div className="border-t border-white/10">
-              {industryIndex.map(([Icon, title, description, number]) => (
+              {industryIndex.map(([Icon, title, description]) => (
                 <article
                   key={title}
-                  className="group grid gap-4 border-b border-white/10 py-7 transition-colors hover:bg-white/[.025] sm:grid-cols-[3rem_13rem_1fr_2rem] sm:items-center"
+                  className="group grid gap-4 border-b border-white/10 py-7 transition-colors hover:bg-white/[.025] sm:grid-cols-[3rem_13rem_1fr] sm:items-center"
                 >
                   <Icon className="size-5 text-[#5a9fe8] transition-transform group-hover:scale-110" />
                   <h3 className="text-lg font-semibold">{title}</h3>
                   <p className="max-w-xl text-sm leading-6 text-white/40">{description}</p>
-                  <span className="font-mono text-[10px] text-white/25">{number}</span>
                 </article>
               ))}
             </div>
@@ -205,10 +204,9 @@ export function IndustriesExperiencePage() {
             How we enter a domain
           </p>
           <div className="mt-12 grid gap-px bg-white/10 lg:grid-cols-3">
-            {principles.map(([title, description], index) => (
+            {principles.map(([title, description]) => (
               <article key={title} className="min-h-80 bg-[#050608] p-8">
-                <span className="font-mono text-[10px] text-[#5a9fe8]">0{index + 1}</span>
-                <h3 className="mt-20 text-2xl font-semibold">{title}</h3>
+                <h3 className="mt-16 text-2xl font-semibold">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-white/40">{description}</p>
               </article>
             ))}

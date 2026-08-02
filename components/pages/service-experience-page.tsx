@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useCallback, useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SpatialTrainingScene } from "@/components/visuals/spatial-training-scene";
@@ -305,7 +305,10 @@ export function ServiceExperiencePage({ page }: { page: PageContent }) {
   const headlineParts = detail.headline.split(detail.accentWord);
 
   return (
-    <div className="overflow-hidden bg-[#050608] text-white">
+    <div
+      className="page-theme overflow-hidden bg-[#050608] text-white"
+      style={{ "--page-accent": detail.accent } as CSSProperties}
+    >
       <section className="relative min-h-[calc(100svh-4rem)]">
         <div
           className="absolute inset-0 opacity-80"
@@ -716,6 +719,7 @@ function DeliveryPath({ detail }: { detail: ServiceDetail }) {
   const isLinear = detail.visual === "web" || detail.visual === "cloud";
   const isVertical = detail.visual === "mobile";
   const isCircular = detail.visual === "design";
+  const processIcons = [Search, GitBranch, Palette, Blocks, Scan, Activity];
 
   return (
     <section className="bg-[#080a0e] py-20 md:py-28">
@@ -728,34 +732,43 @@ function DeliveryPath({ detail }: { detail: ServiceDetail }) {
         {isLinear && (
           <ol className="relative mt-12 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
             <span className="absolute left-0 right-0 top-7 hidden h-px bg-white/12 lg:block" aria-hidden="true" />
-            {detail.process.map((step, index) => (
+            {detail.process.map((step, index) => {
+              const StepIcon = processIcons[index % processIcons.length];
+              return (
               <li key={step} className="relative">
-                <span className="flex size-14 items-center justify-center rounded-full bg-[#080a0e] font-mono text-xs shadow-[0_0_0_1px_rgba(255,255,255,.14)]" style={{ color: detail.accent }}>0{index + 1}</span>
+                <span className="flex size-14 items-center justify-center rounded-full bg-[#080a0e] shadow-[0_0_0_1px_rgba(255,255,255,.14)]" style={{ color: detail.accent }}><StepIcon size={21} aria-hidden="true" /></span>
                 <h3 className="mt-6 text-lg font-semibold">{step}</h3>
               </li>
-            ))}
+              );
+            })}
           </ol>
         )}
 
         {isVertical && (
           <ol className="relative mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-5 sm:grid-cols-3">
-            {detail.process.map((step, index) => (
+            {detail.process.map((step, index) => {
+              const StepIcon = processIcons[index % processIcons.length];
+              return (
               <li key={step} className="relative flex min-h-28 items-center gap-4 rounded-lg bg-[#0d1015] p-5">
-                <span className="z-10 flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#101419] font-mono text-xs" style={{ color: detail.accent, boxShadow: `0 0 0 1px ${detail.accent}55` }}>0{index + 1}</span>
+                <span className="z-10 flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#101419]" style={{ color: detail.accent, boxShadow: `0 0 0 1px ${detail.accent}55` }}><StepIcon size={19} aria-hidden="true" /></span>
                 <h3 className="text-lg font-semibold">{step}</h3>
               </li>
-            ))}
+              );
+            })}
           </ol>
         )}
 
         {isCircular && (
           <ol className="relative mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 rounded-[3rem] border border-white/10 p-6 sm:grid-cols-3 md:p-8">
-            {detail.process.map((step, index) => (
+            {detail.process.map((step, index) => {
+              const StepIcon = processIcons[index % processIcons.length];
+              return (
               <li key={step} className="flex min-h-28 flex-col items-center justify-center rounded-full bg-white/[0.035] text-center">
-                <span className="font-mono text-xs" style={{ color: detail.accent }}>0{index + 1}</span>
-                <h3 className="mt-2 font-semibold">{step}</h3>
+                <StepIcon size={20} style={{ color: detail.accent }} aria-hidden="true" />
+                <h3 className="mt-3 font-semibold">{step}</h3>
               </li>
-            ))}
+              );
+            })}
           </ol>
         )}
 
@@ -764,14 +777,17 @@ function DeliveryPath({ detail }: { detail: ServiceDetail }) {
             <svg className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block" viewBox="0 0 900 330" preserveAspectRatio="none" aria-hidden="true">
               <path d="M80 75 C260 10 640 10 820 75 C930 125 930 205 820 255 C640 320 260 320 80 255" fill="none" stroke={detail.accent} strokeOpacity=".28" strokeWidth="2" strokeDasharray="5 8" />
             </svg>
-            {detail.process.map((step, index) => (
+            {detail.process.map((step, index) => {
+              const StepIcon = processIcons[index % processIcons.length];
+              return (
               <li key={step} className={`relative z-10 ${index > 2 ? "sm:[grid-row:2]" : ""} ${index === 3 ? "sm:[grid-column:3]" : index === 4 ? "sm:[grid-column:2]" : index === 5 ? "sm:[grid-column:1]" : ""}`}>
                 <div className="flex min-h-24 items-center gap-4 rounded-lg bg-[#0d1015] p-4 shadow-[0_0_0_1px_rgba(255,255,255,.08)]">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full font-mono text-xs" style={{ color: detail.accent, backgroundColor: `${detail.accent}16` }}>0{index + 1}</span>
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full" style={{ color: detail.accent, backgroundColor: `${detail.accent}16` }}><StepIcon size={19} aria-hidden="true" /></span>
                   <h3 className="text-xl font-semibold">{step}</h3>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ol>
         )}
       </Container>
@@ -831,7 +847,31 @@ function TechnologyShowcase({ detail }: { detail: ServiceDetail }) {
 function IndustryShowcase({ detail }: { detail: ServiceDetail }) {
   const icons = [Landmark, GraduationCap, ShoppingBag, Factory];
   const slideCount = detail.industries.length;
-  const carouselId = `industry-carousel-${detail.visual}`;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const showSlide = useCallback(
+    (nextIndex: number) => {
+      setActiveIndex((nextIndex + slideCount) % slideCount);
+    },
+    [slideCount],
+  );
+
+  useEffect(() => {
+    if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % slideCount);
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused, slideCount]);
+
+  const previousIndex = (activeIndex - 1 + slideCount) % slideCount;
+  const nextIndex = (activeIndex + 1) % slideCount;
+  const visibleSlides = [previousIndex, activeIndex, nextIndex];
 
   return (
     <section className="bg-[#080a0e] py-20 md:py-28">
@@ -844,124 +884,106 @@ function IndustryShowcase({ detail }: { detail: ServiceDetail }) {
         </div>
         <div
           className={`industry-carousel industry-carousel--${slideCount} relative mt-16 overflow-hidden`}
-          id={carouselId}
           role="region"
           aria-roledescription="carousel"
           aria-label="Relevant industry examples"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setIsPaused(false);
+            }
+          }}
         >
-          <div className="industry-carousel-stage">
-            {detail.industries.map((industry, frameIndex) => {
-              const previousIndex = (frameIndex - 1 + slideCount) % slideCount;
-              const nextIndex = (frameIndex + 1) % slideCount;
-              const visibleSlides = [previousIndex, frameIndex, nextIndex];
+          <div
+            className="grid items-center gap-2 sm:gap-3"
+            style={{ gridTemplateColumns: "minmax(2.5rem, 0.2fr) minmax(0, 1fr) minmax(2.5rem, 0.2fr)" }}
+            aria-live="polite"
+          >
+            {visibleSlides.map((industryIndex, position) => {
+              const visibleIndustry = detail.industries[industryIndex];
+              const IndustryIcon = icons[industryIndex % icons.length];
+              const isActive = position === 1;
+
               return (
-                <div
-                  key={industry}
-                  className={`industry-carousel-frame${frameIndex === 0 ? " is-active" : ""}`}
-                  data-carousel-slide
-                  aria-hidden={frameIndex !== 0}
-                  aria-label={`${industry}, slide ${frameIndex + 1} of ${slideCount}`}
+                <motion.article
+                  key={`${position}-${visibleIndustry}`}
+                  className="relative min-h-[20rem] overflow-hidden rounded-lg bg-[#0a0d12] sm:min-h-[23rem] md:min-h-[30rem]"
+                  initial={false}
+                  animate={{ opacity: isActive ? 1 : 0.38, scale: isActive ? 1 : 0.9 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  aria-hidden={!isActive}
                 >
-                  <div
-                    className="grid items-center gap-3"
-                    style={{ gridTemplateColumns: "minmax(4rem, 0.24fr) minmax(0, 1fr) minmax(4rem, 0.24fr)" }}
-                  >
-                    {visibleSlides.map((industryIndex, position) => {
-                      const visibleIndustry = detail.industries[industryIndex];
-                      const IndustryIcon = icons[industryIndex % icons.length];
-                      const isActive = position === 1;
-
-                      return (
-                        <article
-                          key={`${position}-${visibleIndustry}`}
-                          className="relative overflow-hidden rounded-lg bg-[#0a0d12]"
-                          style={{
-                            minHeight: isActive ? "30rem" : "23rem",
-                            opacity: isActive ? 1 : 0.42,
-                            transform: `scale(${isActive ? 1 : 0.9})`,
-                          }}
-                          aria-hidden={!isActive}
+                  <Image
+                    src={serviceVisualImages[detail.visual]}
+                    alt={isActive ? `${visibleIndustry} example` : ""}
+                    fill
+                    className="object-cover transition-[filter] duration-700"
+                    style={{
+                      filter: isActive ? "none" : "blur(8px) saturate(.55)",
+                      transform: "scale(2.08)",
+                      transformOrigin: ["top left", "top right", "bottom left", "bottom right"][industryIndex % 4],
+                    }}
+                    sizes={isActive ? "(min-width: 768px) 64vw, 76vw" : "(min-width: 768px) 18vw, 12vw"}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d12] via-[#0a0d12]/35 to-transparent" />
+                  {isActive && (
+                    <div className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <span
+                          className="flex size-10 shrink-0 items-center justify-center rounded-lg sm:size-11"
+                          style={{ color: detail.accent, backgroundColor: `${detail.accent}18` }}
                         >
-                          <Image
-                            src={serviceVisualImages[detail.visual]}
-                            alt={isActive ? `${visibleIndustry} example` : ""}
-                            fill
-                            className="object-cover"
-                            style={{
-                              filter: isActive ? "none" : "blur(8px) saturate(.55)",
-                              transform: "scale(2.08)",
-                              transformOrigin: [
-                                "top left",
-                                "top right",
-                                "bottom left",
-                                "bottom right",
-                              ][industryIndex % 4],
-                            }}
-                            sizes={isActive ? "(min-width: 768px) 64vw, 76vw" : "(min-width: 768px) 18vw, 12vw"}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d12] via-[#0a0d12]/35 to-transparent" />
-                          {isActive && (
-                            <div className="absolute" style={{ right: "2rem", bottom: "2rem", left: "2rem" }}>
-                              <div className="flex items-center gap-4">
-                                <span
-                                  className="flex size-11 items-center justify-center rounded-lg"
-                                  style={{ color: detail.accent, backgroundColor: `${detail.accent}18` }}
-                                >
-                                  <IndustryIcon size={22} aria-hidden="true" />
-                                </span>
-                                <h3 className="text-2xl font-semibold md:text-3xl">{visibleIndustry}</h3>
-                              </div>
-                              <p className="mt-4 max-w-xl leading-7 text-white/58">
-                                A practical context for {detail.headline.toLowerCase()}
-                              </p>
-                            </div>
-                          )}
-                        </article>
-                      );
-                    })}
-                  </div>
-
-                  <button
-                    type="button"
-                    data-carousel-previous
-                    className="absolute left-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/70 text-white outline-none backdrop-blur transition hover:bg-white hover:text-black focus-visible:ring-2 focus-visible:ring-white"
-                    aria-label="Previous industry"
-                  >
-                    <ArrowLeft size={19} aria-hidden="true" />
-                  </button>
-                  <button
-                    type="button"
-                    data-carousel-next
-                    className="absolute right-4 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/70 text-white outline-none backdrop-blur transition hover:bg-white hover:text-black focus-visible:ring-2 focus-visible:ring-white"
-                    aria-label="Next industry"
-                  >
-                    <ArrowRight size={19} aria-hidden="true" />
-                  </button>
-                </div>
+                          <IndustryIcon size={22} aria-hidden="true" />
+                        </span>
+                        <h3 className="text-xl font-semibold sm:text-2xl md:text-3xl">{visibleIndustry}</h3>
+                      </div>
+                      <p className="mt-4 hidden max-w-xl leading-7 text-white/58 sm:block">
+                        A practical context for {detail.headline.toLowerCase()}
+                      </p>
+                    </div>
+                  )}
+                </motion.article>
               );
             })}
           </div>
+
+          <button
+            type="button"
+            data-theme-button
+            onClick={() => showSlide(activeIndex - 1)}
+            className="absolute left-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/12 bg-black/70 text-white outline-none backdrop-blur transition-colors focus-visible:ring-2 focus-visible:ring-white sm:left-4"
+            aria-label="Previous industry"
+          >
+            <ArrowLeft size={19} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            data-theme-button
+            onClick={() => showSlide(activeIndex + 1)}
+            className="absolute right-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/12 bg-black/70 text-white outline-none backdrop-blur transition-colors focus-visible:ring-2 focus-visible:ring-white sm:right-4"
+            aria-label="Next industry"
+          >
+            <ArrowRight size={19} aria-hidden="true" />
+          </button>
         </div>
         <div className="mt-7 flex items-center justify-center gap-2" aria-label="Select industry slide">
           {detail.industries.map((industry, index) => (
             <button
               type="button"
               key={industry}
-              data-carousel-dot={index}
-              className={`industry-carousel-dot h-1.5 w-6 rounded-full bg-white/20 outline-none transition-all hover:bg-white/60 focus-visible:ring-2 focus-visible:ring-white${index === 0 ? " is-active" : ""}`}
+              onClick={() => showSlide(index)}
+              className={`industry-carousel-dot h-1.5 rounded-full outline-none transition-all focus-visible:ring-2 focus-visible:ring-white${index === activeIndex ? " is-active" : " w-6 bg-white/20"}`}
               style={{
+                backgroundColor: index === activeIndex ? detail.accent : undefined,
                 boxShadow: `inset 0 0 0 1px ${detail.accent}30`,
               }}
               aria-label={`Show ${industry}`}
-              aria-current={index === 0 ? "true" : undefined}
+              aria-current={index === activeIndex ? "true" : undefined}
             />
           ))}
         </div>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var root=document.getElementById(${JSON.stringify(carouselId)});if(!root||root.dataset.ready)return;var slides=Array.from(root.querySelectorAll('[data-carousel-slide]'));var dots=Array.from(root.parentElement.querySelectorAll('[data-carousel-dot]'));var current=0,timer;function show(next){current=(next+slides.length)%slides.length;slides.forEach(function(slide,index){var active=index===current;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));});dots.forEach(function(dot,index){var active=index===current;dot.classList.toggle('is-active',active);if(active)dot.setAttribute('aria-current','true');else dot.removeAttribute('aria-current');});}function stop(){clearInterval(timer);}function start(){stop();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(function(){show(current+1);},4500);}root.querySelectorAll('[data-carousel-previous]').forEach(function(button){button.addEventListener('click',function(){show(current-1);start();});});root.querySelectorAll('[data-carousel-next]').forEach(function(button){button.addEventListener('click',function(){show(current+1);start();});});dots.forEach(function(dot,index){dot.addEventListener('click',function(){show(index);start();});});root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',start);root.dataset.ready='true';start();})();`,
-          }}
-        />
       </Container>
     </section>
   );

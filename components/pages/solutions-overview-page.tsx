@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -107,7 +108,10 @@ const faqs = [
 
 export function SolutionsOverviewPage() {
   return (
-    <div className="overflow-hidden bg-[#050608] text-white">
+    <div
+      className="page-theme overflow-hidden bg-[#050608] text-white"
+      style={{ "--page-accent": "#2f91d4" } as CSSProperties}
+    >
       <SolutionsHero />
       <Capabilities />
       <ProductProof />
@@ -246,9 +250,8 @@ function Capabilities() {
               return (
                 <motion.article
                   key={solution.title}
-                  className="group grid gap-6 border-t border-white/10 py-9 sm:grid-cols-[4rem_1fr_auto]"
+                  className="group grid gap-6 border-t border-white/10 py-9 sm:grid-cols-[1fr_auto]"
                 >
-                  <span className="font-mono text-xs text-white/30">{solution.number}</span>
                   <div>
                     <div className="flex items-center gap-4">
                       <Icon size={22} style={{ color: solution.color }} aria-hidden="true" />
@@ -300,12 +303,11 @@ function ProductProof() {
             ["hiARed", "AI workflows", "Complex multi-role recruitment and explainable decisions."],
             ["GoBazaar", "Location systems", "Discovery, maps, merchant tools and hyperlocal relevance."],
             ["YojIQ", "Trust by design", "Private financial workflows made understandable and actionable."],
-          ].map(([product, lesson, detail], index) => (
+          ].map(([product, lesson, detail]) => (
             <motion.div
               key={product}
-              className="grid grid-cols-[2rem_1fr] gap-5"
+              className="border-l border-white/12 pl-5"
             >
-              <span className="font-mono text-xs text-white/25">0{index + 1}</span>
               <div>
                 <p className="text-sm text-[#2f91d4]">{product} / {lesson}</p>
                 <p className="mt-2 text-xl leading-8 text-white/70">{detail}</p>
@@ -332,14 +334,13 @@ function DeliveryPath() {
           </h2>
         </div>
         <ol className="mt-20 grid gap-y-10 sm:grid-cols-2 lg:grid-cols-7">
-          {process.map((step, index) => (
+            {process.map((step) => (
             <motion.li
               key={step}
               className="relative pt-7"
             >
               <span className="absolute left-0 top-0 h-px w-full bg-white/12" />
               <span className="absolute left-0 top-[-3px] size-[7px] rounded-full bg-[#2f91d4]" />
-              <span className="font-mono text-xs text-white/30">0{index + 1}</span>
               <h3 className="mt-3 text-lg font-semibold">{step}</h3>
             </motion.li>
           ))}

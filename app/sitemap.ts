@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/constants/brand";
+import { getAllBlogArticles } from "@/src/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -27,10 +28,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms",
   ];
 
-  return routes.map((route) => ({
+  const pages: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${siteConfig.url}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: route === "" ? 1 : 0.7,
   }));
+
+  const categories = [...new Set(getAllBlogArticles().map((article) => article.category))].map((category) => ({
+    url: `${siteConfig.url}/blog/${category}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.75,
+  }));
+  const articles = getAllBlogArticles().map((article) => ({
+    url: `${siteConfig.url}${article.route}`,
+    lastModified: new Date(article.frontmatter.updatedAt),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...pages, ...categories, ...articles];
 }

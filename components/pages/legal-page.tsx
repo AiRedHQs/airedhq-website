@@ -43,9 +43,7 @@ export function LegalPage({
         <div>
           {sections.map((section, index) => (
             <section key={section.title} id={`legal-${index + 1}`} className="scroll-mt-28 border-t border-white/10 py-10 first:border-t-0 first:pt-0">
-              <div className="grid gap-7 sm:grid-cols-[3rem_1fr]">
-                <span className="font-mono text-[10px] text-[#5a9fe8]">0{index + 1}</span>
-                <div>
+              <div>
                   <h2 className="text-2xl font-semibold">{section.title}</h2>
                   {section.paragraphs?.map((paragraph) => (
                     <p key={paragraph} className="mt-5 max-w-3xl text-sm leading-7 text-white/48">{paragraph}</p>
@@ -60,7 +58,6 @@ export function LegalPage({
                       ))}
                     </ul>
                   ) : null}
-                </div>
               </div>
             </section>
           ))}

@@ -29,7 +29,16 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 86400,
+  },
+  async redirects() {
+    return [
+      { source: "/index.html", destination: "/", permanent: true },
+      { source: "/about.html", destination: "/about", permanent: true },
+      { source: "/contact.html", destination: "/contact", permanent: true },
+      { source: "/products.html", destination: "/products", permanent: true },
+      { source: "/services.html", destination: "/solutions", permanent: true },
+    ];
   },
   async headers() {
     return [

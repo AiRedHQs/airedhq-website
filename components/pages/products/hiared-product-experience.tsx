@@ -4,11 +4,7 @@ import {
   ArrowRight,
   BadgeIndianRupee,
   BrainCircuit,
-  Building2,
   CheckCircle2,
-  Eye,
-  FileSearch,
-  GitBranch,
   Landmark,
   MessageSquareQuote,
   ScanSearch,
@@ -16,13 +12,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
-
-const capabilities = [
-  [FileSearch, "Resume intelligence", "Structure skills, experience and role evidence without hiding the source resume."],
-  [BrainCircuit, "Candidate intelligence", "Prioritize review with explainable signals and human control."],
-  [GitBranch, "Connected pipeline", "Move applications, interviews, feedback and offers through one visible workflow."],
-  [Eye, "Transparent decisions", "Keep scoring, ownership and decision context inspectable by the hiring team."],
-] as const;
+import { HiARedProductEvidence } from "@/components/products/hiared-product-evidence";
 
 const stages = ["Applied", "Screened", "Interviewed", "Decision", "Offer"];
 
@@ -135,29 +125,21 @@ export default function HiARedProductExperience() {
 
       <section id="system" className="py-28 sm:py-36">
         <Container className="max-w-[96rem]">
-          <div className="grid gap-16 lg:grid-cols-[.72fr_1.28fr]">
-            <div className="lg:sticky lg:top-28 lg:h-fit">
+          <div className="grid gap-8 lg:grid-cols-[.75fr_1.25fr] lg:items-end">
+            <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8a4cff]">The decision system</p>
               <h2 className="mt-6 text-5xl font-semibold leading-[.95] sm:text-7xl">
                 Know what happened.<br />Understand <span className="text-[#6102f5]">why.</span>
               </h2>
-              <p className="mt-7 max-w-md text-sm leading-7 text-white/48">
-                Speed matters, but hiring cannot become a black box. hiARed keeps evidence,
-                scores, stages and ownership visible to the people responsible for the decision.
+            </div>
+            <div className="lg:pb-2">
+              <p className="max-w-xl text-lg leading-8 text-white/58">
+                Explore the product through five real workflows. Every signal stays connected
+                to its source, owner and next action.
               </p>
             </div>
-            <div className="divide-y divide-white/10 border-t border-white/10">
-              {capabilities.map(([Icon, title, description]) => (
-                <article key={title} className="grid gap-5 py-9 sm:grid-cols-[3rem_1fr]">
-                  <Icon className="size-6 text-[#8a4cff]" aria-hidden="true" />
-                  <div>
-                    <h3 className="text-2xl font-semibold">{title}</h3>
-                    <p className="mt-3 max-w-xl text-sm leading-6 text-white/45">{description}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
           </div>
+          <HiARedProductEvidence />
         </Container>
       </section>
 
@@ -214,69 +196,15 @@ export default function HiARedProductExperience() {
         </Container>
       </section>
 
-      <section className="bg-[#08070b] py-28 sm:py-36">
-        <Container className="grid max-w-[96rem] gap-14 lg:grid-cols-[.92fr_1.08fr] lg:items-center">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8a4cff]">
-              Company intelligence
-            </p>
-            <h2 className="mt-6 max-w-[11ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
-              Know the company behind the <span className="text-[#6102f5]">job.</span>
-            </h2>
-            <p className="mt-7 max-w-lg text-sm leading-7 text-white/48">
-              A company profile can combine employer disclosures, moderated reviews and
-              publicly verifiable information. Every signal carries a visible source and
-              availability state.
-            </p>
-          </div>
-          <div className="relative border border-white/10 bg-[#0c0c10] p-6 sm:p-8">
-            <div className="flex items-start justify-between gap-6 border-b border-white/10 pb-7">
-              <div className="flex items-center gap-4">
-                <span className="grid size-12 place-items-center rounded-md bg-[#6102f5]/15">
-                  <Building2 className="size-6 text-[#8a4cff]" />
-                </span>
-                <div>
-                  <p className="font-semibold">Company transparency profile</p>
-                  <p className="mt-1 text-xs text-white/38">Sources and verification shown per field</p>
-                </div>
-              </div>
-              <span className="rounded-full border border-[#6102f5]/35 px-3 py-1 text-[10px] text-[#a97cff]">
-                Availability varies
-              </span>
-            </div>
-            <div className="grid gap-px bg-white/10 sm:grid-cols-2">
-              {[
-                ["Salary range", "Employer disclosed"],
-                ["Benefits", "Structured details"],
-                ["Leadership", "Publicly verified"],
-                ["Employee voice", "Moderated reviews"],
-                ["Financial context", "Public records"],
-                ["Hiring experience", "Candidate feedback"],
-              ].map(([label, source]) => (
-                <div key={label} className="bg-[#0c0c10] p-5">
-                  <p className="text-sm font-medium">{label}</p>
-                  <p className="mt-2 text-[11px] text-white/35">{source}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-6 text-[11px] leading-5 text-white/30">
-              hiARed should never fabricate missing company information. Unavailable,
-              unverified and employer-supplied data are labeled distinctly.
-            </p>
-          </div>
-        </Container>
-      </section>
-
       <section className="py-28 sm:py-36">
         <Container className="max-w-[96rem]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8a4cff]">One connected journey</p>
           <h2 className="mt-6 max-w-[12ch] text-5xl font-semibold leading-[.95] sm:text-7xl">Every stakeholder. One hiring truth.</h2>
           <div className="mt-20 grid gap-0 md:grid-cols-5">
-            {stages.map((stage, index) => (
+            {stages.map((stage) => (
               <div key={stage} className="relative border-l border-white/12 py-5 pl-5 md:min-h-48 md:border-l-0 md:border-t md:pl-0 md:pt-7">
                 <span className="absolute -left-1.5 top-7 size-3 rounded-full bg-[#6102f5] md:-top-1.5 md:left-0" />
-                <p className="font-mono text-[10px] text-[#8a4cff]">0{index + 1}</p>
-                <h3 className="mt-5 text-lg font-semibold">{stage}</h3>
+                <h3 className="mt-2 text-lg font-semibold">{stage}</h3>
               </div>
             ))}
           </div>
@@ -288,7 +216,7 @@ export default function HiARedProductExperience() {
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8a4cff]">Private beta</p>
             <h2 className="mx-auto mt-6 max-w-[12ch] text-5xl font-semibold leading-[.95] sm:text-7xl">Build a hiring process people can trust.</h2>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#6102f5] px-5 py-3 text-sm font-semibold">
+            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#6102f5] px-5 py-3 text-sm font-semibold transition-colors hover:bg-[#7422ff] hover:text-white">
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
           </div>

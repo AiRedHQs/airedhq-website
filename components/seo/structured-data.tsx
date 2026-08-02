@@ -9,7 +9,7 @@ const structuredData = [
     description: siteConfig.description,
     sameAs: [
       "https://www.linkedin.com/company/airedhq",
-      "https://github.com/airedhq",
+      "https://github.com/AiRedHQs",
       "https://www.youtube.com/@airedhq",
     ],
   },
