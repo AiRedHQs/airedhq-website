@@ -70,6 +70,7 @@ export const footerGroups = [
     links: [
       { label: "Blog", href: "/blog" },
       { label: "Calculators", href: "/calculators" },
+	  { label: "Risk Profiler", href: "/investment-risk-profiler" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Terms", href: "/terms" },
