@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ApplicationShell } from "@/components/layout/application-shell";
@@ -61,7 +61,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
   const googleTagManagerId =
     process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID ?? "GTM-TL6JCCCK";
 
@@ -76,7 +75,6 @@ export default function RootLayout({
         <AppProviders>
           <ApplicationShell>{children}</ApplicationShell>
         </AppProviders>
-        {googleAnalyticsId ? <GoogleAnalytics gaId={googleAnalyticsId} /> : null}
       </body>
     </html>
   );
