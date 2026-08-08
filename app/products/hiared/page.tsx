@@ -1,12 +1,10 @@
 import HiARedProductExperience from "@/components/pages/products/hiared-product-experience";
-import { productPages } from "@/data/site-pages";
 import { createMetadata } from "@/src/lib/seo";
-
-const page = productPages.hiared;
 
 export const metadata = createMetadata({
   title: "hiARed",
-  description: page.description,
+  description:
+    "An AI Recruitment Ecosystem for recruiters, hiring managers, candidates and administrators. Structured screening, scheduling and transparent candidate feedback.",
   path: "/products/hiared",
 });
 

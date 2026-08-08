@@ -13,49 +13,68 @@ import {
 import { Container } from "@/components/layout/container";
 
 const journey = [
-  [WalletCards, "Plan the month", "Create a deliberate budget across the categories that shape everyday life."],
-  [PiggyBank, "Build resilience", "Turn an emergency-fund target into a visible and achievable progression."],
-  [Umbrella, "Understand protection", "Keep insurance context and renewal awareness alongside the rest of the plan."],
-  [ChartNoAxesCombined, "See the longer view", "Connect savings goals and investment summaries to future priorities."],
+  [
+    WalletCards,
+    "Plan the month",
+    "Create a deliberate budget across the categories that shape everyday life.",
+  ],
+  [
+    PiggyBank,
+    "Build resilience",
+    "Turn an emergency-fund target into a visible and achievable progression.",
+  ],
+  [
+    Umbrella,
+    "Understand protection",
+    "Keep insurance context and renewal awareness alongside the rest of the plan.",
+  ],
+  [
+    ChartNoAxesCombined,
+    "See the longer view",
+    "Connect savings goals and investment summaries to future priorities.",
+  ],
 ] as const;
 
 export default function YojIQProductExperience() {
   return (
     <main className="overflow-hidden bg-[#070a07] text-white">
-      <section className="relative min-h-[calc(100svh-4rem)]">
+      <section className="relative lg:min-h-[calc(100svh-4rem)]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_88%,rgba(140,223,40,.13),transparent_32rem)]" />
-        <Container className="relative grid min-h-[calc(100svh-4rem)] max-w-[96rem] place-items-center py-20 text-center">
-          <div>
+        <Container className="relative grid max-w-[96rem] place-items-center py-14 text-center sm:py-20 lg:min-h-[calc(100svh-4rem)]">
+          <div className="min-w-0 max-w-full">
             <Image
               src="/yojiq/YOJIQLogoTranparent for Dark Background 820X208.png"
               alt="YojIQ"
               width={820}
               height={208}
-              className="mx-auto h-auto w-44 object-contain"
+              className="mx-auto h-auto w-36 object-contain sm:w-44"
               priority
             />
-            <p className="mt-12 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">
+            <p className="mx-auto mt-9 max-w-full text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8cdf28] sm:mt-12 sm:tracking-[0.24em]">
               Manual-first financial planning · Private beta
             </p>
-            <h1 className="mx-auto mt-6 max-w-[14ch] text-[clamp(4rem,7vw,7.5rem)] font-semibold leading-[.9]">
+            <h1 className="text-safe mx-auto mt-6 max-w-[14ch] text-[clamp(2.75rem,13vw,7.5rem)] font-semibold leading-[.92] sm:text-[clamp(4rem,7vw,7.5rem)]">
               Make money feel <span className="text-[#8cdf28]">understandable.</span>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/55">
+            <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-white/60 sm:mt-8 sm:text-base">
               A calmer way to plan budgets, build an emergency fund and understand the
               financial habits shaping your future.
             </p>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-colors hover:bg-[#a8ea52] hover:text-black">
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex min-h-11 items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a8ea52] hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8cdf28] focus-visible:ring-offset-2 focus-visible:ring-offset-[#070a07] sm:mt-9"
+            >
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
-            <div className="relative mx-auto mt-10 h-[30rem] w-full max-w-3xl">
-              <div className="absolute left-1/2 top-16 size-[32rem] -translate-x-1/2 rounded-full border border-[#8cdf28]/12" />
+            <div className="relative mx-auto mt-8 h-[19rem] w-full max-w-3xl sm:mt-10 sm:h-[30rem]">
+              <div className="absolute left-1/2 top-10 size-[19rem] max-w-full -translate-x-1/2 rounded-full border border-[#8cdf28]/12 sm:top-16 sm:size-[32rem]" />
               <Image
                 src="/yojiq/yojiq-product-preview-transparent-clean.webp"
                 alt="YojIQ personal finance application"
                 fill
                 priority
                 className="object-contain drop-shadow-[0_3rem_5rem_rgba(140,223,40,.14)]"
-                sizes="(max-width: 768px) 90vw, 48rem"
+                sizes="(max-width: 640px) 94vw, (max-width: 768px) 90vw, 48rem"
               />
             </div>
           </div>
@@ -65,9 +84,12 @@ export default function YojIQProductExperience() {
       <section className="border-y border-white/8 py-28 sm:py-36">
         <Container className="grid max-w-[96rem] gap-16 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">Why YojIQ</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">
+              Why YojIQ
+            </p>
             <h2 className="mt-6 max-w-[11ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
-              Financial tools show numbers. People need a <span className="text-[#8cdf28]">plan.</span>
+              Financial tools show numbers. People need a{" "}
+              <span className="text-[#8cdf28]">plan.</span>
             </h2>
           </div>
           <div className="space-y-8">
@@ -78,10 +100,22 @@ export default function YojIQProductExperience() {
             </p>
             <div className="grid gap-px bg-white/10 sm:grid-cols-2">
               {[
-                ["Less financial noise", "Focus on decisions instead of endless transaction detail."],
-                ["One connected picture", "See today’s budget beside protection and future goals."],
-                ["Progress you can explain", "Understand why a goal is on track or needs attention."],
-                ["No false certainty", "Planning support without presenting guidance as guaranteed outcomes."],
+                [
+                  "Less financial noise",
+                  "Focus on decisions instead of endless transaction detail.",
+                ],
+                [
+                  "One connected picture",
+                  "See today’s budget beside protection and future goals.",
+                ],
+                [
+                  "Progress you can explain",
+                  "Understand why a goal is on track or needs attention.",
+                ],
+                [
+                  "No false certainty",
+                  "Planning support without presenting guidance as guaranteed outcomes.",
+                ],
               ].map(([title, description]) => (
                 <article key={title} className="bg-[#070a07] p-6">
                   <h3 className="font-semibold">{title}</h3>
@@ -101,9 +135,12 @@ export default function YojIQProductExperience() {
             <LockKeyhole className="size-24 text-[#8cdf28]" strokeWidth={1.2} />
           </div>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">The YojIQ USP</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">
+              The YojIQ USP
+            </p>
             <h2 className="mt-6 text-5xl font-semibold leading-[.95] sm:text-7xl">
-              Privacy begins with what the product <span className="text-[#8cdf28]">doesn&apos;t collect.</span>
+              Privacy begins with what the product{" "}
+              <span className="text-[#8cdf28]">doesn&apos;t collect.</span>
             </h2>
             <p className="mt-7 max-w-xl text-sm leading-7 text-white/48">
               YojIQ starts with intentional manual planning. Users stay aware of every
@@ -127,7 +164,9 @@ export default function YojIQProductExperience() {
 
       <section className="bg-[#090d09] py-28 sm:py-36">
         <Container className="max-w-[90rem]">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">One planning journey</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">
+            One planning journey
+          </p>
           <h2 className="mt-6 max-w-[12ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
             See the next decision before it becomes urgent.
           </h2>
@@ -140,12 +179,18 @@ export default function YojIQProductExperience() {
                   index % 2 ? "md:ml-auto" : ""
                 }`}
               >
-                <span className={`absolute top-8 size-3 rounded-full bg-[#8cdf28] shadow-[0_0_24px_rgba(140,223,40,.7)] ${
-                  index % 2 ? "-left-[3.05rem]" : "-left-[3.05rem] md:-right-[3.05rem] md:left-auto"
-                }`} />
+                <span
+                  className={`absolute top-8 size-3 rounded-full bg-[#8cdf28] shadow-[0_0_24px_rgba(140,223,40,.7)] ${
+                    index % 2
+                      ? "-left-[3.05rem]"
+                      : "-left-[3.05rem] md:-right-[3.05rem] md:left-auto"
+                  }`}
+                />
                 <Icon className="size-7 text-[#8cdf28]" />
                 <h3 className="mt-10 text-3xl font-semibold">{title}</h3>
-                <p className="mt-4 max-w-md text-sm leading-6 text-white/42">{description}</p>
+                <p className="mt-4 max-w-md text-sm leading-6 text-white/42">
+                  {description}
+                </p>
               </article>
             ))}
           </div>
@@ -162,10 +207,22 @@ export default function YojIQProductExperience() {
           </div>
           <div className="divide-y divide-white/10 border-t border-white/10">
             {[
-              ["Budget health", "Understand whether planned spending remains aligned with income and priorities."],
-              ["Emergency readiness", "See progress against a user-defined safety-fund target."],
-              ["Insurance awareness", "Track policy context and renewal information without replacing professional advice."],
-              ["Investment summary", "Bring manually entered portfolio context into the wider plan without promising returns."],
+              [
+                "Budget health",
+                "Understand whether planned spending remains aligned with income and priorities.",
+              ],
+              [
+                "Emergency readiness",
+                "See progress against a user-defined safety-fund target.",
+              ],
+              [
+                "Insurance awareness",
+                "Track policy context and renewal information without replacing professional advice.",
+              ],
+              [
+                "Investment summary",
+                "Bring manually entered portfolio context into the wider plan without promising returns.",
+              ],
             ].map(([title, description]) => (
               <article key={title} className="grid gap-4 py-8 sm:grid-cols-[12rem_1fr]">
                 <h3 className="font-semibold">{title}</h3>
@@ -179,11 +236,16 @@ export default function YojIQProductExperience() {
       <section className="py-12">
         <Container className="grid min-h-[34rem] max-w-[96rem] place-items-center bg-[radial-gradient(circle_at_50%_100%,rgba(140,223,40,.25),transparent_58%)] text-center">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">Private beta</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#8cdf28]">
+              Private beta
+            </p>
             <h2 className="mx-auto mt-6 max-w-[13ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
               Plan with clarity. Move with confidence.
             </h2>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-colors hover:bg-[#a8ea52] hover:text-black">
+            <Link
+              href="/contact"
+              className="mt-9 inline-flex items-center gap-3 rounded-md bg-[#8cdf28] px-5 py-3 text-sm font-semibold text-[#071006] transition-colors hover:bg-[#a8ea52] hover:text-black"
+            >
               Join the waitlist <ArrowRight className="size-4" />
             </Link>
           </div>

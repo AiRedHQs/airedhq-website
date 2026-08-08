@@ -6,7 +6,8 @@ const page = servicePages.mobile;
 
 export const metadata = createMetadata({
   title: "Mobile Application Development",
-  description: page.description,
+  description:
+    "High-performance Android and iOS applications with seamless user experiences. Native and cross-platform builds, shipped to store and maintained.",
   path: "/solutions/mobile-development",
 });
 

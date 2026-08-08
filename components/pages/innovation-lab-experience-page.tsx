@@ -12,12 +12,42 @@ import {
 import { Container } from "@/components/layout/container";
 
 const experiments = [
-  [Bot, "AI agents", "Task-focused systems that can reason across tools while preserving review and accountability.", "AI"],
-  [Braces, "Developer tools", "Utilities that reduce repetitive engineering work and make product systems easier to understand.", "DEV"],
-  [GraduationCap, "Learning technology", "Interactive learning experiences shaped by AI, simulation and accessibility.", "EDU"],
-  [Workflow, "Business automation", "Operational workflows that connect fragmented knowledge, decisions and handoffs.", "OPS"],
-  [Boxes, "Spatial products", "AR and VR concepts for training, visualization and practical learning.", "XR"],
-  [Sparkles, "Experimental products", "Small product bets used to test an interaction, need or emerging market.", "R&D"],
+  [
+    Bot,
+    "AI agents",
+    "Task-focused systems that can reason across tools while preserving review and accountability.",
+    "AI",
+  ],
+  [
+    Braces,
+    "Developer tools",
+    "Utilities that reduce repetitive engineering work and make product systems easier to understand.",
+    "DEV",
+  ],
+  [
+    GraduationCap,
+    "Learning technology",
+    "Interactive learning experiences shaped by AI, simulation and accessibility.",
+    "EDU",
+  ],
+  [
+    Workflow,
+    "Business automation",
+    "Operational workflows that connect fragmented knowledge, decisions and handoffs.",
+    "OPS",
+  ],
+  [
+    Boxes,
+    "Spatial products",
+    "AR and VR concepts for training, visualization and practical learning.",
+    "XR",
+  ],
+  [
+    Sparkles,
+    "Experimental products",
+    "Small product bets used to test an interaction, need or emerging market.",
+    "R&D",
+  ],
 ] as const;
 
 export function InnovationLabExperiencePage() {
@@ -34,11 +64,14 @@ export function InnovationLabExperiencePage() {
               Always building what comes <span className="text-[#8a4cff]">next.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-7 text-white/50">
-              A working space for testing AI, immersive technology and product ideas before
-              they become roadmaps, services or standalone products.
+              A working space for testing AI, immersive technology and product ideas
+              before they become roadmaps, services or standalone products.
             </p>
           </div>
-          <div className="relative grid min-h-[34rem] place-items-center" aria-hidden="true">
+          <div
+            className="relative grid min-h-[34rem] place-items-center"
+            aria-hidden="true"
+          >
             <div className="absolute size-[28rem] rounded-full border border-dashed border-white/10" />
             <div className="absolute size-[18rem] rounded-full border border-white/8" />
             <Orbit className="size-24 text-[#8a4cff]" strokeWidth={0.8} />
@@ -77,8 +110,13 @@ export function InnovationLabExperiencePage() {
           </div>
           <div className="space-y-16 text-2xl leading-10 text-white/68 sm:text-3xl sm:leading-[1.45]">
             <p>Explore a real problem before committing to a product category.</p>
-            <p>Test whether emerging technology improves the work or merely decorates it.</p>
-            <p>Turn useful experiments into reusable knowledge, prototypes and product decisions.</p>
+            <p>
+              Test whether emerging technology improves the work or merely decorates it.
+            </p>
+            <p>
+              Turn useful experiments into reusable knowledge, prototypes and product
+              decisions.
+            </p>
           </div>
         </Container>
       </section>
@@ -90,14 +128,19 @@ export function InnovationLabExperiencePage() {
           </p>
           <div className="mt-14 grid gap-x-14 lg:grid-cols-2">
             {experiments.map(([Icon, title, description, code]) => (
-              <article key={title} className="group grid grid-cols-[3rem_1fr] gap-5 border-t border-white/10 py-9">
+              <article
+                key={title}
+                className="group grid grid-cols-[3rem_1fr] gap-5 border-t border-white/10 py-9"
+              >
                 <Icon className="size-5 text-[#8a4cff] transition-transform group-hover:rotate-6 group-hover:scale-110" />
                 <div>
                   <div className="flex items-center justify-between gap-6">
                     <h2 className="text-2xl font-semibold">{title}</h2>
                     <span className="font-mono text-[10px] text-white/25">{code}</span>
                   </div>
-                  <p className="mt-4 max-w-xl text-sm leading-7 text-white/42">{description}</p>
+                  <p className="mt-4 max-w-xl text-sm leading-7 text-white/42">
+                    {description}
+                  </p>
                 </div>
               </article>
             ))}
@@ -119,15 +162,26 @@ export function InnovationLabExperiencePage() {
             <div className="relative">
               <div className="absolute left-4 top-4 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-[#8a4cff] to-[#2388ff]" />
               {[
-                ["Frame", "Define the user, decision and evidence that would make the experiment useful."],
+                [
+                  "Frame",
+                  "Define the user, decision and evidence that would make the experiment useful.",
+                ],
                 ["Prototype", "Build only enough fidelity to test the risky assumption."],
-                ["Observe", "Collect behavior and technical evidence without inflating early signals."],
+                [
+                  "Observe",
+                  "Collect behavior and technical evidence without inflating early signals.",
+                ],
                 ["Decide", "Advance, reshape, reuse or stop the idea."],
-              ].map(([title, description], index) => (
+              ].map(([title, description]) => (
                 <article key={title} className="relative pb-14 pl-14">
-                  <span className="absolute left-2 top-1 size-3 rounded-full bg-[#8a4cff] shadow-[0_0_0_6px_rgba(138,76,255,.1)]" aria-hidden="true" />
+                  <span
+                    className="absolute left-2 top-1 size-3 rounded-full bg-[#8a4cff] shadow-[0_0_0_6px_rgba(138,76,255,.1)]"
+                    aria-hidden="true"
+                  />
                   <h3 className="text-xl font-semibold">{title}</h3>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-white/42">{description}</p>
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-white/42">
+                    {description}
+                  </p>
                 </article>
               ))}
             </div>
@@ -144,7 +198,10 @@ export function InnovationLabExperiencePage() {
             <h2 className="mx-auto mt-6 max-w-[12ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
               Explore what the next product could become.
             </h2>
-            <Link href="/contact" className="mt-9 inline-flex items-center gap-3 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black">
+            <Link
+              href="/contact"
+              className="mt-9 inline-flex items-center gap-3 rounded-md bg-white px-5 py-3 text-sm font-semibold text-black"
+            >
               Start a conversation <ArrowRight className="size-4" />
             </Link>
           </div>

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ChangeEvent,
-} from "react";
+import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 
 type Option = {
   label: string;
@@ -218,7 +212,7 @@ const QUESTIONS: Question[] = [
 // Emergency-fund and insurance answers are assessed separately in the
 // Financial Foundation Check. They must not directly change risk tolerance.
 const PROFILE_QUESTION_INDEXES = QUESTIONS.map((_, index) => index).filter(
-  (index) => ![2, 3, 4].includes(index)
+  (index) => ![2, 3, 4].includes(index),
 );
 
 function getProfile(score: number): RiskProfile {
@@ -259,7 +253,6 @@ function getProfile(score: number): RiskProfile {
     },
   };
 }
-
 
 type AssetKey = "equity" | "debt" | "gold";
 
@@ -368,7 +361,7 @@ function formatCompactCurrency(value: number) {
 function calculateSipFutureValue(
   monthlyInvestment: number,
   annualReturn: number,
-  years: number
+  years: number,
 ) {
   const months = Math.max(0, Math.round(years * 12));
   const monthlyRate = annualReturn / 12 / 100;
@@ -387,14 +380,12 @@ function calculateSipFutureValue(
 function buildYearlySeries(
   monthlyInvestment: number,
   annualReturn: number,
-  years: number
+  years: number,
 ) {
   return Array.from({ length: years + 1 }, (_, year) => ({
     year,
     value:
-      year === 0
-        ? 0
-        : calculateSipFutureValue(monthlyInvestment, annualReturn, year),
+      year === 0 ? 0 : calculateSipFutureValue(monthlyInvestment, annualReturn, year),
   }));
 }
 
@@ -438,16 +429,12 @@ function ProjectionChart({ projections }: { projections: AssetProjection[] }) {
 
   const series = projections.map((item) => ({
     ...item,
-    points: buildYearlySeries(
-      item.monthlyAmount,
-      item.annualReturn,
-      item.years
-    ),
+    points: buildYearlySeries(item.monthlyAmount, item.annualReturn, item.years),
   }));
 
   const maxValue = Math.max(
     ...series.flatMap((item) => item.points.map((point) => point.value)),
-    1
+    1,
   );
 
   function x(year: number) {
@@ -459,9 +446,7 @@ function ProjectionChart({ projections }: { projections: AssetProjection[] }) {
   }
 
   const yTicks = [0, 0.25, 0.5, 0.75, 1];
-  const xTicks = Array.from(
-    new Set([0, Math.round(maxYears / 2), maxYears])
-  );
+  const xTicks = Array.from(new Set([0, Math.round(maxYears / 2), maxYears]));
 
   return (
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-5">
@@ -586,13 +571,10 @@ function FoundationRing({ score }: { score: number }) {
 
 export default function Assessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<number[]>(
-    Array(QUESTIONS.length).fill(-1)
-  );
+  const [answers, setAnswers] = useState<number[]>(Array(QUESTIONS.length).fill(-1));
   const [showResult, setShowResult] = useState(false);
   const [monthlyInvestment, setMonthlyInvestment] = useState(20_000);
-  const [durations, setDurations] =
-    useState<Record<AssetKey, number>>(DEFAULT_DURATIONS);
+  const [durations, setDurations] = useState<Record<AssetKey, number>>(DEFAULT_DURATIONS);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [pdfError, setPdfError] = useState("");
   const answersRef = useRef<number[]>(answers);
@@ -636,8 +618,7 @@ export default function Assessment() {
         if (!element) return;
 
         const headerOffset = 96;
-        const top =
-          element.getBoundingClientRect().top + window.scrollY - headerOffset;
+        const top = element.getBoundingClientRect().top + window.scrollY - headerOffset;
 
         window.scrollTo({
           top: Math.max(0, top),
@@ -656,27 +637,25 @@ export default function Assessment() {
 
   const answeredCount = useMemo(
     () => answers.filter((answer) => answer !== -1).length,
-    [answers]
+    [answers],
   );
 
   const completion = useMemo(
     () => Math.round((answeredCount / QUESTIONS.length) * 100),
-    [answeredCount]
+    [answeredCount],
   );
 
   const profileScoreRange = useMemo(() => {
     return PROFILE_QUESTION_INDEXES.reduce(
       (range, questionIndex) => {
-        const scores = QUESTIONS[questionIndex].options.map(
-          (option) => option.score
-        );
+        const scores = QUESTIONS[questionIndex].options.map((option) => option.score);
 
         return {
           minimum: range.minimum + Math.min(...scores),
           maximum: range.maximum + Math.max(...scores),
         };
       },
-      { minimum: 0, maximum: 0 }
+      { minimum: 0, maximum: 0 },
     );
   }, []);
 
@@ -688,7 +667,7 @@ export default function Assessment() {
 
         return total + QUESTIONS[questionIndex].options[selectedOption].score;
       }, 0),
-    [answers]
+    [answers],
   );
 
   const normalizedScore = Math.max(
@@ -698,70 +677,53 @@ export default function Assessment() {
       Math.round(
         ((totalScore - profileScoreRange.minimum) /
           (profileScoreRange.maximum - profileScoreRange.minimum)) *
-          100
-      )
-    )
+          100,
+      ),
+    ),
   );
   const profile = getProfile(normalizedScore);
   const allAnswered = answeredCount === QUESTIONS.length;
 
-  const projections = useMemo<AssetProjection[]>(
-    () => {
-      const safeMonthlyInvestment = Math.round(
-        Math.max(0, monthlyInvestment)
-      );
-      let allocatedAmount = 0;
-
-      return ASSET_META.map((asset, index) => {
-        const allocation = profile.allocation[asset.key];
-        const isLastAsset = index === ASSET_META.length - 1;
-        const monthlyAmount = isLastAsset
-          ? Math.max(0, safeMonthlyInvestment - allocatedAmount)
-          : Math.round((safeMonthlyInvestment * allocation) / 100);
-        allocatedAmount += monthlyAmount;
-
-        const annualReturn = RETURN_ASSUMPTIONS[asset.key];
-        const years = durations[asset.key];
-        const investedAmount = monthlyAmount * years * 12;
-        const estimatedValue = calculateSipFutureValue(
-          monthlyAmount,
-          annualReturn,
-          years
-        );
-
-        return {
-          ...asset,
-          allocation,
-          monthlyAmount,
-          annualReturn,
-          years,
-          investedAmount,
-          estimatedValue,
-          estimatedGrowth: Math.max(0, estimatedValue - investedAmount),
-        };
-      });
-    },
-    [
-      durations,
-      monthlyInvestment,
-      profile.allocation.debt,
-      profile.allocation.equity,
-      profile.allocation.gold,
-    ]
+  const safeMonthlyInvestment = Math.round(Math.max(0, monthlyInvestment));
+  const roundedMonthlyAmounts = ASSET_META.slice(0, -1).map((asset) =>
+    Math.round((safeMonthlyInvestment * profile.allocation[asset.key]) / 100),
   );
+  const finalMonthlyAmount = Math.max(
+    0,
+    safeMonthlyInvestment -
+      roundedMonthlyAmounts.reduce((total, amount) => total + amount, 0),
+  );
+  const monthlyAmounts = [...roundedMonthlyAmounts, finalMonthlyAmount];
+
+  const projections: AssetProjection[] = ASSET_META.map((asset, index) => {
+    const allocation = profile.allocation[asset.key];
+    const monthlyAmount = monthlyAmounts[index];
+    const annualReturn = RETURN_ASSUMPTIONS[asset.key];
+    const years = durations[asset.key];
+    const investedAmount = monthlyAmount * years * 12;
+    const estimatedValue = calculateSipFutureValue(monthlyAmount, annualReturn, years);
+
+    return {
+      ...asset,
+      allocation,
+      monthlyAmount,
+      annualReturn,
+      years,
+      investedAmount,
+      estimatedValue,
+      estimatedGrowth: Math.max(0, estimatedValue - investedAmount),
+    };
+  });
 
   const totalInvested = projections.reduce(
     (total, item) => total + item.investedAmount,
-    0
+    0,
   );
   const totalEstimatedValue = projections.reduce(
     (total, item) => total + item.estimatedValue,
-    0
-  );
-  const totalEstimatedGrowth = Math.max(
     0,
-    totalEstimatedValue - totalInvested
   );
+  const totalEstimatedGrowth = Math.max(0, totalEstimatedValue - totalInvested);
 
   const emergencyOptionIndex = answers[2];
   const healthOptionIndex = answers[3];
@@ -769,10 +731,9 @@ export default function Assessment() {
 
   const emergencyScore = [0, 35, 75, 100][emergencyOptionIndex] ?? 0;
   const healthScore = healthOptionIndex === 0 ? 100 : 0;
-  const termScore =
-    termOptionIndex === 0 || termOptionIndex === 2 ? 100 : 0;
+  const termScore = termOptionIndex === 0 || termOptionIndex === 2 ? 100 : 0;
   const foundationScore = Math.round(
-    emergencyScore * 0.45 + healthScore * 0.35 + termScore * 0.2
+    emergencyScore * 0.45 + healthScore * 0.35 + termScore * 0.2,
   );
 
   const foundationStatus =
@@ -821,11 +782,7 @@ export default function Assessment() {
           ? QUESTIONS[4].options[termOptionIndex].label
           : "Not answered",
       status:
-        termOptionIndex === 0
-          ? "ready"
-          : termOptionIndex === 2
-            ? "neutral"
-            : "attention",
+        termOptionIndex === 0 ? "ready" : termOptionIndex === 2 ? "neutral" : "attention",
       message:
         termOptionIndex === 0
           ? "Term cover is available based on your response."
@@ -906,9 +863,7 @@ export default function Assessment() {
     autoAdvanceTimer.current = window.setTimeout(() => {
       autoAdvanceTimer.current = null;
       const latestAnswers = answersRef.current;
-      const allQuestionsAnswered = latestAnswers.every(
-        (answer) => answer !== -1
-      );
+      const allQuestionsAnswered = latestAnswers.every((answer) => answer !== -1);
 
       if (isLastQuestion && allQuestionsAnswered) {
         setShowResult(true);
@@ -918,7 +873,7 @@ export default function Assessment() {
 
       if (isLastQuestion) {
         const firstUnansweredQuestion = latestAnswers.findIndex(
-          (answer) => answer === -1
+          (answer) => answer === -1,
         );
         setCurrentQuestion(Math.max(0, firstUnansweredQuestion));
         requestScroll("question");
@@ -998,145 +953,134 @@ export default function Assessment() {
       const { jsPDF } = await import("jspdf");
       const doc = new jsPDF();
 
-    const leftMargin = 20;
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const contentWidth = pageWidth - leftMargin * 2;
-    let y = 22;
+      const leftMargin = 20;
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const contentWidth = pageWidth - leftMargin * 2;
+      let y = 22;
 
-    function addPageWhenNeeded(requiredHeight = 12) {
-      if (y + requiredHeight > pageHeight - 20) {
-        doc.addPage();
-        y = 22;
+      function addPageWhenNeeded(requiredHeight = 12) {
+        if (y + requiredHeight > pageHeight - 20) {
+          doc.addPage();
+          y = 22;
+        }
       }
-    }
 
-    function addSectionHeading(title: string) {
-      addPageWhenNeeded(16);
+      function addSectionHeading(title: string) {
+        addPageWhenNeeded(16);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text(title, leftMargin, y);
+        y += 10;
+      }
+
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(14);
-      doc.text(title, leftMargin, y);
+      doc.setFontSize(20);
+      doc.text("Investment Profile & SIP Illustration", leftMargin, y);
+
+      y += 12;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.text(`Generated on ${new Date().toLocaleDateString("en-IN")}`, leftMargin, y);
+
+      y += 16;
+      addSectionHeading("Risk profile");
+      doc.setFontSize(22);
+      doc.text(`${profile.name} (${normalizedScore}/100)`, leftMargin, y);
+
       y += 10;
-    }
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.text("Investment Profile & SIP Illustration", leftMargin, y);
-
-    y += 12;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text(
-      `Generated on ${new Date().toLocaleDateString("en-IN")}`,
-      leftMargin,
-      y
-    );
-
-    y += 16;
-    addSectionHeading("Risk profile");
-    doc.setFontSize(22);
-    doc.text(`${profile.name} (${normalizedScore}/100)`, leftMargin, y);
-
-    y += 10;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    const descriptionLines = doc.splitTextToSize(
-      profile.description,
-      contentWidth
-    );
-    doc.text(descriptionLines, leftMargin, y);
-    y += descriptionLines.length * 5 + 8;
-
-    doc.setFont("helvetica", "bold");
-    doc.text(
-      `Allocation: Equity ${profile.allocation.equity}% | Debt ${profile.allocation.debt}% | Gold ${profile.allocation.gold}%`,
-      leftMargin,
-      y
-    );
-    y += 14;
-
-    addSectionHeading("Monthly investment simulator");
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text(
-      `Monthly investment entered: ${formatPdfCurrency(monthlyInvestment)}`,
-      leftMargin,
-      y
-    );
-    y += 8;
-
-    projections.forEach((item) => {
-      addPageWhenNeeded(28);
-      doc.setFont("helvetica", "bold");
-      doc.text(`${item.label} (${item.allocation}%)`, leftMargin, y);
-      y += 6;
       doc.setFont("helvetica", "normal");
-      const detail = `${formatPdfCurrency(item.monthlyAmount)}/month | ${item.years} years | ${item.annualReturn}% p.a. illustrative | Invested ${formatPdfCurrency(item.investedAmount)} | Estimated value ${formatPdfCurrency(item.estimatedValue)}`;
-      const detailLines = doc.splitTextToSize(detail, contentWidth);
-      doc.text(detailLines, leftMargin, y);
-      y += detailLines.length * 5 + 7;
-    });
+      doc.setFontSize(10);
+      const descriptionLines = doc.splitTextToSize(profile.description, contentWidth);
+      doc.text(descriptionLines, leftMargin, y);
+      y += descriptionLines.length * 5 + 8;
 
-    doc.setFont("helvetica", "bold");
-    doc.text(
-      `Combined invested amount: ${formatPdfCurrency(totalInvested)}`,
-      leftMargin,
-      y
-    );
-    y += 7;
-    doc.text(
-      `Combined projected values: ${formatPdfCurrency(totalEstimatedValue)}`,
-      leftMargin,
-      y
-    );
-    y += 14;
-
-    addSectionHeading("Financial foundation");
-    doc.setFont("helvetica", "bold");
-    doc.text(
-      `${foundationStatus} (${foundationScore}/100)`,
-      leftMargin,
-      y
-    );
-    y += 8;
-
-    foundationItems.forEach((item) => {
-      addPageWhenNeeded(20);
       doc.setFont("helvetica", "bold");
-      doc.text(`${item.label}: ${item.value}`, leftMargin, y);
-      y += 6;
-      doc.setFont("helvetica", "normal");
-      const lines = doc.splitTextToSize(item.message, contentWidth);
-      doc.text(lines, leftMargin, y);
-      y += lines.length * 5 + 6;
-    });
+      doc.text(
+        `Allocation: Equity ${profile.allocation.equity}% | Debt ${profile.allocation.debt}% | Gold ${profile.allocation.gold}%`,
+        leftMargin,
+        y,
+      );
+      y += 14;
 
-    addSectionHeading("Priority actions");
-    priorityActions.forEach((action, index) => {
-      addPageWhenNeeded(20);
+      addSectionHeading("Monthly investment simulator");
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.text(
+        `Monthly investment entered: ${formatPdfCurrency(monthlyInvestment)}`,
+        leftMargin,
+        y,
+      );
+      y += 8;
+
+      projections.forEach((item) => {
+        addPageWhenNeeded(28);
+        doc.setFont("helvetica", "bold");
+        doc.text(`${item.label} (${item.allocation}%)`, leftMargin, y);
+        y += 6;
+        doc.setFont("helvetica", "normal");
+        const detail = `${formatPdfCurrency(item.monthlyAmount)}/month | ${item.years} years | ${item.annualReturn}% p.a. illustrative | Invested ${formatPdfCurrency(item.investedAmount)} | Estimated value ${formatPdfCurrency(item.estimatedValue)}`;
+        const detailLines = doc.splitTextToSize(detail, contentWidth);
+        doc.text(detailLines, leftMargin, y);
+        y += detailLines.length * 5 + 7;
+      });
+
       doc.setFont("helvetica", "bold");
-      doc.text(`${index + 1}. ${action.title} (${action.priority})`, leftMargin, y);
-      y += 6;
-      doc.setFont("helvetica", "normal");
-      const lines = doc.splitTextToSize(action.description, contentWidth);
-      doc.text(lines, leftMargin, y);
-      y += lines.length * 5 + 6;
-    });
+      doc.text(
+        `Combined invested amount: ${formatPdfCurrency(totalInvested)}`,
+        leftMargin,
+        y,
+      );
+      y += 7;
+      doc.text(
+        `Combined projected values: ${formatPdfCurrency(totalEstimatedValue)}`,
+        leftMargin,
+        y,
+      );
+      y += 14;
 
-    addSectionHeading("Important assumptions");
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9);
-    const disclaimer = doc.splitTextToSize(
-      "The return rates are fixed illustrative assumptions used only to demonstrate compounding. They are not forecasts or guaranteed returns. The combined total adds category values at their separately selected end dates. This report is educational and is not personalised investment advice.",
-      contentWidth
-    );
-    doc.text(disclaimer, leftMargin, y);
+      addSectionHeading("Financial foundation");
+      doc.setFont("helvetica", "bold");
+      doc.text(`${foundationStatus} (${foundationScore}/100)`, leftMargin, y);
+      y += 8;
+
+      foundationItems.forEach((item) => {
+        addPageWhenNeeded(20);
+        doc.setFont("helvetica", "bold");
+        doc.text(`${item.label}: ${item.value}`, leftMargin, y);
+        y += 6;
+        doc.setFont("helvetica", "normal");
+        const lines = doc.splitTextToSize(item.message, contentWidth);
+        doc.text(lines, leftMargin, y);
+        y += lines.length * 5 + 6;
+      });
+
+      addSectionHeading("Priority actions");
+      priorityActions.forEach((action, index) => {
+        addPageWhenNeeded(20);
+        doc.setFont("helvetica", "bold");
+        doc.text(`${index + 1}. ${action.title} (${action.priority})`, leftMargin, y);
+        y += 6;
+        doc.setFont("helvetica", "normal");
+        const lines = doc.splitTextToSize(action.description, contentWidth);
+        doc.text(lines, leftMargin, y);
+        y += lines.length * 5 + 6;
+      });
+
+      addSectionHeading("Important assumptions");
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      const disclaimer = doc.splitTextToSize(
+        "The return rates are fixed illustrative assumptions used only to demonstrate compounding. They are not forecasts or guaranteed returns. The combined total adds category values at their separately selected end dates. This report is educational and is not personalised investment advice.",
+        contentWidth,
+      );
+      doc.text(disclaimer, leftMargin, y);
 
       doc.save("investment-profile-and-sip-illustration.pdf");
     } catch (error) {
       console.error("Unable to generate the PDF report", error);
       setPdfError(
-        "The PDF could not be generated. Confirm that jsPDF is installed, then try again."
+        "The PDF could not be generated. Confirm that jsPDF is installed, then try again.",
       );
     } finally {
       setIsDownloadingPdf(false);
@@ -1237,10 +1181,7 @@ export default function Assessment() {
                 </div>
 
                 <div className="w-full lg:w-[280px] lg:shrink-0">
-                  <label
-                    htmlFor="monthly-investment"
-                    className="text-sm text-white/55"
-                  >
+                  <label htmlFor="monthly-investment" className="text-sm text-white/55">
                     Monthly investment
                   </label>
                   <div className="mt-2 flex items-center rounded-xl border border-white/15 bg-black/30 px-4 focus-within:border-lime-400">
@@ -1254,9 +1195,7 @@ export default function Assessment() {
                       onChange={(event: ChangeEvent<HTMLInputElement>) => {
                         const value = Number(event.target.value);
                         setMonthlyInvestment(
-                          Number.isFinite(value)
-                            ? Math.max(0, Math.round(value))
-                            : 0
+                          Number.isFinite(value) ? Math.max(0, Math.round(value)) : 0,
                         );
                       }}
                       className="min-w-0 w-full bg-transparent px-3 py-4 text-xl font-bold outline-none sm:text-2xl"
@@ -1282,7 +1221,9 @@ export default function Assessment() {
                       <div className="text-sm text-white/45">
                         {asset.label} · {asset.allocation}%
                       </div>
-                      <div className={`mt-1 whitespace-nowrap text-xl font-bold ${asset.textClass}`}>
+                      <div
+                        className={`mt-1 whitespace-nowrap text-xl font-bold ${asset.textClass}`}
+                      >
                         {formatCurrency(asset.monthlyAmount)}
                       </div>
                       <div className="mt-1 text-xs text-white/40">per month</div>
@@ -1297,8 +1238,8 @@ export default function Assessment() {
                 </h4>
                 <p className="mt-2 text-sm leading-6 text-white/55">
                   Equity 10%, Debt 6.5% and Gold 6% per year. These values are
-                  non-editable and are used only to illustrate compounding—not
-                  to predict or guarantee returns.
+                  non-editable and are used only to illustrate compounding—not to predict
+                  or guarantee returns.
                 </p>
               </div>
 
@@ -1307,10 +1248,7 @@ export default function Assessment() {
                 {projections.map((asset) => {
                   const growthShare =
                     asset.estimatedValue > 0
-                      ? Math.max(
-                          0,
-                          (asset.estimatedGrowth / asset.estimatedValue) * 100
-                        )
+                      ? Math.max(0, (asset.estimatedGrowth / asset.estimatedValue) * 100)
                       : 0;
 
                   return (
@@ -1351,10 +1289,7 @@ export default function Assessment() {
                               inputMode="numeric"
                               value={asset.years}
                               onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                updateDuration(
-                                  asset.key,
-                                  Number(event.target.value)
-                                )
+                                updateDuration(asset.key, Number(event.target.value))
                               }
                               className="h-14 w-full min-w-0 appearance-none rounded-xl border border-white/10 bg-white/[0.03] py-3 pl-4 pr-24 text-lg font-semibold tabular-nums outline-none transition focus:border-lime-400 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                             />
@@ -1392,7 +1327,9 @@ export default function Assessment() {
                         </div>
                         <div className="flex items-start justify-between gap-4">
                           <span className="text-white/45">Estimated growth</span>
-                          <span className={`whitespace-nowrap text-right tabular-nums ${asset.textClass}`}>
+                          <span
+                            className={`whitespace-nowrap text-right tabular-nums ${asset.textClass}`}
+                          >
                             {formatCurrency(asset.estimatedGrowth)}
                           </span>
                         </div>
@@ -1419,7 +1356,9 @@ export default function Assessment() {
                         <div className="text-xs uppercase tracking-[0.12em] text-white/40">
                           Estimated final value
                         </div>
-                        <div className={`mt-2 whitespace-nowrap text-2xl font-bold tabular-nums ${asset.textClass}`}>
+                        <div
+                          className={`mt-2 whitespace-nowrap text-2xl font-bold tabular-nums ${asset.textClass}`}
+                        >
                           {formatCurrency(asset.estimatedValue)}
                         </div>
                       </div>
@@ -1438,9 +1377,8 @@ export default function Assessment() {
                 <FoundationRing score={foundationScore} />
                 <h3 className="mt-5 text-2xl font-bold">{foundationStatus}</h3>
                 <p className="mt-3 text-sm leading-6 text-white/50">
-                  Your risk profile explains how you may invest. This check shows
-                  what may need attention before committing your full monthly
-                  surplus.
+                  Your risk profile explains how you may invest. This check shows what may
+                  need attention before committing your full monthly surplus.
                 </p>
               </div>
 
@@ -1448,18 +1386,13 @@ export default function Assessment() {
                 {foundationItems.map((item) => {
                   const statusClasses = {
                     ready: "border-lime-400/20 bg-lime-400/5 text-lime-300",
-                    attention:
-                      "border-yellow-400/20 bg-yellow-400/5 text-yellow-300",
+                    attention: "border-yellow-400/20 bg-yellow-400/5 text-yellow-300",
                     critical: "border-red-400/20 bg-red-400/5 text-red-300",
                     neutral: "border-white/10 bg-white/[0.03] text-white/60",
                   }[item.status];
 
                   const icon =
-                    item.status === "ready"
-                      ? "✓"
-                      : item.status === "neutral"
-                        ? "—"
-                        : "!";
+                    item.status === "ready" ? "✓" : item.status === "neutral" ? "—" : "!";
 
                   return (
                     <div
@@ -1472,9 +1405,7 @@ export default function Assessment() {
                         </div>
                         <div className="min-w-0">
                           <div className="font-semibold">{item.label}</div>
-                          <div className="mt-1 text-sm text-white/75">
-                            {item.value}
-                          </div>
+                          <div className="mt-1 text-sm text-white/75">{item.value}</div>
                           <p className="mt-2 text-xs leading-5 text-white/45">
                             {item.message}
                           </p>
@@ -1523,9 +1454,8 @@ export default function Assessment() {
                     Treat this as a future SIP illustration
                   </div>
                   <p className="mt-2 text-sm leading-6 text-white/50">
-                    Consider addressing the highlighted foundation priorities
-                    before committing the full monthly amount to market-linked
-                    investments.
+                    Consider addressing the highlighted foundation priorities before
+                    committing the full monthly amount to market-linked investments.
                   </p>
                 </div>
               )}
@@ -1570,10 +1500,7 @@ export default function Assessment() {
 
               <div className="mt-6 overflow-hidden rounded-full bg-white/10">
                 <div className="flex h-4">
-                  <div
-                    className="bg-white/35"
-                    style={{ width: `${investedShare}%` }}
-                  />
+                  <div className="bg-white/35" style={{ width: `${investedShare}%` }} />
                   <div
                     className="bg-lime-400"
                     style={{ width: `${100 - investedShare}%` }}
@@ -1590,13 +1517,12 @@ export default function Assessment() {
           <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6">
             <h3 className="font-semibold">Important projection notes</h3>
             <p className="mt-3 text-sm leading-7 text-white/50">
-              Calculations assume monthly contributions at the beginning of each
-              month and fixed annual return assumptions. Actual returns can be
-              higher, lower or negative. Taxes, inflation, fees, product costs,
-              market volatility and changes in allocation are not included. The
-              combined total adds values from different category end dates and
-              should be read as an illustration rather than a single maturity
-              value.
+              Calculations assume monthly contributions at the beginning of each month and
+              fixed annual return assumptions. Actual returns can be higher, lower or
+              negative. Taxes, inflation, fees, product costs, market volatility and
+              changes in allocation are not included. The combined total adds values from
+              different category end dates and should be read as an illustration rather
+              than a single maturity value.
             </p>
           </div>
 
@@ -1626,11 +1552,7 @@ export default function Assessment() {
           </div>
 
           {pdfError && (
-            <p
-              className="mt-4 text-sm text-red-300"
-              role="alert"
-              aria-live="polite"
-            >
+            <p className="mt-4 text-sm text-red-300" role="alert" aria-live="polite">
               {pdfError}
             </p>
           )}
@@ -1796,9 +1718,9 @@ export default function Assessment() {
         <div className="mt-8 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-6">
           <h4 className="text-xl font-semibold">Before you invest</h4>
           <p className="mt-4 leading-7 text-white/65">
-            A risk score should not be used in isolation. Financial readiness,
-            insurance, emergency reserves, investment horizon, and liquidity
-            needs can all affect whether an investment strategy is suitable.
+            A risk score should not be used in isolation. Financial readiness, insurance,
+            emergency reserves, investment horizon, and liquidity needs can all affect
+            whether an investment strategy is suitable.
           </p>
         </div>
       </div>

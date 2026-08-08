@@ -6,7 +6,8 @@ const page = servicePages["ui-ux"];
 
 export const metadata = createMetadata({
   title: "UI/UX Design",
-  description: page.description,
+  description:
+    "Research-driven interfaces, design systems and delightful user experiences. From discovery and wireframes to production design systems.",
   path: "/solutions/ui-ux",
 });
 

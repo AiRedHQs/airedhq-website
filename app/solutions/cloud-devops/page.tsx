@@ -6,7 +6,8 @@ const page = servicePages.cloud;
 
 export const metadata = createMetadata({
   title: "Cloud & DevOps",
-  description: page.description,
+  description:
+    "Cloud-native architecture, CI/CD pipelines, monitoring and infrastructure automation. Reduce deploy risk and cost with automated, observable infrastructure.",
   path: "/solutions/cloud-devops",
 });
 

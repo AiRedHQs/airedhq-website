@@ -10,10 +10,26 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { Container } from "@/components/layout/container";
 
 const inquiryPaths = [
-  [BriefcaseBusiness, "Build a product", "A new platform, application or product experience."],
-  [MessagesSquare, "Improve a system", "A product that needs clearer UX, stronger architecture or room to scale."],
-  [Handshake, "Explore a partnership", "A product, technology or ecosystem collaboration."],
-  [Users, "Work with us", "A conversation about future roles or specialist collaboration."],
+  [
+    BriefcaseBusiness,
+    "Build a product",
+    "A new platform, application or product experience.",
+  ],
+  [
+    MessagesSquare,
+    "Improve a system",
+    "A product that needs clearer UX, stronger architecture or room to scale.",
+  ],
+  [
+    Handshake,
+    "Explore a partnership",
+    "A product, technology or ecosystem collaboration.",
+  ],
+  [
+    Users,
+    "Work with us",
+    "A conversation about future roles or specialist collaboration.",
+  ],
 ] as const;
 
 const usefulContext = [
@@ -62,7 +78,9 @@ export function ContactExperiencePage() {
               >
                 <Icon className="size-5 text-[#5a9fe8] transition-transform duration-300 group-hover:scale-110" />
                 <h2 className="mt-8 text-lg font-semibold">{title}</h2>
-                <p className="mt-3 max-w-xs text-sm leading-6 text-white/38">{description}</p>
+                <p className="mt-3 max-w-xs text-sm leading-6 text-white/38">
+                  {description}
+                </p>
                 {index < inquiryPaths.length - 1 ? (
                   <div className="mt-8 h-px bg-white/8 lg:hidden" />
                 ) : null}
@@ -79,7 +97,8 @@ export function ContactExperiencePage() {
               Project brief
             </p>
             <h2 className="mt-6 max-w-[9ch] text-5xl font-semibold leading-[.95] sm:text-7xl">
-              Give us the context, not a polished <span className="text-[#8a4cff]">pitch.</span>
+              Give us the context, not a polished{" "}
+              <span className="text-[#8a4cff]">pitch.</span>
             </h2>
             <p className="mt-7 max-w-md text-sm leading-7 text-white/43">
               Early ideas are welcome. The form helps us understand the conversation you
@@ -121,7 +140,7 @@ export function ContactExperiencePage() {
             </h2>
           </div>
           <div className="border-t border-white/10">
-            {usefulContext.map((item, index) => (
+            {usefulContext.map((item) => (
               <div
                 key={item}
                 className="flex items-center gap-4 border-b border-white/10 py-7"

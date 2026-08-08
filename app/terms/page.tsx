@@ -3,20 +3,23 @@ import { createMetadata } from "@/src/lib/seo";
 
 export const metadata = createMetadata({
   title: "Terms & Conditions",
-  description: "Terms governing access to and use of the AiRedHQ corporate website.",
+  description:
+    "Terms governing access to and use of the AiRedHQ corporate website. Read the acceptable-use, liability and IP terms in full.",
   path: "/terms",
 });
 
 export default function TermsPage() {
   return (
     <LegalPage
-      label="Terms · Version 1 operational draft"
+      label="Terms · Effective 8 August 2026"
       title="Terms for using this website."
-      introduction="These draft terms describe the intended rules for using the AiRedHQ corporate website. They do not replace product-specific agreements, statements of work or privacy notices."
+      introduction="These terms describe the rules for using the AiRedHQ corporate website. They do not replace product-specific agreements, statements of work or privacy notices."
       sections={[
         {
           title: "Website purpose",
-          paragraphs: ["The website provides general information about AiRedHQ, its products, capabilities, research direction and ways to make contact. Content is informational and does not create a professional, employment or commercial relationship."],
+          paragraphs: [
+            "The website provides general information about AiRedHQ, its products, capabilities, research direction and ways to make contact. Content is informational and does not create a professional, employment or commercial relationship.",
+          ],
         },
         {
           title: "Acceptable use",
@@ -28,23 +31,33 @@ export default function TermsPage() {
         },
         {
           title: "Intellectual property",
-          paragraphs: ["Unless stated otherwise, website copy, design, software, product names, logos and visual assets are owned by AiRedHQ or used with permission. Access to the site does not grant a license to reuse those materials beyond applicable legal exceptions."],
+          paragraphs: [
+            "Unless stated otherwise, website copy, design, software, product names, logos and visual assets are owned by AiRedHQ or used with permission. Access to the site does not grant a license to reuse those materials beyond applicable legal exceptions.",
+          ],
         },
         {
           title: "Product and service information",
-          paragraphs: ["Product capabilities, maturity and availability may change as products evolve. Website content is not a binding offer, warranty, roadmap commitment or substitute for a signed agreement."],
+          paragraphs: [
+            "Product capabilities, maturity and availability may change as products evolve. Website content is not a binding offer, warranty, roadmap commitment or substitute for a signed agreement.",
+          ],
         },
         {
           title: "Third-party links",
-          paragraphs: ["Links to third-party websites are provided for convenience. AiRedHQ does not control their content, availability, security or privacy practices."],
+          paragraphs: [
+            "Links to third-party websites are provided for convenience. AiRedHQ does not control their content, availability, security or privacy practices.",
+          ],
         },
         {
           title: "Disclaimers and liability",
-          paragraphs: ["The website is provided on an as-available basis to the extent permitted by law. Final limitations of warranties and liability must be tailored to the operating entity, jurisdiction and applicable law by qualified counsel."],
+          paragraphs: [
+            "The website is provided on an as-available basis to the extent permitted by law. AiRedHQ does not warrant that the website will always be uninterrupted, error-free or suitable for a particular purpose.",
+          ],
         },
         {
           title: "Changes and governing terms",
-          paragraphs: ["AiRedHQ may update the website and these terms. The final production version should identify the legal entity, effective date, governing law, dispute process and an approved contact channel."],
+          paragraphs: [
+            "AiRedHQ may update the website and these terms. Material changes will be reflected on this page with an updated effective date. Questions about these terms can be submitted through the contact page.",
+          ],
         },
       ]}
     />

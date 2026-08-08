@@ -6,7 +6,8 @@ const page = servicePages["ar-vr"];
 
 export const metadata = createMetadata({
   title: "AR/VR",
-  description: page.description,
+  description:
+    "Immersive learning, industrial simulations, training and virtual experiences. Applied to training, industrial simulation and product visualisation.",
   path: "/solutions/ar-vr",
 });
 

@@ -4,7 +4,7 @@ import { createMetadata } from "@/src/lib/seo";
 export const metadata = createMetadata({
   title: "Notes",
   description:
-    "Product decisions, engineering lessons and research notes from AiRedHQ.",
+    "Notes from AiRedHQ: product decisions, engineering lessons and applied AI research from the teams building our products.",
   path: "/blog",
 });
 

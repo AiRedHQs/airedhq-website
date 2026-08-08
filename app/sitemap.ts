@@ -25,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/careers",
     "/blog",
     "/calculators",
+    "/investment-risk-profiler",
     "/contact",
     "/privacy-policy",
     "/terms",
@@ -38,12 +39,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const blogArticles = getBlogArticleSummaries();
-  const categories = [...new Set(blogArticles.map((article) => article.category))].map((category) => ({
-    url: `${siteConfig.url}/blog/${category}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.75,
-  }));
+  const categories = [...new Set(blogArticles.map((article) => article.category))].map(
+    (category) => ({
+      url: `${siteConfig.url}/blog/${category}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }),
+  );
   const articles = blogArticles.map((article) => ({
     url: `${siteConfig.url}${article.route}`,
     lastModified: new Date(article.frontmatter.updatedAt),

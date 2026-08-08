@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { ApplicationShell } from "@/components/layout/application-shell";
@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name,
+    default: "AiRedHQ - AI, Immersive Tech & Product Engineering",
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -39,11 +39,20 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.name,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/airedhq/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "AiRedHQ",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
+    images: ["/airedhq/og-default.png"],
   },
 };
 
@@ -53,6 +62,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const googleAnalyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+  const googleTagManagerId =
+    process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID ?? "GTM-TL6JCCCK";
 
   return (
     <html
@@ -61,6 +72,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full">
+        <GoogleTagManager gtmId={googleTagManagerId} />
         <AppProviders>
           <ApplicationShell>{children}</ApplicationShell>
         </AppProviders>

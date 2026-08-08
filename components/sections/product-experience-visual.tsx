@@ -104,14 +104,17 @@ export function ProductExperienceVisual({ product }: { product: FeaturedProduct 
                   : "",
               ].join(" ")}
             >
-              {visual.rows.map((row, index) => (
+              {visual.rows.map((row) => (
                 <div
                   key={row}
                   className={`grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-md border ${visual.borderClass} bg-background/55 p-3`}
                 >
                   <span className={`size-2 rounded-full ${visual.bgClass}`} />
                   <span className="text-sm text-foreground">{row}</span>
-                  <span className={`size-2 rounded-full ${visual.bgClass}`} aria-hidden="true" />
+                  <span
+                    className={`size-2 rounded-full ${visual.bgClass}`}
+                    aria-hidden="true"
+                  />
                 </div>
               ))}
             </div>

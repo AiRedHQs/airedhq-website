@@ -6,7 +6,8 @@ const page = servicePages.web;
 
 export const metadata = createMetadata({
   title: "Web Application Development",
-  description: page.description,
+  description:
+    "Scalable SaaS platforms, dashboards, portals and enterprise software engineered for growth. Built with modern frameworks and a measurable delivery process.",
   path: "/solutions/web-development",
 });
 
